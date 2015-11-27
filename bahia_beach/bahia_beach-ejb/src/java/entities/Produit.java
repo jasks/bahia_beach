@@ -34,7 +34,7 @@ public class Produit implements Serializable {
     @ManyToOne
     private Tva tva;
     
-    @ManyToMany
+    @ManyToMany(mappedBy = "produits")
     private Collection<Menu> menus;
     
     @OneToMany(mappedBy = "produit")
