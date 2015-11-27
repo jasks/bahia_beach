@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author cdi408
  */
 @Entity
-public class testEnitty implements Serializable {
+public class Produit implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,10 +40,10 @@ public class testEnitty implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof testEnitty)) {
+        if (!(object instanceof Produit)) {
             return false;
         }
-        testEnitty other = (testEnitty) object;
+        Produit other = (Produit) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -52,7 +52,7 @@ public class testEnitty implements Serializable {
 
     @Override
     public String toString() {
-        return "test.testEnitty[ id=" + id + " ]";
+        return "entities.Produit[ id=" + id + " ]";
     }
     
 }
