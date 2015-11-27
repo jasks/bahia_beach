@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cdi408
  */
-public class Controlleur extends HttpServlet {
+public class Controleur extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
