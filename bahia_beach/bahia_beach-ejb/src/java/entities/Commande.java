@@ -34,7 +34,7 @@ public class Commande implements Serializable {
     
     
     @ManyToOne
-    private Table table;
+    private Tablee table;
     
     @ManyToOne
     private Serveur serveur;

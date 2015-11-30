@@ -10,10 +10,9 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Type implements Serializable {
-    private static final long serialVersionUID = 1L;
-// 1°/ ATTRIBUTS----------------------------------------------------------------    
+    private static final long serialVersionUID = 1L;    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     private String nomType;
