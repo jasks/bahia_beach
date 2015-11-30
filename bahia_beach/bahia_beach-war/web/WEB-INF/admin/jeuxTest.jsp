@@ -7,7 +7,7 @@
         <title>Page Admin</title>
     </head>
     <body>
-        <c:url value="Controleur?action=creerDonnees" var="url01" />
+        <c:url value="ControleurAdmin?action=creerDonnees" var="url01" />
         <a href="${url01}">Creer le jeux de test</a>
     </body>
 </html>

@@ -19,8 +19,9 @@ public class ControleurAdmin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
         
-        if("creerDonnees".equalsIgnoreCase(request.getParameter("action"))){
+        if("creerDonnees".equalsIgnoreCase(action)){
             beanEssaie.creerJeuxDonnees();
         }
         
