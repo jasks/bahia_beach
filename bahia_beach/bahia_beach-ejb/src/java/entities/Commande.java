@@ -34,7 +34,7 @@ public class Commande implements Serializable {
     
     
     @ManyToOne
-    private Table table;
+    private Tablee table;
     
     @ManyToOne
     private Serveur serveur;
@@ -48,7 +48,13 @@ public class Commande implements Serializable {
     public Commande() {
     }
 
-    public Commande(String numero, Integer etat, Date date, Table table, Serveur serveur, Collection<LigneCommande> ligneCommandes, Commentaire commentaire) {
+    public Commande(String numero, Integer etat, Date date) {
+        this.numero = numero;
+        this.etat = etat;
+        this.date = date;
+    }
+
+    public Commande(String numero, Integer etat, Date date, Tablee table, Serveur serveur, Collection<LigneCommande> ligneCommandes, Commentaire commentaire) {
         this.numero = numero;
         this.etat = etat;
         this.date = date;
@@ -115,11 +121,11 @@ public class Commande implements Serializable {
         this.date = date;
     }
 
-    public Table getTable() {
+    public Tablee getTable() {
         return table;
     }
 
-    public void setTable(Table table) {
+    public void setTable(Tablee table) {
         this.table = table;
     }
 

@@ -26,7 +26,7 @@ public class Serveur implements Serializable {
     private Coordonnee coordonnee;
     
     @ManyToMany(mappedBy = "serveurs")
-    private Collection<Table> tables;
+    private Collection<Tablee> tables;
     
     @OneToMany(mappedBy = "serveur")
     private Collection<Commande> commandes;
@@ -93,11 +93,11 @@ public class Serveur implements Serializable {
         this.coordonnee = coordonnee;
     }
 
-    public Collection<Table> getTables() {
+    public Collection<Tablee> getTables() {
         return tables;
     }
 
-    public void setTables(Collection<Table> tables) {
+    public void setTables(Collection<Tablee> tables) {
         this.tables = tables;
     }
 
