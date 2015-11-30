@@ -25,8 +25,8 @@ public class LigneCommande implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String etat;
-    private String cuisson;
+    private Integer etat;
+    private Integer cuisson;
 
     @OneToOne
     private Commande commande;
@@ -40,24 +40,24 @@ public class LigneCommande implements Serializable {
     public LigneCommande() {
     }
 
-    public LigneCommande(String etat, String cuisson) {
+    public LigneCommande(Integer etat, Integer cuisson) {
         this.etat = etat;
         this.cuisson = cuisson;
     }
 
-    public String getEtat() {
+    public Integer getEtat() {
         return etat;
     }
 
-    public void setEtat(String etat) {
+    public void setEtat(Integer etat) {
         this.etat = etat;
     }
 
-    public String getCuisson() {
+    public Integer getCuisson() {
         return cuisson;
     }
 
-    public void setCuisson(String cuisson) {
+    public void setCuisson(Integer cuisson) {
         this.cuisson = cuisson;
     }
     

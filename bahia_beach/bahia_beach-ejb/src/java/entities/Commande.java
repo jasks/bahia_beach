@@ -44,6 +44,25 @@ public class Commande implements Serializable {
     
     @OneToOne
     private Commentaire commentaire;
+
+    public Commande() {
+    }
+
+    public Commande(String numero, Integer etat, Date date) {
+        this.numero = numero;
+        this.etat = etat;
+        this.date = date;
+    }
+
+    public Commande(String numero, Integer etat, Date date, Tablee table, Serveur serveur, Collection<LigneCommande> ligneCommandes, Commentaire commentaire) {
+        this.numero = numero;
+        this.etat = etat;
+        this.date = date;
+        this.table = table;
+        this.serveur = serveur;
+        this.ligneCommandes = ligneCommandes;
+        this.commentaire = commentaire;
+    }
     
     public Long getId() {
         return id;
@@ -76,6 +95,62 @@ public class Commande implements Serializable {
     @Override
     public String toString() {
         return "entities.Commande[ id=" + id + " ]";
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public Integer getEtat() {
+        return etat;
+    }
+
+    public void setEtat(Integer etat) {
+        this.etat = etat;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Tablee getTable() {
+        return table;
+    }
+
+    public void setTable(Tablee table) {
+        this.table = table;
+    }
+
+    public Serveur getServeur() {
+        return serveur;
+    }
+
+    public void setServeur(Serveur serveur) {
+        this.serveur = serveur;
+    }
+
+    public Collection<LigneCommande> getLigneCommandes() {
+        return ligneCommandes;
+    }
+
+    public void setLigneCommandes(Collection<LigneCommande> ligneCommandes) {
+        this.ligneCommandes = ligneCommandes;
+    }
+
+    public Commentaire getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(Commentaire commentaire) {
+        this.commentaire = commentaire;
     }
     
 }
