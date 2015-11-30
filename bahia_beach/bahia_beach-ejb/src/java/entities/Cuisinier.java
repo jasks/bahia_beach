@@ -21,6 +21,15 @@ public class Cuisinier implements Serializable {
     @Embedded
     private Coordonnee coordonnee;
 
+    public Cuisinier() {
+    }
+
+    public Cuisinier(String nom, String prenom, String code) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.code = code;
+    }
+
     public Long getId() {
         return id;
     }
@@ -52,6 +61,38 @@ public class Cuisinier implements Serializable {
     @Override
     public String toString() {
         return "nom: "+nom + " " + prenom + " {"+id+"}";
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Coordonnee getCoordonnee() {
+        return coordonnee;
+    }
+
+    public void setCoordonnee(Coordonnee coordonnee) {
+        this.coordonnee = coordonnee;
     }
     
 }
