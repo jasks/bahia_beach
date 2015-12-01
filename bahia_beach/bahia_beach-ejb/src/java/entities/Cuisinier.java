@@ -30,6 +30,13 @@ public class Cuisinier implements Serializable {
         this.code = code;
     }
 
+    public Cuisinier(String nom, String prenom, String code, Coordonnee coordonnee) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.code = code;
+        this.coordonnee = coordonnee;
+    }
+
     public Long getId() {
         return id;
     }
