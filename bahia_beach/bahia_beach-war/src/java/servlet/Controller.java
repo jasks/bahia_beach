@@ -58,7 +58,7 @@ public class Controller extends HttpServlet {
         String section = request.getParameter("section");
 
         //page sur laquelle renvoie l'appli au debut
-        String url = "/WEB-INF/mvc2/index.jsp";
+        String url = "/WEB-INF/index.jsp";
 
         if (section != null) {
             ControllerInterface ctrl = mp.get(section);
