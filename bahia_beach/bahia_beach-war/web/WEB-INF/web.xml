@@ -11,6 +11,10 @@
             <param-name>page02</param-name>
             <param-value>sousController.VersPage02</param-value>
         </init-param>
+        <init-param>
+            <param-name>admin</param-name>
+            <param-value>sousController.Admin</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
@@ -23,6 +27,12 @@
     </session-config>
     <ejb-local-ref>
         <ejb-ref-name>beanEssaie</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>inputBDD.beanEssaieLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanEssaie</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanEssaie1</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
         <local>inputBDD.beanEssaieLocal</local>
         <ejb-link>bahia_beach-ejb.jar#beanEssaie</ejb-link>
