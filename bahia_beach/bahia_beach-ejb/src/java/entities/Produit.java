@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,8 +23,10 @@ public class Produit implements Serializable {
     
     private String nomProduit;
     private Float prixHT;
+    @Column(length=5000)
     private String descritption;
     private String image;
+    @Column(length=5000)
     private String historique;
     
     @ManyToOne
@@ -59,6 +62,17 @@ public class Produit implements Serializable {
         this.image = image;
         this.historique = historique;
     }
+
+    public Produit(String nomProduit, Float prixHT, String descritption, String image, String historique, QualiteNutritive qualiteNutritive) {
+        this.nomProduit = nomProduit;
+        this.prixHT = prixHT;
+        this.descritption = descritption;
+        this.image = image;
+        this.historique = historique;
+        this.qualiteNutritive = qualiteNutritive;
+    }
+    
+    
     
 // 3°/ GETTER AND SETTER--------------------------------------------------------
     public Long getId() {
