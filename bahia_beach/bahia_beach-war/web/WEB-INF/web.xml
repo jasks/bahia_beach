@@ -19,6 +19,10 @@
             <param-name>cuisine</param-name>
             <param-value>sousController.Cuisine</param-value>
         </init-param>
+        <init-param>
+            <param-name>carte</param-name>
+            <param-value>sousController.Carte</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
