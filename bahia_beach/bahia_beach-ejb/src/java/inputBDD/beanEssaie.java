@@ -92,10 +92,37 @@ public class beanEssaie implements beanEssaieLocal {
                 "La mozzarella est un fromage à pâte filée d'origine italienne à base de lait de vache ou de bufflonne.",
                 "/Photo/Tomate_Mozzarella.png",
                 "La mozzarella di Bufala Campana, produite en Campanie avec du lait de bufflonne, est l'objet d'une appellation d'origine protégée (AOP) depuis 1996. En Italie, la mozzarella de lait de vache est fabriquée et commercialisée sous le nom de fior di latte ou de bocconcini. Ailleurs dans le monde, la mozzarella est un fromage industriel qui fait partie des fromages de lait de vache les plus produits et consommés. Ce fromage industriel, commercialisé sous le nom de mozzarella, crée une confusion avec la mozzarella traditionnelle au lait de bufflonne.",
-                lca.get(4),
+                lca.get(1),
                 lty.get(0),
                 ltva.get(0),
                 qn02));
+        lp.add(new Produit("Tiramisu aux speculoos",
+                5.5f,
+                "Description Tiramisu aux speculoos",
+                "",
+                "Historique du Tiramisu aux speculoos",
+                lca.get(8),
+                lty.get(2),
+                ltva.get(0),
+                qn01));
+        lp.add(new Produit("Coca-Cola",
+                2.5f,
+                "Description Coca-Cola",
+                "",
+                "Historique du Coca-Cola",
+                lca.get(6),
+                lty.get(3),
+                ltva.get(0),
+                qn02));
+        lp.add(new Produit("Grant",
+                5.49f,
+                "Description du Grant",
+                "",
+                "Historique du Grant",
+                lca.get(5),
+                lty.get(3),
+                ltva.get(0),
+                qn01));
         
 //MENU--------------------------------------------------------------------------
         List<Menu> lmenu = new ArrayList();
@@ -127,6 +154,19 @@ public class beanEssaie implements beanEssaieLocal {
         ltablee.add(new Tablee("T03", 2, 2));
 
 //ASSOCIATION-------------------------------------------------------------------
+        lcommande.get(0).getLigneCommandes().add(llc.get(0));
+        lcommande.get(0).getLigneCommandes().add(llc.get(1));
+        lcommande.get(0).getLigneCommandes().add(llc.get(2));
+        lcommande.get(1).getLigneCommandes().add(llc.get(3));
+        llc.get(0).setEtat(2);
+        llc.get(1).setEtat(2);
+        llc.get(2).setEtat(2);
+        llc.get(3).setEtat(2);
+        llc.get(0).setProduit(lp.get(3));
+        llc.get(1).setProduit(lp.get(1));
+        llc.get(2).setProduit(lp.get(2));
+        llc.get(3).setProduit(lp.get(0));
+        
 //PERSIST-----------------------------------------------------------------------
         for (Cuisinier cuisinier : lcuisinier) {
             em.persist(cuisinier);

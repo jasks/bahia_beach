@@ -11,6 +11,7 @@
         <a href="Controller?section=admin&action=jeuxDonnee">lien vers jeux donnees</a>
         <a href="Controller?section=page01">lien vers page 01</a>
         <a href="Controller?section=page02">lien vers page 02</a>
+        <a href="Controller?section=cuisine">lien vers Cuisne</a>
         
     </body> 
 </html>

@@ -15,6 +15,10 @@
             <param-name>admin</param-name>
             <param-value>sousController.Admin</param-value>
         </init-param>
+        <init-param>
+            <param-name>cuisine</param-name>
+            <param-value>sousController.Cuisine</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
@@ -42,5 +46,11 @@
         <ejb-ref-type>Session</ejb-ref-type>
         <local>inputBDD.beanEssaieLocal</local>
         <ejb-link>bahia_beach-ejb.jar#beanEssaie</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanCuisine</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanCuisineLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanCuisine</ejb-link>
     </ejb-local-ref>
 </web-app>
