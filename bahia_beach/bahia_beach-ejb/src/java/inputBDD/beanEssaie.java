@@ -83,12 +83,18 @@ public class beanEssaie implements beanEssaieLocal {
                 "Une sauce à base de tomates, de viande de bœuf, d'oignons et de carottes, cuisinée avec du laurier et du romarin qui vient napper des fusilli",
                 "/Photo/Fusilli_Bolognaise.png",
                 "Selon la recette traditionnelle mentionnée en 1982 par la délégation bolognaise de l'Accademia Italiana della Cucina, la liste des ingrédients ne comprend que : bœuf, pancetta, oignons, carottes, céleri, sauce tomate, mie de pain, vin rouge ou vin blanc sec, lait ou crème.",
+                lca.get(2),
+                lty.get(1),
+                ltva.get(0),
                 qn01));
         lp.add(new Produit("Tomates Mozzarella",
                 9.0f,
                 "La mozzarella est un fromage à pâte filée d'origine italienne à base de lait de vache ou de bufflonne.",
                 "/Photo/Tomate_Mozzarella.png",
                 "La mozzarella di Bufala Campana, produite en Campanie avec du lait de bufflonne, est l'objet d'une appellation d'origine protégée (AOP) depuis 1996. En Italie, la mozzarella de lait de vache est fabriquée et commercialisée sous le nom de fior di latte ou de bocconcini. Ailleurs dans le monde, la mozzarella est un fromage industriel qui fait partie des fromages de lait de vache les plus produits et consommés. Ce fromage industriel, commercialisé sous le nom de mozzarella, crée une confusion avec la mozzarella traditionnelle au lait de bufflonne.",
+                lca.get(4),
+                lty.get(0),
+                ltva.get(0),
                 qn02));
         
 //MENU--------------------------------------------------------------------------

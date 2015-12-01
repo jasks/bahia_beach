@@ -24,10 +24,10 @@ public class Admin implements ControllerInterface, Serializable {
             beanEssaie.creerJeuxDonnees();
             String s = "Jeux de données crées. Vérifier dans votre base de données";
             request.setAttribute("msg", s);
-            return "/WEB-INF/mvc2/index.jsp";
+            return "/WEB-INF/index.jsp";
         }
 
-        return "/WEB-INF/mvc2/index.jsp";
+        return "/WEB-INF/index.jsp";
 
     }
 
