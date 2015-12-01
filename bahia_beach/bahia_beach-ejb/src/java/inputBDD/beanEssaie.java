@@ -120,8 +120,8 @@ public class beanEssaie implements beanEssaieLocal {
         
 //COMMENTAIRE-------------------------------------------------------------------
         List<Commentaire> lcommentaire = new ArrayList();
-        lcommentaire.add(new Commentaire("Très bon restaurant."));
-        lcommentaire.add(new Commentaire("Amazing!"));
+        lcommentaire.add(new Commentaire("Sans sauce."));
+        lcommentaire.add(new Commentaire("Sans sauce, sans tomate, sans oignon, sans pain, sans viande, sans légume, sans serviette."));
         
         for (Commentaire commentaire : lcommentaire) {
             em.persist(commentaire);
