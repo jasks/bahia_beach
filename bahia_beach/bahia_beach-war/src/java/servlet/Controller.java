@@ -53,12 +53,21 @@ public class Controller extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         
+        /*
+        
+        comment marche mvc2: 
+            -on ne touche plus au controller principal
+            -on cree un sous controller implementant l'interface ControllerInterface
+            -notre variable 'section' on la met ds le fichier web.xml --> parameterName(nom parametre GET) / parameterValue(chemin du sousController ENTIER)
+            -ds le sous controller on retourne un String, qui est en realité le lien de l'url.
+        */
+        
         String section = request.getParameter("section");
         
         //page sur laquelle renvoie l'appli au debut
         String url = "/WEB-INF/mvc2/index.jsp";
 
-        //code à faire
+        
         
         if(section != null) {
             ControllerInterface ctrl = mp.get(section);
@@ -66,7 +75,8 @@ public class Controller extends HttpServlet {
         }
         
         //le reste se passe ds sous controller  
-        //indiquer les variable session application EJB... qu'on a besoin ds les sous-controller et plus ds le controller principal
+        //indiquer les variable session application action EJB... qu'on a besoin ds les sous-controller
+        //et non plus ds le controller principal
         
         url = response.encodeRedirectURL(url);
         getServletContext().getRequestDispatcher(url).include(request, response);
