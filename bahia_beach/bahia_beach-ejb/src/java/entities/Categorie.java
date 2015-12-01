@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,9 +24,11 @@ public class Categorie implements Serializable {
     
 // 2°/ CONSTRUCTOR--------------------------------------------------------------
     public Categorie() {
+        produits = new ArrayList();
     }
 
     public Categorie(String nomCategorie) {
+        this();
         this.nomCategorie = nomCategorie;
     }
     

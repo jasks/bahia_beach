@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -46,15 +47,18 @@ public class Commande implements Serializable {
     private Commentaire commentaire;
 
     public Commande() {
+        ligneCommandes = new ArrayList();
     }
 
     public Commande(String numero, Integer etat, Date date) {
+        this();
         this.numero = numero;
         this.etat = etat;
         this.date = date;
     }
 
     public Commande(String numero, Integer etat, Date date, Tablee table, Serveur serveur, Collection<LigneCommande> ligneCommandes, Commentaire commentaire) {
+        this();
         this.numero = numero;
         this.etat = etat;
         this.date = date;

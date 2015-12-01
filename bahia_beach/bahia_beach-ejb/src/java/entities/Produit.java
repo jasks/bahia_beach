@@ -1,7 +1,9 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +24,6 @@ public class Produit implements Serializable {
     private Float prixHT;
     private String descritption;
     private String image;
-    private String qualiteNutritive;
     private String historique;
     
     @ManyToOne
@@ -38,19 +39,24 @@ public class Produit implements Serializable {
     private Collection<Menu> menus;
     
     @OneToMany(mappedBy = "produit")
-    private Collection<LigneCommande> lignecommandes;
+    private Collection<LigneCommande> ligneCommandes;
+    
+    @Embedded
+    private QualiteNutritive qualiteNutritive;
 
     
 // 2°/ CONSTRUCTOR--------------------------------------------------------------
     public Produit() {
+        menus = new ArrayList();
+        ligneCommandes = new ArrayList();
     }
 
-    public Produit(String nomProduit, Float prixHT, String descritption, String image, String qualiteNutritive, String historique) {
+    public Produit(String nomProduit, Float prixHT, String descritption, String image, String historique) {
+        this();
         this.nomProduit = nomProduit;
         this.prixHT = prixHT;
         this.descritption = descritption;
         this.image = image;
-        this.qualiteNutritive = qualiteNutritive;
         this.historique = historique;
     }
     
@@ -95,14 +101,6 @@ public class Produit implements Serializable {
         this.image = image;
     }
 
-    public String getQualiteNutritive() {
-        return qualiteNutritive;
-    }
-
-    public void setQualiteNutritive(String qualiteNutritive) {
-        this.qualiteNutritive = qualiteNutritive;
-    }
-
     public String getHistorique() {
         return historique;
     }
@@ -144,13 +142,20 @@ public class Produit implements Serializable {
     }
 
     public Collection<LigneCommande> getLignecommandes() {
-        return lignecommandes;
+        return ligneCommandes;
     }
 
     public void setLignecommandes(Collection<LigneCommande> lignecommandes) {
-        this.lignecommandes = lignecommandes;
+        this.ligneCommandes = ligneCommandes;
     }
-    
+
+    public QualiteNutritive getQualiteNutritive() {
+        return qualiteNutritive;
+    }
+
+    public void setQualiteNutritive(QualiteNutritive qualiteNutritive) {
+        this.qualiteNutritive = qualiteNutritive;
+    }
     
 // 4°/ METHODE------------------------------------------------------------------       
     @Override
