@@ -16,7 +16,7 @@ public class VersPage01 implements ControllerInterface, Serializable{
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
       String s = "dans versPage01";
       request.setAttribute("msg", s);
-      return "/WEB-INF/mvc2/page01.jsp";
+      return "/WEB-INF/page01.jsp";
     }
     
 }

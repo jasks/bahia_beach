@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sousController;
 
 import inputBDD.beanEssaieLocal;
@@ -16,32 +11,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author cdi418
- */
-public class Admin implements ControllerInterface, Serializable{
+public class Admin implements ControllerInterface, Serializable {
+
     beanEssaieLocal beanEssaie = lookupbeanEssaieLocal();
-    
-    
-    
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
-        
-      String section = request.getParameter("section");
-      String action = request.getParameter("action");
-      
-      if("jeuxDonnee".equalsIgnoreCase(action)) {
-      beanEssaie.creerJeuxDonnees();
-      String s = "test effectué sans controle si reussie ou pas !";
-      request.setAttribute("msg", s);
-      return "/WEB-INF/mvc2/index.jsp";
-      }
-      
-      return "/WEB-INF/mvc2/index.jsp";
-      
+
+        String action = request.getParameter("action");
+
+        if ("jeuxDonnee".equalsIgnoreCase(action)) {
+            beanEssaie.creerJeuxDonnees();
+            String s = "Jeux de données crées. Vérifier dans votre base de données";
+            request.setAttribute("msg", s);
+            return "/WEB-INF/mvc2/index.jsp";
+        }
+
+        return "/WEB-INF/mvc2/index.jsp";
+
     }
-        
 
     private beanEssaieLocal lookupbeanEssaieLocal() {
         try {
@@ -52,7 +40,5 @@ public class Admin implements ControllerInterface, Serializable{
             throw new RuntimeException(ne);
         }
     }
-    
-    
-    
+
 }

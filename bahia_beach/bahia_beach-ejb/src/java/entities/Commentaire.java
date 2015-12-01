@@ -43,9 +43,6 @@ public class Commentaire implements Serializable {
         this.ligneCommande = ligneCommande;
     }
 
- 
-    
-    
     public Commentaire() {
     }
 
@@ -69,15 +66,6 @@ public class Commentaire implements Serializable {
         this.commande = commande;
     }
 
-  
-
-    
-
-  
-
-    
-    
-    
     public Long getId() {
         return id;
     }

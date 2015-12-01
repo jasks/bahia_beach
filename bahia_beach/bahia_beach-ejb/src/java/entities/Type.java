@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,12 +19,14 @@ public class Type implements Serializable {
     private String nomType;
     
     @OneToMany(mappedBy = "type")
-    Collection<Produit> produit;
+    Collection<Produit> produits;
 // 2°/ CONSTRUCTOR--------------------------------------------------------------    
     public Type() {
+        produits = new ArrayList();
     }
 
     public Type(String nomType) {
+        this();
         this.nomType = nomType;
     }
     
@@ -45,11 +48,11 @@ public class Type implements Serializable {
     }
 
     public Collection<Produit> getProduit() {
-        return produit;
+        return produits;
     }
 
     public void setProduit(Collection<Produit> produit) {
-        this.produit = produit;
+        this.produits = produit;
     }
 
 // 4°/ METHODE------------------------------------------------------------------   
