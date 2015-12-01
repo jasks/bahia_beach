@@ -20,7 +20,7 @@ public class VersPage02  implements ControllerInterface, Serializable{
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
      String s = "dans versPage02";
       request.setAttribute("msg", s);
-      return "/WEB-INF/mvc2/page02.jsp";
+      return "/WEB-INF/page02.jsp";
     }
     
 }

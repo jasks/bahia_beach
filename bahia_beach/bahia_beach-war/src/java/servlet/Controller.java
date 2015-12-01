@@ -54,7 +54,6 @@ public class Controller extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         
         /*
-        
         comment marche mvc2: 
             -on ne touche plus au controller principal
             -on cree un sous controller implementant l'interface ControllerInterface
@@ -65,7 +64,7 @@ public class Controller extends HttpServlet {
         String section = request.getParameter("section");
         
         //page sur laquelle renvoie l'appli au debut
-        String url = "/WEB-INF/mvc2/index.jsp";
+        String url = "/WEB-INF/index.jsp";
 
         
         

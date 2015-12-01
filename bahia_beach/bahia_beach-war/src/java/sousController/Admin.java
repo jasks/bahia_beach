@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author cdi418
  */
 public class Admin implements ControllerInterface, Serializable{
+    
     beanEssaieLocal beanEssaie = lookupbeanEssaieLocal();
     
     
@@ -35,10 +36,10 @@ public class Admin implements ControllerInterface, Serializable{
       beanEssaie.creerJeuxDonnees();
       String s = "test effectué sans controle si reussie ou pas !";
       request.setAttribute("msg", s);
-      return "/WEB-INF/mvc2/index.jsp";
+      return "/WEB-INF/index.jsp";
       }
       
-      return "/WEB-INF/mvc2/index.jsp";
+      return "/WEB-INF/index.jsp";
       
     }
         
@@ -52,6 +53,7 @@ public class Admin implements ControllerInterface, Serializable{
             throw new RuntimeException(ne);
         }
     }
+
     
     
     
