@@ -82,6 +82,7 @@ public class LigneCommande implements Serializable {
     public void setProduit(Produit produit) {
         this.produit = produit;
     }
+
     
     
 

@@ -41,6 +41,7 @@ public class beanCarte implements beanCarteLocal {
         qr.setParameter("type", t);
         return qr.getResultList();
     }
+     
 
 
     
