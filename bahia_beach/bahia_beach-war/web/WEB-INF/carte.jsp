@@ -9,29 +9,27 @@
             <tr>
                 <th>ID</th>
                 <th>nom</th>
-                <th>Prix Ht/u</th>
-                <th>categorie</th>
-                <th>type</th>
+                
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${produits}" var="p">
+            <tr><td>...</td><td>tout selectionner</td>
+            <td>
+                        <c:url value="Controller?section=carte&action=produits&notype" var="url01" />
+                        <a href="${url01}">Voir</a>
+                    </td>
+            </tr>
+            <c:forEach items="${types}" var="t">
                 <tr>
-                    <td>${p.id}</td>
-                    <td>${p.nomProduit}</td>
-                    <td><fmt:formatNumber 
-                            value="${p.prixHT}"
-                            minIntegerDigits="2" 
-                            minFractionDigits="2" 
-                            maxFractionDigits="2"  /> €</td>
-                    <td>${p.categorie.nomCategorie}</td>
-                    <td>${p.type.nomType}</td>
+                    <td>${t.id}</td>
+                    <td>${t.nomType}</td>
                     <td>
-                        <c:url value="Controller?section=panier&action=add&ref=${p.id}" var="url01" />
-                        <a href="${url01}">Ajouter au panier</a>
+                        <c:url value="Controller?section=carte&action=produits&type=${t.id}" var="url01" />
+                        <a href="${url01}">Voir</a>
                     </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </div>
+

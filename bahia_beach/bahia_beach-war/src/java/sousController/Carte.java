@@ -7,6 +7,7 @@ package sousController;
 
 import beanMetier.beanCarteLocal;
 import entities.Produit;
+import entities.Type;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -32,12 +33,42 @@ public class Carte implements ControllerInterface, Serializable {
         
         String action = request.getParameter("action");
         
-        if("produits".equalsIgnoreCase(action)) {
-            List<Produit> lp = beanCarte.selectAllproduit();
-               request.setAttribute("produits", lp);
-               request.setAttribute("msg", "affiche liste produit");
+        if("carte".equalsIgnoreCase(action)) {
+            List<Type> lt = beanCarte.selectAllType();
+               request.setAttribute("types", lt);
+               request.setAttribute("msg", "affiche liste typeProduit");
                return "/WEB-INF/carte.jsp";
         }
+        
+        if("produits".equalsIgnoreCase(action)) {
+            
+            if(request.getParameter("notype") != null) {
+                List<Produit> lp = beanCarte.selectAllproduit();
+               request.setAttribute("produits", lp);
+               return "/WEB-INF/carteProduits.jsp";
+            }
+            
+            Long id = Long.parseLong(request.getParameter("type"));
+            List<Produit> lp = beanCarte.selectProduitByType(beanCarte.selectType(id));
+               request.setAttribute("produits", lp);
+               request.setAttribute("msg", id);
+               return "/WEB-INF/carteProduits.jsp";
+        }
+        
+//        if("produits".equalsIgnoreCase(action)) {
+//            Long type = Long.parseLong(request.getParameter("type"));
+//            List<Produit> lp = beanCarte.selectProduitByType(type);
+//               request.setAttribute("produits", lp);
+//               return "/WEB-INF/carteProduits.jsp";
+//        }
+
+        
+        if("type".equalsIgnoreCase(action)) {
+            Type t = beanCarte.selectType(3l);
+            request.setAttribute("type", t);
+               return "/WEB-INF/test.jsp";
+        }
+ 
         
         return "/WEB-INF/index.jsp";
       }
