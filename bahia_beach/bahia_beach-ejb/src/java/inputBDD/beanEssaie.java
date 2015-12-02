@@ -173,6 +173,5 @@ public class beanEssaie implements beanEssaieLocal {
         
 //ASSOCIATION-------------------------------------------------------------------
         
-        
     }
 }
