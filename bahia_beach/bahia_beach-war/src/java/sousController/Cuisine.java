@@ -18,6 +18,7 @@ public class Cuisine implements ControllerInterface, Serializable {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
       request.setAttribute("cmd", beanCuisine.afficher());
+      System.out.println(">>>>>>>>MILIEU CONTROLEUR<<<<<<<<");
       return "/WEB-INF/cuisine.jsp";
     }
 

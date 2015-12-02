@@ -165,7 +165,7 @@ public class Produit implements Serializable {
         this.menus = menus;
     }
 
-    public Collection<LigneCommande> getLignecommandes() {
+    public Collection<LigneCommande> getLigneCommandes() {
         return ligneCommandes;
     }
 
@@ -204,7 +204,7 @@ public class Produit implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Produit[ id=" + id + " ]";
+        return "Produit(id="+id+";nom="+nomProduit+")";
     }
     
 }

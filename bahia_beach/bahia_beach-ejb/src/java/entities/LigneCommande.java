@@ -18,7 +18,7 @@ public class LigneCommande implements Serializable {
     private Integer etat;
     private Integer cuisson;
 
-    @OneToOne
+    @ManyToOne
     private Commande commande;
     
     @OneToOne

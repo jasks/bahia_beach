@@ -89,7 +89,7 @@ public class Commande implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Commande[ id=" + id + " ]";
+        return "Commande(id="+id+";nom="+numero+")";
     }
 
     public String getNumero() {

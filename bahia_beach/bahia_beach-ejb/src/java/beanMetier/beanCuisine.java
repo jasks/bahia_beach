@@ -1,6 +1,6 @@
 package beanMetier;
 
-import entities.Produit;
+import entities.LigneCommande;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -18,10 +18,19 @@ public class beanCuisine implements beanCuisineLocal {
     }
     
     @Override
-    public List<Produit> afficher(){
-        String req = "SELECT lc.produit FROM LigneCommande lc "
+    public List<LigneCommande> afficher(){
+        System.out.println(">>>>>>>>DEBUT AFFICHER<<<<<<<<");
+        String req = "SELECT lc FROM LigneCommande lc "
                 + "WHERE lc.etat = 2";
         Query qr = em.createQuery(req);
+        List<LigneCommande> llc = qr.getResultList();
+        System.out.println(">>>>>>>>MILIEU AFFICHER<<<<<<<<");
+        for(LigneCommande lc : llc){
+            //System.out.println(lc.getCommande().getNumero());
+            System.out.println(lc.getProduit());
+            System.out.println("-------------");
+        }
+        System.out.println(">>>>>>>>FIN AFFICHER<<<<<<<<");
         return qr.getResultList();
     }
 

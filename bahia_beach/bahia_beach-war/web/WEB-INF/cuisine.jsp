@@ -8,8 +8,9 @@
     </head>
     <body>
         <h1>Cuisine</h1>
-        <c:forEach items="${cmd}" var="p">
-            ${p.nomProduit}<br>
+        <c:forEach items="${cmd}" var="lc">
+            ${lc.produit.nomProduit}<br>
+            <hr>
         </c:forEach>
     </body>
 </html>

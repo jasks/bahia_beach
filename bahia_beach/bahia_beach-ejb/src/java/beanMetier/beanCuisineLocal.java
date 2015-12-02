@@ -1,7 +1,7 @@
 
 package beanMetier;
 
-import entities.Produit;
+import entities.LigneCommande;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -9,6 +9,6 @@ import javax.ejb.Local;
 @Local
 public interface beanCuisineLocal {
 
-    public List<Produit> afficher();
+    public List<LigneCommande> afficher();
     
 }
