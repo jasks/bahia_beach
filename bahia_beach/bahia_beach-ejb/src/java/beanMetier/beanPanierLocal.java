@@ -5,13 +5,26 @@
  */
 package beanMetier;
 
+import entities.LigneCommande;
+import java.util.Collection;
 import javax.ejb.Local;
 
-/**
- *
- * @author cdi412
- */
+
 @Local
 public interface beanPanierLocal {
+
+    public void init();
+
+    public void add(Long id);
+
+    public void delete(Long id);
+
+    public void clearPanier();
+
+    public Collection<LigneCommande> getListe();
+
+    public boolean isEmpty();
+
+    public Float getTotalHT();
     
 }
