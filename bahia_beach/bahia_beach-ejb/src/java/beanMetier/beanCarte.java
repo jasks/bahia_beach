@@ -16,6 +16,34 @@ public class beanCarte implements beanCarteLocal {
     @PersistenceContext(unitName = "RestaurantPU")
     private EntityManager em;
     
+    //select un type
+    @Override
+    public Type selectType(Long id) {
+        Type t = em.find(Type.class, id);
+        return t;
+    }
+    
+    //liste des type de produit
+    @Override
+     public List<Type> selectAllType(){
+        String req = "select t from Type t";
+        Query qr = em.createQuery(req);
+        return qr.getResultList();
+
+    }
+     
+     //liste des type de produit selon le type
+    @Override
+     public List<Produit> selectProduitByType(Type t){
+        String req = "select t.produits from Type t "
+                + "where t = :type";
+        Query qr = em.createQuery(req);
+        qr.setParameter("type", t);
+        return qr.getResultList();
+    }
+
+
+    
     //liste des produits en entier
     
     
@@ -29,16 +57,16 @@ public class beanCarte implements beanCarteLocal {
     //liste des produits par type
         
     
-    @Override
-    public List<Produit> selectProduitByType(Type t){
-        
-        Type type = t;
-        String req = "select p from Produit p "
-                + "where p.type = :type";
-        Query qr = em.createQuery(req);
-        qr.setParameter("type", t);
-        return qr.getResultList();
-    }
+//    @Override
+//    public List<Produit> selectProduitByType(Type t){
+//        
+//        Type type = t;
+//        String req = "select p from Produit p "
+//                + "where p.type = :type";
+//        Query qr = em.createQuery(req);
+//        qr.setParameter("type", t);
+//        return qr.getResultList();
+//    }
     
     
     
@@ -57,6 +85,12 @@ public class beanCarte implements beanCarteLocal {
         Query qr = em.createQuery(req);
         qr.setParameter("nom", nom);
         return qr.getResultList();
+    }
+    
+    @Override
+        public Produit selectProduit(Long id) {
+        Produit p = em.find(Produit.class, id);
+        return p;
     }
 
 }
