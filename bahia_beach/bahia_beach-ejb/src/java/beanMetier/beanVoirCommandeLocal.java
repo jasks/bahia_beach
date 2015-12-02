@@ -6,6 +6,7 @@
 package beanMetier;
 
 import entities.Commande;
+import entities.LigneCommande;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -17,5 +18,7 @@ import javax.ejb.Local;
 public interface beanVoirCommandeLocal {
 
     public List<Commande> voirLesCommandesEnCours();
+
+    public List<LigneCommande> voirLesLignesDeCommandes();
     
 }
