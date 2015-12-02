@@ -55,6 +55,13 @@ public class Carte implements ControllerInterface, Serializable {
                return "/WEB-INF/carteProduits.jsp";
         }
         
+        if("description".equalsIgnoreCase(action)) {
+            Long id = Long.parseLong(request.getParameter("id"));
+            Produit p = beanCarte.selectProduit(id);
+            request.setAttribute("description", p);
+            return "/WEB-INF/carteDescriptionProduit.jsp";
+        }
+        
 //        if("produits".equalsIgnoreCase(action)) {
 //            Long type = Long.parseLong(request.getParameter("type"));
 //            List<Produit> lp = beanCarte.selectProduitByType(type);

@@ -27,6 +27,10 @@
                     <td>${p.categorie.nomCategorie}</td>
                     <td>${p.type.nomType}</td>
                     <td>
+                        <c:url value="Controller?section=carte&action=description&id=${p.id}" var="url01" />
+                        <a href="${url01}">description produit</a>
+                    </td>
+                    <td>
                         <c:url value="Controller?section=panier&action=add&id=${p.id}" var="url01" />
                         <a href="${url01}">Ajouter au panier</a>
                     </td>
