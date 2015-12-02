@@ -23,6 +23,10 @@
             <param-name>carte</param-name>
             <param-value>sousController.Carte</param-value>
         </init-param>
+        <init-param>
+            <param-name>serveur</param-name>
+            <param-value>sousController.VersVoirCommande</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
