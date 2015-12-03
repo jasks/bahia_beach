@@ -54,20 +54,7 @@ public class beanCarte implements beanCarteLocal {
         Query qr = em.createQuery(req);
         return qr.getResultList();
     }
-    
-    //liste des produits par type
-        
-    
-//    @Override
-//    public List<Produit> selectProduitByType(Type t){
-//        
-//        Type type = t;
-//        String req = "select p from Produit p "
-//                + "where p.type = :type";
-//        Query qr = em.createQuery(req);
-//        qr.setParameter("type", t);
-//        return qr.getResultList();
-//    }
+
     
     
     
