@@ -29,6 +29,10 @@
                     </td>
                 </tr>
             </c:forEach>
+                <td>
+                        <c:url value="Controller?section=panier&action=afficherPanier" var="url01" />
+                        <a href="${url01}">Voir</a>
+                    </td>
         </tbody>
     </table>
 </div>

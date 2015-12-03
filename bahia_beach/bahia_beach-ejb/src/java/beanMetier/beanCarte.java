@@ -47,7 +47,7 @@ public class beanCarte implements beanCarteLocal {
     
     //liste des produits en entier
     
-    
+   
     @Override
     public List<Produit> selectAllproduit(){
         String req = "select p from Produit p";
