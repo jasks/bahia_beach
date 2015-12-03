@@ -52,11 +52,7 @@ public class Panier implements ControllerInterface, Serializable{
             request.setAttribute("msg", "La commande a été supprimé.");
             return "/WEB-INF/panier.jsp";
         }
-         
-        
         return "/WEB-INF/index.jsp";
-  
-    
     }
 
     private beanPanierLocal lookupbeanPanierLocal() {
@@ -67,8 +63,5 @@ public class Panier implements ControllerInterface, Serializable{
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
-    }
-    
-    
-    
+    }  
 }
