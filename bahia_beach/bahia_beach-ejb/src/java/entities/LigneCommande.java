@@ -21,7 +21,7 @@ public class LigneCommande implements Serializable {
     @ManyToOne
     private Commande commande;
     
-    @OneToOne
+    @OneToOne(mappedBy = "ligneCommande")
     private Commentaire commentaire;
     
     @ManyToOne
@@ -107,7 +107,7 @@ public class LigneCommande implements Serializable {
 
     @Override
     public String toString() {
-        return "n° ligne de commande : " + id;
+        return "n° ligne de commande : " + id + ", produit = " + produit.getNomProduit();
     }
     
 }

@@ -154,10 +154,10 @@ public class beanEssaie implements beanEssaieLocal {
         ltablee.add(new Tablee("T03", 2, 2));
 
 //ASSOCIATION-------------------------------------------------------------------
-        lcommande.get(0).getLigneCommandes().add(llc.get(0));
-        lcommande.get(0).getLigneCommandes().add(llc.get(1));
-        lcommande.get(0).getLigneCommandes().add(llc.get(2));
-        lcommande.get(1).getLigneCommandes().add(llc.get(3));
+        llc.get(0).setCommande(lcommande.get(0));
+        llc.get(1).setCommande(lcommande.get(0));
+        llc.get(2).setCommande(lcommande.get(0));
+        llc.get(3).setCommande(lcommande.get(1));
         llc.get(0).setEtat(2);
         llc.get(1).setEtat(2);
         llc.get(2).setEtat(2);
@@ -166,6 +166,7 @@ public class beanEssaie implements beanEssaieLocal {
         llc.get(1).setProduit(lp.get(1));
         llc.get(2).setProduit(lp.get(2));
         llc.get(3).setProduit(lp.get(0));
+        llc.get(0).setCommentaire(lcommentaire.get(0));
         
 //PERSIST-----------------------------------------------------------------------
         for (Cuisinier cuisinier : lcuisinier) {
@@ -201,6 +202,7 @@ public class beanEssaie implements beanEssaieLocal {
         }
 
         for (LigneCommande lc : llc) {
+            System.out.println(lc);
             em.persist(lc);
         }
 

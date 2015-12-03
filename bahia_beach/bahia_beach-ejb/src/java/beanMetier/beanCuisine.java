@@ -26,7 +26,7 @@ public class beanCuisine implements beanCuisineLocal {
         List<LigneCommande> llc = qr.getResultList();
         System.out.println(">>>>>>>>MILIEU AFFICHER<<<<<<<<");
         for(LigneCommande lc : llc){
-            //System.out.println(lc.getCommande().getNumero());
+            System.out.println(lc.getCommande().getNumero());
             System.out.println(lc.getProduit());
             System.out.println("-------------");
         }
