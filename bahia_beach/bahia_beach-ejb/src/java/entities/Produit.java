@@ -71,8 +71,18 @@ public class Produit implements Serializable {
         this.historique = historique;
         this.qualiteNutritive = qualiteNutritive;
     }
-    
-    
+
+    public Produit(String nomProduit, Float prixHT, String descritption, String image, String historique, Categorie categorie, Type type, Tva tva, QualiteNutritive qualiteNutritive) {
+        this.nomProduit = nomProduit;
+        this.prixHT = prixHT;
+        this.descritption = descritption;
+        this.image = image;
+        this.historique = historique;
+        this.categorie = categorie;
+        this.type = type;
+        this.tva = tva;
+        this.qualiteNutritive = qualiteNutritive;
+    }
     
 // 3°/ GETTER AND SETTER--------------------------------------------------------
     public Long getId() {

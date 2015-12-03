@@ -51,8 +51,7 @@ public class Serveur implements Serializable {
         this.coordonnee = coordonnee;
     }
 
-    
-    
+
     public Long getId() {
         return id;
     }
