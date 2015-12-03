@@ -9,15 +9,15 @@
             <tr>
                 <th>ID</th>
                 <th>nom</th>
-                
+
             </tr>
         </thead>
         <tbody>
             <tr><td>...</td><td>tout selectionner</td>
-            <td>
-                        <c:url value="Controller?section=carte&action=produits&notype" var="url01" />
-                        <a href="${url01}">Voir</a>
-                    </td>
+                <td>
+                    <c:url value="Controller?section=carte&action=produits&notype" var="url01" />
+                    <a href="${url01}">Voir</a>
+                </td>
             </tr>
             <c:forEach items="${types}" var="t">
                 <tr>
