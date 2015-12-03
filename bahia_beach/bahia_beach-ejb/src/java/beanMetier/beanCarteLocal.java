@@ -20,10 +20,17 @@ public interface beanCarteLocal {
 
     public List<Produit> selectAllproduit();
 
-    public List<Produit> selectProduitByType(Type t);
-
     public List<Menu> selectAllMenu();
 
     public List<Menu> selectMenuByName(String nom);
+
+    public List<Type> selectAllType();
+    
+    public Type selectType(Long id);
+
+    public List<Produit> selectProduitByType(Type t);
+
+    public Produit selectProduit(Long id);
+
     
 }

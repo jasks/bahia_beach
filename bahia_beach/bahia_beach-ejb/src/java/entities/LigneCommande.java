@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -28,6 +29,10 @@ public class LigneCommande implements Serializable {
     private Produit produit;
     
     public LigneCommande() {
+    }
+    
+     public LigneCommande(Produit produit) {
+         this.produit = produit;
     }
 
     public LigneCommande(Integer etat, Integer cuisson) {
@@ -82,6 +87,11 @@ public class LigneCommande implements Serializable {
     public void setProduit(Produit produit) {
         this.produit = produit;
     }
+    
+    public float getPrixHT(){
+        return produit.getPrixHT();
+    }
+
     
     
 
