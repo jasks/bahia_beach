@@ -13,7 +13,6 @@
         <a href="Controller?section=page02">lien vers page 02</a>
         <a href="Controller?section=cuisine">lien vers Cuisne</a>
         <a href="Controller?section=carte&action=carte">lien vers ma carte</a>
-        
-        
+        <a href="Controller?section=serveur&action=voirCommande"> lien vers Voir lesCommandes</a>
     </body> 
 </html>

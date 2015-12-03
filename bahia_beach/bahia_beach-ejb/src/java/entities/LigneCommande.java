@@ -29,6 +29,10 @@ public class LigneCommande implements Serializable {
     
     public LigneCommande() {
     }
+    
+     public LigneCommande(Produit produit) {
+         this.produit = produit;
+    }
 
     public LigneCommande(Integer etat, Integer cuisson) {
         this.etat = etat;
@@ -82,6 +86,11 @@ public class LigneCommande implements Serializable {
     public void setProduit(Produit produit) {
         this.produit = produit;
     }
+    
+    public float getPrixHT(){
+        return produit.getPrixHT();
+    }
+
     
     
 
