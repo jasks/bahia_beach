@@ -31,6 +31,10 @@
             <param-name>panier</param-name>
             <param-value>sousController.Panier</param-value>
         </init-param>
+        <init-param>
+            <param-name>connexion</param-name>
+            <param-value>sousController.VersConnexion</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
