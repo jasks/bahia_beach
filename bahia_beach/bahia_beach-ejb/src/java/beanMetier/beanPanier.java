@@ -15,7 +15,7 @@ public class beanPanier implements beanPanierLocal {
     @EJB
     private beanCarteLocal beanCarte;
     
-    private HashMap<Long, LigneCommande> panier;
+    private HashMap<Integer, LigneCommande> panier;
 
 
   
@@ -32,12 +32,12 @@ public class beanPanier implements beanPanierLocal {
         
             Produit p = beanCarte.selectProduit(id);
             LigneCommande lc = new LigneCommande(p);
-            panier.put(lc.getProduit().getId(), lc);
+            panier.put(lc.getIdentifiant(), lc);
             
     }
     
     @Override
-    public void delete(Long id){
+    public void delete(int id){
         panier.remove(id);
     }
     

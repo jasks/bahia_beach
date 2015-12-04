@@ -38,7 +38,7 @@ public class Panier implements ControllerInterface, Serializable{
         }
         
         if ("remove".equalsIgnoreCase(action)) {
-            Long id = Long.parseLong(request.getParameter("id"));
+            Integer id = Integer.parseInt(request.getParameter("id"));
             beanPanier.delete(id);
             session.setAttribute("panier", beanPanier.getListe());
             session.setAttribute("total", beanPanier.getTotalHT());

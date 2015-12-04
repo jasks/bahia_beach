@@ -17,7 +17,7 @@ public interface beanPanierLocal {
 
     public void add(Long id);
 
-    public void delete(Long id);
+    public void delete(int id);
 
     public void clearPanier();
 

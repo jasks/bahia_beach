@@ -27,7 +27,7 @@
             <tbody>
                 <c:forEach items="${panier}" var="ligne">
                     <tr>
-                        <td>${ligne.id}</td>
+                        <td>${ligne.identifiant}</td>
                         <td>${ligne.produit.nomProduit}</td>
                         <td>${ligne.cuisson}</td>
                         <td>
@@ -39,14 +39,20 @@
                         </td>
                        
                         <td>
-                            <a href="Controller?section=panier&action=remove&id=${ligne.id}"> supprimer </a>
+                            <a href="Controller?section=panier&action=remove&id=${ligne.identifiant}"> supprimer </a>
                         </td>
                     </tr>
                 </c:forEach>
             <tfoot>
                 <tr>
                     <td colspan="5"> Total HT : </td>
-                    <td>${total}</td>
+                    <td>
+                        <fmt:formatNumber 
+                                value="${total}"
+                                minIntegerDigits="2" 
+                                minFractionDigits="2" 
+                                maxFractionDigits="2"  /> €
+                    </td>
                 </tr>
             </tfoot>
             </tbody>
