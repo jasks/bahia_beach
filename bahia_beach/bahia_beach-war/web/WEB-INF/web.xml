@@ -4,14 +4,6 @@
         <servlet-name>Controller</servlet-name>
         <servlet-class>servlet.Controller</servlet-class>
         <init-param>
-            <param-name>page01</param-name>
-            <param-value>sousController.VersPage01</param-value>
-        </init-param>
-        <init-param>
-            <param-name>page02</param-name>
-            <param-value>sousController.VersPage02</param-value>
-        </init-param>
-        <init-param>
             <param-name>admin</param-name>
             <param-value>sousController.Admin</param-value>
         </init-param>

@@ -1,6 +1,7 @@
 
 package beanMetier;
 
+import entities.Commentaire;
 import entities.LigneCommande;
 import entities.Produit;
 import java.util.Collection;
@@ -66,7 +67,16 @@ public class beanPanier implements beanPanierLocal {
         return total;
     }
     
-    
+    @Override
+    public void ajoutCommentaire(int id, String contenu) {
+        Commentaire c = new Commentaire(contenu);
+        panier.get(id).setCommentaire(c);
+    }
+
+    @Override
+    public HashMap<Integer, LigneCommande> getPanier() {
+        return panier;
+    }
     
     
     
