@@ -67,4 +67,10 @@
         <local>beanMetier.beanPanierLocal</local>
         <ejb-link>bahia_beach-ejb.jar#beanPanier</ejb-link>
     </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanConnexion</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanConnexionLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanConnexion</ejb-link>
+    </ejb-local-ref>
 </web-app>
