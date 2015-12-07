@@ -1,6 +1,7 @@
 
 package beanMetier;
 
+import entities.Commentaire;
 import entities.LigneCommande;
 import entities.Produit;
 import java.util.Collection;
@@ -15,7 +16,7 @@ public class beanPanier implements beanPanierLocal {
     @EJB
     private beanCarteLocal beanCarte;
     
-    private HashMap<Long, LigneCommande> panier;
+    private HashMap<Integer, LigneCommande> panier;
 
 
   
@@ -32,12 +33,12 @@ public class beanPanier implements beanPanierLocal {
         
             Produit p = beanCarte.selectProduit(id);
             LigneCommande lc = new LigneCommande(p);
-            panier.put(lc.getProduit().getId(), lc);
+            panier.put(lc.getIdentifiant(), lc);
             
     }
     
     @Override
-    public void delete(Long id){
+    public void delete(int id){
         panier.remove(id);
     }
     
@@ -66,7 +67,16 @@ public class beanPanier implements beanPanierLocal {
         return total;
     }
     
-    
+    @Override
+    public void ajoutCommentaire(int id, String contenu) {
+        Commentaire c = new Commentaire(contenu);
+        panier.get(id).setCommentaire(c);
+    }
+
+    @Override
+    public HashMap<Integer, LigneCommande> getPanier() {
+        return panier;
+    }
     
     
     

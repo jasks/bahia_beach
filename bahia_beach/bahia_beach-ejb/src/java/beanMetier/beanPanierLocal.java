@@ -7,6 +7,7 @@ package beanMetier;
 
 import entities.LigneCommande;
 import java.util.Collection;
+import java.util.HashMap;
 import javax.ejb.Local;
 
 
@@ -17,7 +18,7 @@ public interface beanPanierLocal {
 
     public void add(Long id);
 
-    public void delete(Long id);
+    public void delete(int id);
 
     public void clearPanier();
 
@@ -26,5 +27,9 @@ public interface beanPanierLocal {
     public boolean isEmpty();
 
     public Float getTotalHT();
+
+    public void ajoutCommentaire(int id, String contenu);
+
+    public HashMap<Integer, LigneCommande> getPanier();
     
 }

@@ -17,6 +17,8 @@ public class LigneCommande implements Serializable {
     private Long id;
     private Integer etat;
     private Integer cuisson;
+    private static Integer staticIdentifiant = 1;
+    private Integer identifiant;
 
     @OneToOne
     private Commande commande;
@@ -28,13 +30,16 @@ public class LigneCommande implements Serializable {
     private Produit produit;
     
     public LigneCommande() {
+        this.identifiant = staticIdentifiant++;
     }
     
      public LigneCommande(Produit produit) {
+         this();
          this.produit = produit;
     }
 
     public LigneCommande(Integer etat, Integer cuisson) {
+        this();
         this.etat = etat;
         this.cuisson = cuisson;
     }
@@ -89,6 +94,10 @@ public class LigneCommande implements Serializable {
     
     public float getPrixHT(){
         return produit.getPrixHT();
+    }
+
+    public Integer getIdentifiant() {
+        return identifiant;
     }
 
     
