@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sousController;
 
 import beanMetier.beanCarteLocal;
+import entities.Menu;
 import entities.Produit;
 import entities.Type;
 import java.io.Serializable;
@@ -19,10 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author cdi418
- */
+
 public class Carte implements ControllerInterface, Serializable {
     beanCarteLocal beanCarte = lookupbeanCarteLocal();
     
@@ -36,7 +30,10 @@ public class Carte implements ControllerInterface, Serializable {
         if("carte".equalsIgnoreCase(action)) {
             List<Type> lt = beanCarte.selectAllType();
                request.setAttribute("types", lt);
-               request.setAttribute("msg", "affiche liste typeProduit");
+               request.setAttribute("msg", "affiche liste typeProduit et liste menu");
+            List<Menu> lm = beanCarte.selectAllMenu();
+               request.setAttribute("menus", lm);
+               
                return "/WEB-INF/carte.jsp";
         }
         
@@ -53,6 +50,13 @@ public class Carte implements ControllerInterface, Serializable {
                request.setAttribute("produits", lp);
                request.setAttribute("msg", id);
                return "/WEB-INF/carteProduits.jsp";
+        }
+        
+        if("voirMenu".equalsIgnoreCase(action)) {
+            String nom = request.getParameter("nom");
+            List<Produit> lp = beanCarte.selectProduitByMenu(nom);
+            request.setAttribute("produits", lp);
+            return "/WEB-INF/menuProduits.jsp";
         }
         
         if("description".equalsIgnoreCase(action)) {

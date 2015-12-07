@@ -21,6 +21,7 @@
                 <th>Prix Ht/u</th>
                 <th>categorie</th>
                 <th>type</th>
+                <th>famille</th>
                 <th>calorie</th>
                 <th>matiere grasse</th>
                 <th>acides gras</th>
@@ -42,6 +43,7 @@
                             maxFractionDigits="2"  /> €</td>
                     <td>${description.categorie.nomCategorie}</td>
                     <td>${description.type.nomType}</td>
+                    <td>${description.famille.nom}</td>
                     <td>${description.qualiteNutritive.calorie}</td>
                     <td>${description.qualiteNutritive.matiereGrasse}</td>
                     <td>${description.qualiteNutritive.acidesGras}</td>

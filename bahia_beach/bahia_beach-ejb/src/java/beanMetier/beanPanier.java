@@ -36,6 +36,7 @@ public class beanPanier implements beanPanierLocal {
             panier.put(lc.getIdentifiant(), lc);
             
     }
+
     
     @Override
     public void delete(int id){

@@ -1,5 +1,4 @@
 package entities;
-
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +28,9 @@ public class LigneCommande implements Serializable {
     @ManyToOne
     private Produit produit;
     
+    @ManyToOne
+    private Menu menu;
+    
     public LigneCommande() {
         this.identifiant = staticIdentifiant++;
     }
@@ -36,6 +38,11 @@ public class LigneCommande implements Serializable {
      public LigneCommande(Produit produit) {
          this();
          this.produit = produit;
+    }
+    
+     public LigneCommande(Menu menu) {
+         this();
+         this.menu = menu;
     }
 
     public LigneCommande(Integer etat, Integer cuisson) {
@@ -98,6 +105,14 @@ public class LigneCommande implements Serializable {
 
     public Integer getIdentifiant() {
         return identifiant;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 
     

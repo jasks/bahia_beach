@@ -32,5 +32,7 @@ public interface beanCarteLocal {
 
     public Produit selectProduit(Long id);
 
+    public List<Produit> selectProduitByMenu(String nom);
+
     
 }
