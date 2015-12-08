@@ -1,6 +1,7 @@
 
 package beanMetier;
 
+import entities.Commande;
 import entities.Commentaire;
 import entities.LigneCommande;
 import entities.Menu;
@@ -105,8 +106,11 @@ public class beanPanier implements beanPanierLocal {
     public HashMap<Integer, LigneCommande> getPanier() {
         return panier;
     }
-    
-    
-    
+
+    public Commande validerPanier() {
+        Commande c = new Commande();
+        c.setLigneCommandes(panier.values());
+        return c;
+    }
     
 }
