@@ -68,8 +68,10 @@ public class Menu implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Menu[ id=" + id + " ]";
+        return "Menu{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", produits=" + produits + ", ligneCommandes=" + ligneCommandes + '}';
     }
+
+    
 
     public String getNom() {
         return nom;

@@ -66,7 +66,14 @@
                     <c:if test="${ligne.menu != null}">
                     <tr>
                         <td>${ligne.identifiant}</td>
-                        <td>${ligne.menu.nom}</td>
+                        <td>${ligne.menu.nom}<br>
+                            <c:forEach var="p" items="${ligne.menu.produits}">
+                                <ul>
+                                    <li class="text-primary">${p.nomProduit}</li>
+                                </ul> 
+                            </c:forEach>
+                        </td>
+                        
                         <td>${ligne.cuisson}</td>
                         <td>
                             <fmt:formatNumber 
@@ -115,6 +122,7 @@
 
 <button class="btn btn-primary">valider ma commande <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
     
+<h3 class="well">test pour identifier si LigneCommande contient un menu ou un produit</h3>
 <c:forEach var="ligne" items="${panier}">
         <c:if test="${ligne.produit != null}">
     <p class="text-primary">id ligne commande <span class="text-success">produit</span> ajouté : ${ligne.identifiant}</p>
