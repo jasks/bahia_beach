@@ -3,6 +3,7 @@ package beanMetier;
 
 import entities.Commentaire;
 import entities.LigneCommande;
+import entities.Menu;
 import entities.Produit;
 import java.util.Collection;
 import java.util.HashMap;
@@ -36,8 +37,27 @@ public class beanPanier implements beanPanierLocal {
             panier.put(lc.getIdentifiant(), lc);
             
     }
-
     
+        
+    @Override
+    public Menu creerMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree) {
+        Menu m = new Menu();
+        m.setNom(nomMenu);
+        m.setPrix(prixMenu);
+        m.getProduits().add(beanCarte.selectProduit(idPlat));
+        m.getProduits().add(beanCarte.selectProduit(idEntree));
+        return m;
+    }
+    
+
+    @Override
+        public void addMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree){
+            Menu m = creerMenu(nomMenu, prixMenu, idPlat, idEntree);
+            LigneCommande lc = new LigneCommande(m);
+            panier.put(lc.getIdentifiant(), lc);
+    }
+    
+        
     @Override
     public void delete(int id){
         panier.remove(id);
@@ -62,8 +82,14 @@ public class beanPanier implements beanPanierLocal {
     @Override
     public Float getTotalHT(){
         Float total = 0.0F;
+        
         for(LigneCommande lc : getListe()){
-            total += lc.getPrixHT();
+            if(lc.getProduit() != null) {
+            total += lc.getProduit().getPrixHT();
+            }
+            if(lc.getMenu() != null) {
+            total += lc.getMenu().getPrix();
+            }
         }
         return total;
     }
@@ -73,6 +99,7 @@ public class beanPanier implements beanPanierLocal {
         Commentaire c = new Commentaire(contenu);
         panier.get(id).setCommentaire(c);
     }
+
 
     @Override
     public HashMap<Integer, LigneCommande> getPanier() {

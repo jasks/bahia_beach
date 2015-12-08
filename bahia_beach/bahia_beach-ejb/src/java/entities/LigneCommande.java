@@ -16,6 +16,7 @@ public class LigneCommande implements Serializable {
     private Long id;
     private Integer etat;
     private Integer cuisson;
+    private Integer prix;
     private static Integer staticIdentifiant = 1;
     private Integer identifiant;
 
@@ -98,10 +99,7 @@ public class LigneCommande implements Serializable {
     public void setProduit(Produit produit) {
         this.produit = produit;
     }
-    
-    public float getPrixHT(){
-        return produit.getPrixHT();
-    }
+
 
     public Integer getIdentifiant() {
         return identifiant;
@@ -113,6 +111,14 @@ public class LigneCommande implements Serializable {
 
     public void setMenu(Menu menu) {
         this.menu = menu;
+    }
+
+    public Integer getPrix() {
+        return prix;
+    }
+
+    public void setPrix(Integer prix) {
+        this.prix = prix;
     }
 
     
@@ -140,7 +146,7 @@ public class LigneCommande implements Serializable {
 
     @Override
     public String toString() {
-        return "n° ligne de commande : " + id;
+        return "n° ligne de commande : " + identifiant;
     }
     
 }

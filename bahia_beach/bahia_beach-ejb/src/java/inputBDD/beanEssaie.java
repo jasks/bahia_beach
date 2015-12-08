@@ -157,7 +157,7 @@ public class beanEssaie implements beanEssaieLocal {
                 lf.get(0),
                 ltva.get(0),
                 qn02));
-        lp.add(new Produit("tajine",
+        lp.add(new Produit("tajine tounsie",
                 9.0f,
                 "La mozzarella est un fromage à pâte filée d'origine italienne à base de lait de vache ou de bufflonne.",
                 "/Photo/Tomate_Mozzarella.png",

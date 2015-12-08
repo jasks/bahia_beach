@@ -29,6 +29,7 @@
             </thead>
             <tbody>
                 <c:forEach items="${panier}" var="ligne">
+                    <c:if test="${ligne.produit != null}">
                     <tr>
                         <td>${ligne.identifiant}</td>
                         <td>${ligne.produit.nomProduit}</td>
@@ -60,6 +61,41 @@
                             <td class="text-success">contenu commentaire: ${ligne.commentaire.contenu}</td>
                         </c:if>
                     </tr>
+                    </c:if>
+                    
+                    <c:if test="${ligne.menu != null}">
+                    <tr>
+                        <td>${ligne.identifiant}</td>
+                        <td>${ligne.menu.nom}</td>
+                        <td>${ligne.cuisson}</td>
+                        <td>
+                            <fmt:formatNumber 
+                                value="${ligne.menu.prix}"
+                                minIntegerDigits="2" 
+                                minFractionDigits="2" 
+                                maxFractionDigits="2"  /> €
+                        </td>
+                       <c:if test="${ligne.commentaire.contenu != null}">
+                            <td>
+                            <a href="Controller?section=panier&action=modifierCommenter&id=${ligne.identifiant}"> modifier commentaire </a>
+                        </td>
+                        </c:if>
+                        
+                        <c:if test="${ligne.commentaire.contenu == null}">
+                            <td>
+                            <a href="Controller?section=panier&action=commenter&id=${ligne.identifiant}"> laisser un commentaire </a>
+                        </td>
+                        </c:if>
+                       
+                        <td>
+                            <a href="Controller?section=panier&action=remove&id=${ligne.identifiant}"> supprimer </a>
+                        </td>
+                        
+                        <c:if test="${ligne.commentaire.contenu != null}">
+                            <td class="text-success">contenu commentaire: ${ligne.commentaire.contenu}</td>
+                        </c:if>
+                    </tr>
+                    </c:if>
                 </c:forEach>
             <tfoot>
                 <tr>
@@ -78,6 +114,17 @@
 <p class="text-danger">vous avez la possibilité de laisser une note à chaque produit commandé afin de préciser vos préférences, pour cela cliquer sur "commenter"</p>
 
 <button class="btn btn-primary">valider ma commande <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+    
+<c:forEach var="ligne" items="${panier}">
+        <c:if test="${ligne.produit != null}">
+    <p class="text-primary">id ligne commande <span class="text-success">produit</span> ajouté : ${ligne.identifiant}</p>
+        </c:if>
+        <c:if test="${ligne.menu != null}">
+            <p class="text-primary">id ligne commmande <span class="text-success">menu</span> ajouté : ${ligne.identifiant}</p>
+        </c:if>
+    </c:forEach>
+    
     </c:if>
+
         
     <%@include file="templates/footer.jsp" %>

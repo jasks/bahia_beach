@@ -8,80 +8,54 @@
         <link href="css/bootstrap/css/bootstrapPaper.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
-    
-<%@include file="templates/header.jsp" %>
+
+    <%@include file="templates/header.jsp" %>
 
 
-<h1>produits du menu </h1>
+    <h1>produits du menu </h1>
 
-<div class="row">
-<div id="mesPlats" class="col-lg-6">
-    <h3 class="text-primary">Nos plats</h3>
-    <table border="1" >
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>nom</th>
+    <div class="row">
 
-            </tr>
-        </thead>
-        <tbody>
+
+        <form>
             
-            <c:forEach items="${produits}" var="p">
-                <c:if test="${p.type.nomType == 'Plat'}">
-                    <tr>
-                    <td>${p.id}</td>
-                    <td>${p.nomProduit}</td>
-                    <td>
-                        <c:url value="Controller?section=carte&action=produits&type=${p.id}" var="url01" />
-                        <a href="${url01}">Voir</a>
-                    </td>
-                </tr>
-                </c:if>
-                
-            </c:forEach>
-                <td>
-                        <c:url value="Controller?section=panier&action=afficherPanier" var="url01" />
-                        <a href="${url01}">Voir</a>
-                    </td>
-        </tbody>
-    </table>
-</div>
-                    
-                    <div id="mesEntrees" class="col-lg-6">
-    <h3 class="text-primary">Nos entrees</h3>
-    <table border="1" >
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>nom</th>
+            <input type="hidden" name="section" value="panier" />
+            <input type="hidden" name="action" value="ajouterMenu" />
 
-            </tr>
-        </thead>
-        <tbody>
+            <div id="mesPlats" class="col-lg-6">
+                <h3 class="text-primary">Nos plats</h3>
+                <c:forEach items="${produits}" var="p">
+                    <c:if test="${p.type.nomType == 'Plat'}">
+                        <input required id="${p.id}" type="radio" name="plat" value="${p.id}"><label for="${p.id}">${p.nomProduit}</label>
+                        <br>
+                    </c:if>
+                </c:forEach>
+            </div>
+
+            <div id="mesEntrees" class="col-lg-6">
+                <h3 class="text-primary">Nos entrees</h3>
+
+                <c:forEach items="${produits}" var="p">
+                    <c:if test="${p.type.nomType == 'Entrée'}">
+                        <input required id="${p.id}" type="radio" name="entree" value="${p.id}"><label for="${p.id}">${p.nomProduit}</label>
+                        <br> 
+                    </c:if>
+
+                </c:forEach>
+            </div>
             
-            <c:forEach items="${produits}" var="p">
-                <c:if test="${p.type.nomType == 'Entrée'}">
-                    <tr>
-                    <td>${p.id}</td>
-                    <td>${p.nomProduit}</td>
-                    <td>
-                        <c:url value="Controller?section=carte&action=produits&type=${p.id}" var="url01" />
-                        <a href="${url01}">Voir</a>
-                    </td>
-                </tr>
-                </c:if>
-                
-            </c:forEach>
-                <td>
-                        <c:url value="Controller?section=panier&action=afficherPanier" var="url01" />
-                        <a href="${url01}">Voir</a>
-                    </td>
-        </tbody>
-    </table>
-</div>
-                    
-                    
-      </div>              
-                    <%@include file="templates/footer.jsp" %>
+            <input type="hidden" name="nomMenu" value="${param.nom}" />
+            <input type="hidden" name="prixMenu" value="${param.prix}" />
+            <input class="btn btn-primary" type="submit" value="ajouter à la commande" />
+
+        </form> 
+
+
+
+
+
+
+
+    </div>              
+    <%@include file="templates/footer.jsp" %>
 

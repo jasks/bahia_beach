@@ -76,6 +76,17 @@ public class Panier implements ControllerInterface, Serializable{
             request.setAttribute("msg", "votre commentaire a bien été ajouté");
             return "/WEB-INF/panier.jsp";
         }
+        
+        if("ajouterMenu".equalsIgnoreCase(action)) {
+            Float prix = Float.parseFloat(request.getParameter("prixMenu"));
+            String nom = request.getParameter("nomMenu");
+            Long idPlat = Long.parseLong(request.getParameter("plat"));
+            Long idEntree = Long.parseLong(request.getParameter("entree"));
+            beanPanier.addMenu("menu "+nom, prix, idPlat, idEntree);
+            request.setAttribute("msg", "Votre menu a bien été ajouté !!!");
+            return "/WEB-INF/panier.jsp";
+            
+        }
          
         
         return "/WEB-INF/index.jsp";

@@ -13,6 +13,8 @@
         <a href="Controller?section=carte&action=carte">lien vers ma carte |</a>
         <a href="Controller?section=serveur&action=voirCommande"> lien vers Voir lesCommandes |</a>
         <a href="Controller?section=connexion">lien vers la connexion |</a>
+        <a href="Controller?section=panier&action=afficherPanier">lien vers le panier |</a>
+      
         </div>    
             <c:if test="${not empty msg}">
     <p class="alert alert-success text-center">${msg}</p>
