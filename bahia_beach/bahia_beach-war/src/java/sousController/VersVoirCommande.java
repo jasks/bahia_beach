@@ -8,6 +8,10 @@ package sousController;
 import beanMetier.beanVoirCommande;
 import beanMetier.beanVoirCommandeLocal;
 import entities.Commande;
+import entities.LigneCommande;
+import entities.Produit;
+import entities.Serveur;
+import entities.Tablee;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,25 +32,32 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
     beanVoirCommandeLocal beanVoirCommande = lookupbeanVoirCommandeLocal();
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>VersVoirCommande");
+    public String execute(HttpServletRequest request,
+            HttpServletResponse response, HttpServlet servlet) {
+    
         String s = "dans voir la commande";
         String action = request.getParameter("action");
-        System.out.println("action>>>>>>>>>>>>>>>>>>>>"+action);
-
+      
         if ("voirCommande".equalsIgnoreCase(action)) {
-            System.out.println(">>>>>>>>>>>>>if");
-
-            List<Commande> lesCommandes = beanVoirCommande.voirLesCommandesEnCours();
-            request.setAttribute("lescommandes", lesCommandes);
-            for(Commande c : lesCommandes){
-                System.out.println(":::::::::::::::"+c.getNumero());
-            }
+            
+            List<Serveur> lesServeurs = beanVoirCommande.getLeServeur();
+            request.setAttribute("lesServeurs",lesServeurs);
             request.setAttribute("msg", s);
+            Serveur serveur= beanVoirCommande.getLeServeur("S3001");
+            request.setAttribute("serveur", serveur);
+            
+            List<Commande>  lesCommandes = beanVoirCommande.getLesCommandesEncours("S3002");
+            request.setAttribute("lesCommendes",lesCommandes );
+            List<Produit> lesProduits= beanVoirCommande.getLesProduits("C2001");
+            
+            for(Produit p:lesProduits){
+                System.out.println("Prouit>>>>>>>>>>>>>"+p.getNomProduit());
+            }
+            
             return "/WEB-INF/voirCommande.jsp";
         }
 
-        return "/WEB-INF/voirCommande.jsp";
+        return "/WEB-INF/index.jsp";
     }
 
     private beanVoirCommandeLocal lookupbeanVoirCommandeLocal() {

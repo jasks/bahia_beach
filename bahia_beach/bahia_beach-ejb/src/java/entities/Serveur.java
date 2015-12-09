@@ -51,6 +51,15 @@ public class Serveur implements Serializable {
         this.coordonnee = coordonnee;
     }
 
+    public Serveur(String nom, String prenom, String code, Coordonnee coordonnee, Collection<Tablee> tables, Collection<Commande> commandes) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.code = code;
+        this.coordonnee = coordonnee;
+        this.tables = tables;
+        this.commandes = commandes;
+    }
+
 
     public Long getId() {
         return id;

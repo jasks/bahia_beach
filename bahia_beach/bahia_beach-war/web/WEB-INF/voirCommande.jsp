@@ -4,13 +4,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>les Commandes</title>
+        <title>les Serveurs</title>
     </head>
     <body>
-        <h1>Les Commandes</h1>
-        <table><tr><td>numero commande</td><td>date emission</td></tr>
-        <c:forEach items="${lescommandes}" var="c">
-            <tr><td>${c.numero}</td><td>${c.date}</td></tr>
+        <h1>les Serveurs</h1>
+        <table><tr><td>nom Serveur</td><td>prenom Serveur</td><td>code</td></tr>
+        <c:forEach items="${lesServeurs}" var="c">
+            <tr><td>${c.getNom()}</td><td>${c.getPrenom()}</td><td>${c.getCode()}</td></tr>
+            
         </c:forEach>
         </table>
     </body>
