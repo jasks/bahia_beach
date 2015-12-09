@@ -1,4 +1,9 @@
-                                                 package entities;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,30 +14,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+/**
+ *
+ * @author cdi418
+ */
 @Entity
-public class Categorie implements Serializable {
+public class Famille implements Serializable {
     private static final long serialVersionUID = 1L;
-// 1°/ ATTRIBUTS----------------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String nomCategorie;
+    private String nom;
     
-    @OneToMany(mappedBy = "categorie")
-    private Collection<Produit> produits;
-    
-// 2°/ CONSTRUCTOR--------------------------------------------------------------
-    public Categorie() {
+        
+    @OneToMany(mappedBy = "famille")
+    Collection<Produit> produits;
+// 2°/ CONSTRUCTOR--------------------------------------------------------------    
+    public Famille() {
         produits = new ArrayList();
     }
 
-    public Categorie(String nomCategorie) {
+
+    public Famille(String nom) {
         this();
-        this.nomCategorie = nomCategorie;
+        this.nom = nom;
     }
     
-// 3°/ GETTER AND SETTER--------------------------------------------------------
+
     public Long getId() {
         return id;
     }
@@ -41,12 +49,12 @@ public class Categorie implements Serializable {
         this.id = id;
     }
 
-    public String getNomCategorie() {
-        return nomCategorie;
+    public String getNom() {
+        return nom;
     }
 
-    public void setNomCategorie(String nomCategorie) {
-        this.nomCategorie = nomCategorie;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public Collection<Produit> getProduits() {
@@ -56,8 +64,9 @@ public class Categorie implements Serializable {
     public void setProduits(Collection<Produit> produits) {
         this.produits = produits;
     }
-   
-// 4°/ METHODE------------------------------------------------------------------
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -68,10 +77,10 @@ public class Categorie implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Categorie)) {
+        if (!(object instanceof Famille)) {
             return false;
         }
-        Categorie other = (Categorie) object;
+        Famille other = (Famille) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -80,7 +89,7 @@ public class Categorie implements Serializable {
 
     @Override
     public String toString() {
-        return "Categorie(id="+id+";nom="+nomCategorie+")";
+        return "famille : "+nom + "{ "+id+"}";
     }
     
 }

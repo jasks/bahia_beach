@@ -1,8 +1,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<html>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>index</title>
+        <link href="css/bootstrap/css/bootstrapPaper.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    
+<%@include file="templates/header.jsp" %>
+
 <h1>Ma CARTE</h1>
-<h2>${msg}</h2>
+
 <div>
     <table border="1" >
         <thead>
@@ -12,6 +21,7 @@
                 <th>Prix Ht/u</th>
                 <th>categorie</th>
                 <th>type</th>
+                <th>famille</th>
                 <th>calorie</th>
                 <th>matiere grasse</th>
                 <th>acides gras</th>
@@ -33,6 +43,7 @@
                             maxFractionDigits="2"  /> €</td>
                     <td>${description.categorie.nomCategorie}</td>
                     <td>${description.type.nomType}</td>
+                    <td>${description.famille.nom}</td>
                     <td>${description.qualiteNutritive.calorie}</td>
                     <td>${description.qualiteNutritive.matiereGrasse}</td>
                     <td>${description.qualiteNutritive.acidesGras}</td>
@@ -50,4 +61,6 @@
         </tbody>
     </table>
 </div>
+                    
+<%@include file="templates/footer.jsp" %>
 

@@ -5,6 +5,7 @@ import entities.Commande;
 import entities.Commentaire;
 import entities.Coordonnee;
 import entities.Cuisinier;
+import entities.Famille;
 import entities.LigneCommande;
 import entities.Menu;
 import entities.Produit;
@@ -52,6 +53,11 @@ public class beanEssaie implements beanEssaieLocal {
         lty.add(new Type("Dessert"));
         lty.add(new Type("Boisson"));
 
+//FAMILLE--------------------------------------------------------------------------
+        List<Famille> lf = new ArrayList();
+        lf.add(new Famille("gourmand"));
+        lf.add(new Famille("vegetarien"));
+
 //CATEGORIE---------------------------------------------------------------------
         List<Categorie> lca = new ArrayList();
         lca.add(new Categorie("Crudité"));
@@ -78,6 +84,7 @@ public class beanEssaie implements beanEssaieLocal {
 
 //PRODUIT-----------------------------------------------------------------------
         List<Produit> lp = new ArrayList();
+        //plat-------------------------------
         lp.add(new Produit("Fusilli à la Bolognaises",
                 14.0f,
                 "Une sauce à base de tomates, de viande de bœuf, d'oignons et de carottes, cuisinée avec du laurier et du romarin qui vient napper des fusilli",
@@ -85,8 +92,91 @@ public class beanEssaie implements beanEssaieLocal {
                 "Selon la recette traditionnelle mentionnée en 1982 par la délégation bolognaise de l'Accademia Italiana della Cucina, la liste des ingrédients ne comprend que : bœuf, pancetta, oignons, carottes, céleri, sauce tomate, mie de pain, vin rouge ou vin blanc sec, lait ou crème.",
                 lca.get(2),
                 lty.get(1),
+                lf.get(0),
                 ltva.get(0),
                 qn01));
+        lp.add(new Produit("lasagne",
+                14.0f,
+                "Une sauce à base de tomates, de viande de bœuf, d'oignons et de carottes, cuisinée avec du laurier et du romarin qui vient napper des fusilli",
+                "/Photo/Fusilli_Bolognaise.png",
+                "Selon la recette traditionnelle mentionnée en 1982 par la délégation bolognaise de l'Accademia Italiana della Cucina, la liste des ingrédients ne comprend que : bœuf, pancetta, oignons, carottes, céleri, sauce tomate, mie de pain, vin rouge ou vin blanc sec, lait ou crème.",
+                lca.get(2),
+                lty.get(1),
+                lf.get(0),
+                ltva.get(0),
+                qn01));
+        lp.add(new Produit("steak frite",
+                14.0f,
+                "Une sauce à base de tomates, de viande de bœuf, d'oignons et de carottes, cuisinée avec du laurier et du romarin qui vient napper des fusilli",
+                "/Photo/Fusilli_Bolognaise.png",
+                "Selon la recette traditionnelle mentionnée en 1982 par la délégation bolognaise de l'Accademia Italiana della Cucina, la liste des ingrédients ne comprend que : bœuf, pancetta, oignons, carottes, céleri, sauce tomate, mie de pain, vin rouge ou vin blanc sec, lait ou crème.",
+                lca.get(2),
+                lty.get(1),
+                lf.get(0),
+                ltva.get(0),
+                qn01));
+        lp.add(new Produit("gratin aux aubergines",
+                14.0f,
+                "Une sauce à base de tomates, de viande de bœuf, d'oignons et de carottes, cuisinée avec du laurier et du romarin qui vient napper des fusilli",
+                "/Photo/Fusilli_Bolognaise.png",
+                "Selon la recette traditionnelle mentionnée en 1982 par la délégation bolognaise de l'Accademia Italiana della Cucina, la liste des ingrédients ne comprend que : bœuf, pancetta, oignons, carottes, céleri, sauce tomate, mie de pain, vin rouge ou vin blanc sec, lait ou crème.",
+                lca.get(2),
+                lty.get(1),
+                lf.get(1),
+                ltva.get(0),
+                qn01));
+        lp.add(new Produit("soja maxxi mix",
+                14.0f,
+                "Une sauce à base de tomates, de viande de bœuf, d'oignons et de carottes, cuisinée avec du laurier et du romarin qui vient napper des fusilli",
+                "/Photo/Fusilli_Bolognaise.png",
+                "Selon la recette traditionnelle mentionnée en 1982 par la délégation bolognaise de l'Accademia Italiana della Cucina, la liste des ingrédients ne comprend que : bœuf, pancetta, oignons, carottes, céleri, sauce tomate, mie de pain, vin rouge ou vin blanc sec, lait ou crème.",
+                lca.get(2),
+                lty.get(1),
+                lf.get(1),
+                ltva.get(0),
+                qn01));
+        lp.add(new Produit("pizza 4 fromages",
+                14.0f,
+                "Une sauce à base de tomates, de viande de bœuf, d'oignons et de carottes, cuisinée avec du laurier et du romarin qui vient napper des fusilli",
+                "/Photo/Fusilli_Bolognaise.png",
+                "Selon la recette traditionnelle mentionnée en 1982 par la délégation bolognaise de l'Accademia Italiana della Cucina, la liste des ingrédients ne comprend que : bœuf, pancetta, oignons, carottes, céleri, sauce tomate, mie de pain, vin rouge ou vin blanc sec, lait ou crème.",
+                lca.get(2),
+                lty.get(1),
+                lf.get(1),
+                ltva.get(0),
+                qn01));
+        
+        //entree-------------------------------
+        lp.add(new Produit("briques",
+                9.0f,
+                "La mozzarella est un fromage à pâte filée d'origine italienne à base de lait de vache ou de bufflonne.",
+                "/Photo/Tomate_Mozzarella.png",
+                "La mozzarella di Bufala Campana, produite en Campanie avec du lait de bufflonne, est l'objet d'une appellation d'origine protégée (AOP) depuis 1996. En Italie, la mozzarella de lait de vache est fabriquée et commercialisée sous le nom de fior di latte ou de bocconcini. Ailleurs dans le monde, la mozzarella est un fromage industriel qui fait partie des fromages de lait de vache les plus produits et consommés. Ce fromage industriel, commercialisé sous le nom de mozzarella, crée une confusion avec la mozzarella traditionnelle au lait de bufflonne.",
+                lca.get(1),
+                lty.get(0),
+                lf.get(0),
+                ltva.get(0),
+                qn02));
+        lp.add(new Produit("tajine tounsie",
+                9.0f,
+                "La mozzarella est un fromage à pâte filée d'origine italienne à base de lait de vache ou de bufflonne.",
+                "/Photo/Tomate_Mozzarella.png",
+                "La mozzarella di Bufala Campana, produite en Campanie avec du lait de bufflonne, est l'objet d'une appellation d'origine protégée (AOP) depuis 1996. En Italie, la mozzarella de lait de vache est fabriquée et commercialisée sous le nom de fior di latte ou de bocconcini. Ailleurs dans le monde, la mozzarella est un fromage industriel qui fait partie des fromages de lait de vache les plus produits et consommés. Ce fromage industriel, commercialisé sous le nom de mozzarella, crée une confusion avec la mozzarella traditionnelle au lait de bufflonne.",
+                lca.get(1),
+                lty.get(0),
+                lf.get(0),
+                ltva.get(0),
+                qn02));
+        lp.add(new Produit("quiche",
+                9.0f,
+                "La mozzarella est un fromage à pâte filée d'origine italienne à base de lait de vache ou de bufflonne.",
+                "/Photo/Tomate_Mozzarella.png",
+                "La mozzarella di Bufala Campana, produite en Campanie avec du lait de bufflonne, est l'objet d'une appellation d'origine protégée (AOP) depuis 1996. En Italie, la mozzarella de lait de vache est fabriquée et commercialisée sous le nom de fior di latte ou de bocconcini. Ailleurs dans le monde, la mozzarella est un fromage industriel qui fait partie des fromages de lait de vache les plus produits et consommés. Ce fromage industriel, commercialisé sous le nom de mozzarella, crée une confusion avec la mozzarella traditionnelle au lait de bufflonne.",
+                lca.get(1),
+                lty.get(0),
+                lf.get(0),
+                ltva.get(0),
+                qn02));
         lp.add(new Produit("Tomates Mozzarella",
                 9.0f,
                 "La mozzarella est un fromage à pâte filée d'origine italienne à base de lait de vache ou de bufflonne.",
@@ -94,8 +184,31 @@ public class beanEssaie implements beanEssaieLocal {
                 "La mozzarella di Bufala Campana, produite en Campanie avec du lait de bufflonne, est l'objet d'une appellation d'origine protégée (AOP) depuis 1996. En Italie, la mozzarella de lait de vache est fabriquée et commercialisée sous le nom de fior di latte ou de bocconcini. Ailleurs dans le monde, la mozzarella est un fromage industriel qui fait partie des fromages de lait de vache les plus produits et consommés. Ce fromage industriel, commercialisé sous le nom de mozzarella, crée une confusion avec la mozzarella traditionnelle au lait de bufflonne.",
                 lca.get(1),
                 lty.get(0),
+                lf.get(1),
                 ltva.get(0),
                 qn02));
+        lp.add(new Produit("salade nicoise",
+                9.0f,
+                "La mozzarella est un fromage à pâte filée d'origine italienne à base de lait de vache ou de bufflonne.",
+                "/Photo/Tomate_Mozzarella.png",
+                "La mozzarella di Bufala Campana, produite en Campanie avec du lait de bufflonne, est l'objet d'une appellation d'origine protégée (AOP) depuis 1996. En Italie, la mozzarella de lait de vache est fabriquée et commercialisée sous le nom de fior di latte ou de bocconcini. Ailleurs dans le monde, la mozzarella est un fromage industriel qui fait partie des fromages de lait de vache les plus produits et consommés. Ce fromage industriel, commercialisé sous le nom de mozzarella, crée une confusion avec la mozzarella traditionnelle au lait de bufflonne.",
+                lca.get(1),
+                lty.get(0),
+                lf.get(1),
+                ltva.get(0),
+                qn02));
+        lp.add(new Produit("raïta de concombres",
+                9.0f,
+                "La mozzarella est un fromage à pâte filée d'origine italienne à base de lait de vache ou de bufflonne.",
+                "/Photo/Tomate_Mozzarella.png",
+                "La mozzarella di Bufala Campana, produite en Campanie avec du lait de bufflonne, est l'objet d'une appellation d'origine protégée (AOP) depuis 1996. En Italie, la mozzarella de lait de vache est fabriquée et commercialisée sous le nom de fior di latte ou de bocconcini. Ailleurs dans le monde, la mozzarella est un fromage industriel qui fait partie des fromages de lait de vache les plus produits et consommés. Ce fromage industriel, commercialisé sous le nom de mozzarella, crée une confusion avec la mozzarella traditionnelle au lait de bufflonne.",
+                lca.get(1),
+                lty.get(0),
+                lf.get(1),
+                ltva.get(0),
+                qn02));
+        
+        //dessert-------------------------------
         lp.add(new Produit("Tiramisu aux speculoos",
                 5.5f,
                 "Description Tiramisu aux speculoos",
@@ -105,6 +218,8 @@ public class beanEssaie implements beanEssaieLocal {
                 lty.get(2),
                 ltva.get(0),
                 qn01));
+        
+        //boisson-------------------------------
         lp.add(new Produit("Coca-Cola",
                 2.5f,
                 "Description Coca-Cola",
@@ -114,6 +229,8 @@ public class beanEssaie implements beanEssaieLocal {
                 lty.get(3),
                 ltva.get(0),
                 qn02));
+        
+        //alcool-------------------------------
         lp.add(new Produit("Grant",
                 5.49f,
                 "Description du Grant",
@@ -126,8 +243,8 @@ public class beanEssaie implements beanEssaieLocal {
         
 //MENU--------------------------------------------------------------------------
         List<Menu> lmenu = new ArrayList();
-        lmenu.add(new Menu("Gourmand", 19.99F));
-        lmenu.add(new Menu("Végétarien", 6.99F));
+        lmenu.add(new Menu("gourmand", 19.99F));
+        lmenu.add(new Menu("vegetarien", 6.99F));
 
 //COMMENTAIRE-------------------------------------------------------------------
         List<Commentaire> lcommentaire = new ArrayList();
@@ -166,6 +283,8 @@ public class beanEssaie implements beanEssaieLocal {
         llc.get(1).setProduit(lp.get(1));
         llc.get(2).setProduit(lp.get(2));
         llc.get(3).setProduit(lp.get(0));
+        //lmenu.get(0).getProduits().add(lp.get(0)); //ajout plat bolognaise ds menu gourmand
+        //lmenu.get(0).getProduits().add(lp.get(1)); //ajout entree tomate ds menu gourmand
         
 //PERSIST-----------------------------------------------------------------------
         for (Cuisinier cuisinier : lcuisinier) {
@@ -178,6 +297,10 @@ public class beanEssaie implements beanEssaieLocal {
 
         for (Type ty : lty) {
             em.persist(ty);
+        }
+
+        for (Famille f : lf) {
+            em.persist(f);
         }
 
         for (Categorie ca : lca) {

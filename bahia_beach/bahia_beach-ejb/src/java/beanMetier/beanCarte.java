@@ -41,32 +41,20 @@ public class beanCarte implements beanCarteLocal {
         qr.setParameter("type", t);
         return qr.getResultList();
     }
+     
 
 
     
     //liste des produits en entier
     
-    
+   
     @Override
     public List<Produit> selectAllproduit(){
         String req = "select p from Produit p";
         Query qr = em.createQuery(req);
         return qr.getResultList();
     }
-    
-    //liste des produits par type
-        
-    
-//    @Override
-//    public List<Produit> selectProduitByType(Type t){
-//        
-//        Type type = t;
-//        String req = "select p from Produit p "
-//                + "where p.type = :type";
-//        Query qr = em.createQuery(req);
-//        qr.setParameter("type", t);
-//        return qr.getResultList();
-//    }
+
     
     
     
@@ -76,16 +64,26 @@ public class beanCarte implements beanCarteLocal {
         Query qr = em.createQuery(req);
         return qr.getResultList();
     }
-    
-    
+
+                
     @Override
     public List<Menu> selectMenuByName(String nom){
-        String req = "select m from Menu m"
+        String req = "select m from Menu m "
                 + "where m.nom = :nom";
         Query qr = em.createQuery(req);
         qr.setParameter("nom", nom);
         return qr.getResultList();
     }
+    
+    @Override
+    public List<Produit> selectProduitByMenu(String nom){
+        String req = "select p from Produit p "
+                + "where p.famille.nom = :nom"; //menu.nom
+        Query qr = em.createQuery(req);
+        qr.setParameter("nom", nom);
+        return qr.getResultList();
+    }
+    
     
     @Override
         public Produit selectProduit(Long id) {
