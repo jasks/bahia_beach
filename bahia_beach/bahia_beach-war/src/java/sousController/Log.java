@@ -37,35 +37,50 @@ public class Log implements ControllerInterface, Serializable {
             
             if(code.substring(0, 1).equalsIgnoreCase("S")) {
             Serveur s = new Serveur();
-            try {
-            s = beanLog.connexionServeur(code);
-            request.setAttribute("msg", "Bonjour "+s.getNom() + " " + s.getPrenom());
-            } catch (NoResultException ex) {
-                System.out.println(ex);
-                request.setAttribute("msg", ex + " le code entré est invalide");
-                return "/WEB-INF/log.jsp";
-            }
+            
+                try {
+                    s = beanLog.connexionServeur(code);
+                    request.setAttribute("msg", "Bonjour "+s.getNom() + " " + s.getPrenom());
+                } catch (Exception ex) {
+                    request.setAttribute("msg", ex);
+                    return "/WEB-INF/log.jsp";
+                }
+            
             
             return "/WEB-INF/log.jsp";
-        }
+        } else
             
             
             if(code.substring(0, 1).equalsIgnoreCase("C")) {
             Cuisinier c = new Cuisinier();
-            try {
-            c = beanLog.connexionCuisinier(code);
-            request.setAttribute("msg", "Bonjour "+c.getNom() + " " + c.getPrenom());
-            } catch (NoResultException ex) {
-                request.setAttribute("msg", "le code entré est invalide");
-                return "/WEB-INF/log.jsp";
-            }
+            
+                try {
+                    c = beanLog.connexionCuisinier(code);
+                    request.setAttribute("msg", "Bonjour "+c.getNom() + " " + c.getPrenom());
+                } catch (Exception ex) {
+                    request.setAttribute("msg", ex);
+                    return "/WEB-INF/log.jsp";
+                }
+            
+            
             return "/WEB-INF/log.jsp";
-        }
+        } else {
+                try{
+                request.setAttribute("msg", "code invalide");
+                return "/WEB-INF/log.jsp";
+                } catch(StringIndexOutOfBoundsException ex){
+                    request.setAttribute("msg", ex);
+                    return "/WEB-INF/log.jsp";
+                }
+                
+            }
+            
+            
             
         }
  
         
-        return "/WEB-INF/index.jsp";
+        return "/WEB-INF/log.jsp";
       }
 
     private beanLogLocal lookupbeanLogLocal() {

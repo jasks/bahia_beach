@@ -22,7 +22,7 @@ public class beanLog implements beanLogLocal {
     
     
     @Override
-    public Serveur connexionServeur(String code) throws NoResultException{
+    public Serveur connexionServeur(String code) throws Exception{
 
         
         String req = "select s from Serveur s "
@@ -36,7 +36,7 @@ public class beanLog implements beanLogLocal {
     }
     
     @Override
-    public Cuisinier connexionCuisinier(String code) throws NoResultException{
+    public Cuisinier connexionCuisinier(String code) throws Exception{
         
         String req = "select c from Cuisinier c "
                 + "where c.code = :code";

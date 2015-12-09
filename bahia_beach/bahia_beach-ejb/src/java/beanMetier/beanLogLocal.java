@@ -17,8 +17,8 @@ import javax.persistence.NoResultException;
 @Local
 public interface beanLogLocal {
 
-    public Serveur connexionServeur(String code) throws NoResultException;
+    public Serveur connexionServeur(String code) throws Exception;
 
-    public Cuisinier connexionCuisinier(String code) throws NoResultException;
+    public Cuisinier connexionCuisinier(String code) throws Exception;
     
 }
