@@ -6,6 +6,7 @@
 package beanMetier;
 
 import entities.Commande;
+import entities.LigneCommande;
 import entities.Produit;
 import entities.Serveur;
 import java.util.ArrayList;
@@ -20,10 +21,8 @@ import javax.persistence.Query;
 public class beanVoirCommande implements beanVoirCommandeLocal {
 
     @PersistenceContext(unitName = "RestaurantPU")
-    private EntityManager em;
-
-    
-    
+    private EntityManager em;    
+  
     @Override
     public List<Serveur> getLeServeur() {
         Serveur s01=em.find(Serveur.class, 1L);
@@ -31,10 +30,7 @@ public class beanVoirCommande implements beanVoirCommandeLocal {
          liste.add(s01);
 
          return liste;
-    }
-    
-    
-    
+    }     
     @Override
     public Serveur getLeServeur(String code){
         String req="select s from Serveur s where s.code= :valeur";
@@ -54,14 +50,14 @@ public class beanVoirCommande implements beanVoirCommandeLocal {
         return qr.getResultList();
     }
     
+  
     @Override
     public List<Produit> getLesProduits(String numCommande){
-       String req = /*"select p from Produit p join LigneCommande l on p.id=l.id "
-               + "join Commande c on l.id=c.id where c.code= : valeur" ;*/
-               "select lc.produit from LigneCommande lc where lc.commande.numero = :valeur";
+       String req ="select lc.produit from LigneCommande lc where lc.commande.numero = :valeur";
      
        Query qr=em.createQuery(req);
        qr.setParameter("valeur",numCommande);
+
        return qr.getResultList();
     }
 

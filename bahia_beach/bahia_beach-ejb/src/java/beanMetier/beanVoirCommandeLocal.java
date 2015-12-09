@@ -6,8 +6,15 @@
 package beanMetier;
 
 import entities.Commande;
+
+import entities.LigneCommande;
 import entities.Produit;
 import entities.Serveur;
+import java.util.ArrayList;
+
+import entities.Produit;
+import entities.Serveur;
+
 import java.util.List;
 import javax.ejb.Local;
 
@@ -18,12 +25,15 @@ import javax.ejb.Local;
 @Local
 public interface beanVoirCommandeLocal {
 
-    public List<Serveur> getLeServeur();
-
     public Serveur getLeServeur(String code);
 
-    public List<Commande> getLesCommandesEncours(String code);
+    public List<Commande> getLesCommandesEncours(String codeServeur);
 
-    public List<Produit> getLesProduits(String code);
+    public List<Produit> getLesProduits(String numCommande);
+
+    public List<Serveur> getLeServeur();
+
+
+
     
 }

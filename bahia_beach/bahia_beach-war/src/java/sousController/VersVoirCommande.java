@@ -7,6 +7,11 @@ package sousController;
 
 import beanMetier.beanVoirCommandeLocal;
 import entities.Commande;
+
+import entities.LigneCommande;
+import entities.Produit;
+import entities.Serveur;
+import entities.Tablee;
 import entities.Produit;
 import entities.Serveur;
 import java.io.Serializable;
@@ -45,11 +50,9 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
             
             List<Commande>  lesCommandes = beanVoirCommande.getLesCommandesEncours("S3002");
             request.setAttribute("lesCommendes",lesCommandes );
+
             List<Produit> lesProduits= beanVoirCommande.getLesProduits("CMD01");
-            
-            for(Produit p:lesProduits){
-                System.out.println("Prouit>>>>>>>>>>>>>"+p.getNomProduit());
-            }
+            request.setAttribute("lesProduits", lesProduits);
             
             return "/WEB-INF/voirCommande.jsp";
         }
