@@ -15,10 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author cdi418
- */
+
 @Stateless
 public class beanVoirCommande implements beanVoirCommandeLocal {
 
