@@ -7,6 +7,7 @@ package beanMetier;
 
 import entities.Cuisinier;
 import entities.Serveur;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -14,7 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 
-@Stateless
+@Stateful
 public class beanLog implements beanLogLocal {
 
     @PersistenceContext(unitName = "RestaurantPU")

@@ -22,6 +22,7 @@ public class Log implements ControllerInterface, Serializable {
     
     
     
+    
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
@@ -97,6 +98,8 @@ public class Log implements ControllerInterface, Serializable {
             throw new RuntimeException(ne);
         }
     }
+
+
 
     
     
