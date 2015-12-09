@@ -10,9 +10,10 @@
     <%@include file="templates/header.jsp" %>
     
         <form>
-            <input type="hidden" name="section" value="VersConnexion" />
+            <input type="hidden" name="section" value="log" />
+            <input type="hidden" name="action" value="verifierCode" />
             Veuillez saisir un code: <input type="text" name="code"/><br/><br/>
-            <input type="submit" name="valider" value="Valider"/>
+            <input type="submit" value="Valider"/>
         </form>
   
     <%@include file="templates/footer.jsp" %>
