@@ -46,24 +46,7 @@ public class beanLog implements beanLogLocal {
         
         return (Cuisinier) qr.getSingleResult();
     }
-    
-    
-//    public Cuisinier connexion(String code){
-//        
-//        try{
-//        
-//        String req = "select s from Serveur s "
-//                + "where s.code = :code";
-//        
-//        Query qr = em.createQuery(req);
-//        qr.setParameter("code", code);
-//        
-//        return (Cuisinier) qr.getSingleResult();
-//        } catch(NoResultException ex) {
-//            return null;
-//        }   
-//        
-//    }
+
     
 
     

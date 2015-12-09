@@ -15,5 +15,7 @@
             Veuillez saisir un code: <input type="text" name="code"/><br/><br/>
             <input type="submit" value="Valider"/>
         </form>
+    
+    <p class="well text-center">objet mis en session : ${auth}</p>
   
     <%@include file="templates/footer.jsp" %>

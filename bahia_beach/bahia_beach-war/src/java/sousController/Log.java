@@ -14,6 +14,7 @@ import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 public class Log implements ControllerInterface, Serializable {
@@ -24,6 +25,8 @@ public class Log implements ControllerInterface, Serializable {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
+        
+        HttpSession session = request.getSession();
         
         String action = request.getParameter("action");
         String code = request.getParameter("code");
@@ -40,6 +43,7 @@ public class Log implements ControllerInterface, Serializable {
             
                 try {
                     s = beanLog.connexionServeur(code);
+                    session.setAttribute("auth", s);
                     request.setAttribute("msg", "Bonjour "+s.getNom() + " " + s.getPrenom());
                 } catch (Exception ex) {
                     request.setAttribute("msg", ex);
@@ -56,6 +60,7 @@ public class Log implements ControllerInterface, Serializable {
             
                 try {
                     c = beanLog.connexionCuisinier(code);
+                    session.setAttribute("auth", c);
                     request.setAttribute("msg", "Bonjour "+c.getNom() + " " + c.getPrenom());
                 } catch (Exception ex) {
                     request.setAttribute("msg", ex);
