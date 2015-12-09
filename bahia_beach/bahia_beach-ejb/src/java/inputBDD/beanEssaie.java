@@ -283,6 +283,7 @@ public class beanEssaie implements beanEssaieLocal {
         llc.get(1).setProduit(lp.get(1));
         llc.get(2).setProduit(lp.get(2));
         llc.get(3).setProduit(lp.get(0));
+        llc.get(0).setCommande(lcommande.get(0)); //association ligneCommande -> commande
         //lmenu.get(0).getProduits().add(lp.get(0)); //ajout plat bolognaise ds menu gourmand
         //lmenu.get(0).getProduits().add(lp.get(1)); //ajout entree tomate ds menu gourmand
         
