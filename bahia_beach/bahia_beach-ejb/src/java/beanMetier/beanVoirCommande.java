@@ -6,7 +6,6 @@
 package beanMetier;
 
 import entities.Commande;
-import entities.LigneCommande;
 import entities.Produit;
 import entities.Serveur;
 import java.util.ArrayList;
@@ -18,12 +17,12 @@ import javax.persistence.Query;
 
 /**
  *
- * @author cdi415
+ * @author cdi418
  */
 @Stateless
 public class beanVoirCommande implements beanVoirCommandeLocal {
 
-    @PersistenceContext(unitName = "bahia_beach-ejbPU")
+    @PersistenceContext(unitName = "RestaurantPU")
     private EntityManager em;
 
     
@@ -48,22 +47,24 @@ public class beanVoirCommande implements beanVoirCommandeLocal {
     }
     
     @Override
-    public List<Commande> getLesCommandesEncours(String code){
+    public List<Commande> getLesCommandesEncours(String codeServeur){
         String req="select c from Commande c join Serveur s on c.id=s.id"
-                + " where s.code= :valeur and c.etat= :valeur1";
+                + " where s.code= :valeur and c.etat < :valeur1";
                
         Query qr = em.createQuery(req);
-        qr.setParameter("valeur", code);
-        qr.setParameter("valeur1", 1);
+        qr.setParameter("valeur", codeServeur);
+        qr.setParameter("valeur1", 3);
         return qr.getResultList();
     }
     
     @Override
-    public List<Produit> getLesProduits(String code){
-       String req = "select p from Produit p join LigneCommande l on p.id=l.id "
-               + "join Commande c on l.id=c.id where c.code= : valeur" ;
+    public List<Produit> getLesProduits(String numCommande){
+       String req = /*"select p from Produit p join LigneCommande l on p.id=l.id "
+               + "join Commande c on l.id=c.id where c.code= : valeur" ;*/
+               "select lc.produit from LigneCommande lc where lc.commande.numero = :valeur";
+     
        Query qr=em.createQuery(req);
-       qr.setParameter("valeur",code);
+       qr.setParameter("valeur",numCommande);
        return qr.getResultList();
     }
 

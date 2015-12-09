@@ -5,7 +5,6 @@
  */
 package sousController;
 
-import beanMetier.beanVoirCommande;
 import beanMetier.beanVoirCommandeLocal;
 import entities.Commande;
 import entities.Produit;
@@ -30,9 +29,9 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
     beanVoirCommandeLocal beanVoirCommande = lookupbeanVoirCommandeLocal();
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
-        
-        
+    public String execute(HttpServletRequest request,
+            HttpServletResponse response, HttpServlet servlet) {
+    
         String s = "dans voir la commande";
         String action = request.getParameter("action");
       
@@ -46,7 +45,7 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
             
             List<Commande>  lesCommandes = beanVoirCommande.getLesCommandesEncours("S3002");
             request.setAttribute("lesCommendes",lesCommandes );
-            List<Produit> lesProduits= beanVoirCommande.getLesProduits("C2001");
+            List<Produit> lesProduits= beanVoirCommande.getLesProduits("CMD01");
             
             for(Produit p:lesProduits){
                 System.out.println("Prouit>>>>>>>>>>>>>"+p.getNomProduit());
