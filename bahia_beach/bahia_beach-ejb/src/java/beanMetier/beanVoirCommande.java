@@ -16,16 +16,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author cdi415
- */
+
 @Stateless
 public class beanVoirCommande implements beanVoirCommandeLocal {
 
     @PersistenceContext(unitName = "RestaurantPU")
     private EntityManager em;    
-      
+  
     @Override
     public List<Serveur> getLeServeur() {
         Serveur s01=em.find(Serveur.class, 1L);
@@ -33,9 +30,7 @@ public class beanVoirCommande implements beanVoirCommandeLocal {
          liste.add(s01);
 
          return liste;
-    }
-    
-   
+    }     
     @Override
     public Serveur getLeServeur(String code){
         String req="select s from Serveur s where s.code= :valeur";
@@ -43,24 +38,26 @@ public class beanVoirCommande implements beanVoirCommandeLocal {
         qr.setParameter("valeur", code);  
         return (Serveur) qr.getSingleResult();
     }
-   
+    
     @Override
-    public List<Commande> getLesCommandesEncours(String code){
+    public List<Commande> getLesCommandesEncours(String codeServeur){
         String req="select c from Commande c join Serveur s on c.id=s.id"
-                + " where s.code= :valeur and c.etat= :valeur1";
+                + " where s.code= :valeur and c.etat < :valeur1";
                
         Query qr = em.createQuery(req);
-        qr.setParameter("valeur", code);
-        qr.setParameter("valeur1", 1);
+        qr.setParameter("valeur", codeServeur);
+        qr.setParameter("valeur1", 3);
         return qr.getResultList();
     }
-   
+    
+  
     @Override
-    public List<Produit> getLesProduits(String code){
-       String req = "select lc.produit from LigneCommande lc where lc.commande.code = :valeur "
-              ;// + "join Commande c on l.id=c.id where c.code= : valeur" 
+    public List<Produit> getLesProduits(String numCommande){
+       String req ="select lc.produit from LigneCommande lc where lc.commande.numero = :valeur";
+     
        Query qr=em.createQuery(req);
-       qr.setParameter("valeur",code);
+       qr.setParameter("valeur",numCommande);
+
        return qr.getResultList();
     }
 
