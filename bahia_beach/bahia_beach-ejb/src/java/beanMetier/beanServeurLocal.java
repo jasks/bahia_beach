@@ -5,20 +5,23 @@
  */
 package beanMetier;
 
-import entities.Cuisinier;
 import entities.Serveur;
+import entities.Tablee;
+import java.util.List;
 import javax.ejb.Local;
-import javax.persistence.NoResultException;
 
 /**
  *
  * @author cdi418
  */
 @Local
-public interface beanLogLocal {
+public interface beanServeurLocal {
 
-    public Serveur connexionServeur(String code) throws Exception;
+    public List<Tablee> afficherTable();
 
-    public Cuisinier connexionCuisinier(String code) throws Exception;
+    public List<Tablee> afficherTableLibre();
+
+    public List<Tablee> attribuerTable(Serveur s, Long id);
+
     
 }

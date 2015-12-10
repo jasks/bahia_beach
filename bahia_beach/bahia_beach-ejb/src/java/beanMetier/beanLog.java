@@ -7,6 +7,7 @@ package beanMetier;
 
 import entities.Cuisinier;
 import entities.Serveur;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -14,7 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 
-@Stateless
+@Stateful
 public class beanLog implements beanLogLocal {
 
     @PersistenceContext(unitName = "RestaurantPU")
@@ -22,7 +23,7 @@ public class beanLog implements beanLogLocal {
     
     
     @Override
-    public Serveur connexionServeur(String code) throws NoResultException{
+    public Serveur connexionServeur(String code) throws Exception{
 
         
         String req = "select s from Serveur s "
@@ -36,7 +37,7 @@ public class beanLog implements beanLogLocal {
     }
     
     @Override
-    public Cuisinier connexionCuisinier(String code) throws NoResultException{
+    public Cuisinier connexionCuisinier(String code) throws Exception{
         
         String req = "select c from Cuisinier c "
                 + "where c.code = :code";
@@ -46,24 +47,7 @@ public class beanLog implements beanLogLocal {
         
         return (Cuisinier) qr.getSingleResult();
     }
-    
-    
-//    public Cuisinier connexion(String code){
-//        
-//        try{
-//        
-//        String req = "select s from Serveur s "
-//                + "where s.code = :code";
-//        
-//        Query qr = em.createQuery(req);
-//        qr.setParameter("code", code);
-//        
-//        return (Cuisinier) qr.getSingleResult();
-//        } catch(NoResultException ex) {
-//            return null;
-//        }   
-//        
-//    }
+
     
 
     

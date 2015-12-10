@@ -25,7 +25,7 @@ public class Serveur implements Serializable {
     @Embedded
     private Coordonnee coordonnee;
     
-    @ManyToMany(mappedBy = "serveurs")
+    @ManyToMany
     private Collection<Tablee> tables;
     
     @OneToMany(mappedBy = "serveur")
