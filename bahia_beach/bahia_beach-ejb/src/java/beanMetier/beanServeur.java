@@ -32,10 +32,13 @@ public class beanServeur implements beanServeurLocal {
     }
     
     @Override
-    public void attribuerTable(Serveur s, Long id) {
+    public List<Tablee> attribuerTable(Serveur s, Long id) {
         Tablee t = em.find(Tablee.class, id); //on identifie l'objet table en question
         t.setStatut(1); // statut à 1
         s.getTables().add(t); // on met la table ds le serveur
+        em.persist(t);
+        em.persist(s);
+        return (List<Tablee>) s.getTables();
     }
     
 }

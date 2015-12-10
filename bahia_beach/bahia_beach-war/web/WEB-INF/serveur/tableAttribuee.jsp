@@ -37,7 +37,7 @@
                     <td>${t.nbrPlace}</td>
                     <td>${t.statut}</td>
                     <td>
-                        <c:url value="Controller?section=server&action=attribuerTable&id=${t.id}" var="url01" />
+                        <c:url value="Controller?section=serveur&action=attribuerTable&id=${t.id}" var="url01" />
                         <a href="${url01}">attribuer</a>
                     </td>
                 </tr>
