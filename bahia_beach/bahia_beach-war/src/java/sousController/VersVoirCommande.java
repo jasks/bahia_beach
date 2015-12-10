@@ -15,6 +15,10 @@ import entities.Tablee;
 import entities.Produit;
 import entities.Serveur;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,15 +49,27 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
             List<Serveur> lesServeurs = beanVoirCommande.getLeServeur();
             request.setAttribute("lesServeurs",lesServeurs);
             request.setAttribute("msg", s);
-            Serveur serveur= beanVoirCommande.getLeServeur("S3001");
+            Serveur serveur= beanVoirCommande.getLeServeur(lesServeurs.get(0).getCode());
             request.setAttribute("serveur", serveur);
             
-            List<Commande>  lesCommandes = beanVoirCommande.getLesCommandesEncours("S3002");
-            request.setAttribute("lesCommendes",lesCommandes );
-
-            List<Produit> lesProduits= beanVoirCommande.getLesProduits("CMD01");
-            request.setAttribute("lesProduits", lesProduits);
+            List<Commande>  lesCommandes = beanVoirCommande.getLesCommandesEncours(serveur.getCode());
+            request.setAttribute("lesCommandes",lesCommandes );
             
+            System.out.println("nombre de commande::::::"+lesCommandes.size());
+            HashMap<String,List<Produit>> mp= new HashMap();
+            for(int i=0;i<lesCommandes.size();i++){
+            List<Produit> lesProduits= beanVoirCommande.getLesProduits(lesCommandes.get(i).getNumero());
+            mp.put(lesCommandes.get(i).getNumero(),lesProduits );
+            }
+          
+            System.out.println(">>>>>>>>>>>>>>>>>>Parcourt hashMap");
+            for(String c:mp.keySet()){
+                mp.get(c);
+                System.out.println(mp.keySet().toString()+">>>>>>>>>>>>>>>>>>>"+mp.get(c).get(0).getNomProduit());
+            }
+            System.out.println(" Fin>>>>>>>>>>>>>>>>>>Parcourt hashMap");            
+            request.setAttribute("lesProduits",mp);
+
             return "/WEB-INF/voirCommande.jsp";
         }
 
