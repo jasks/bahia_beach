@@ -33,7 +33,7 @@
         </init-param>
         <init-param>
             <param-name>server</param-name>
-            <param-value>sousController.Serveur</param-value>
+            <param-value>sousController.Server</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
