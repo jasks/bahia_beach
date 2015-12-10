@@ -272,7 +272,10 @@ public class beanEssaie implements beanEssaieLocal {
         List<Tablee> ltablee = new ArrayList();
         ltablee.add(new Tablee("T01", 4, 1));
         ltablee.add(new Tablee("T02", 6, 0));
-        ltablee.add(new Tablee("T03", 2, 2));
+        ltablee.add(new Tablee("T03", 4, 1));
+        ltablee.add(new Tablee("T04", 8, 0));
+        ltablee.add(new Tablee("T05", 4, 0));
+        ltablee.add(new Tablee("T06", 2, 0));
 
 //ASSOCIATION-------------------------------------------------------------------
         lcommande.get(0).getLigneCommandes().add(llc.get(0));

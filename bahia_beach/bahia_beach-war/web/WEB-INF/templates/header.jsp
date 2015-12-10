@@ -14,9 +14,11 @@
         <a href="Controller?section=serveur&action=voirCommande"> lien vers Voir lesCommandes |</a>
         <a href="Controller?section=connexion">lien vers la connexion |</a>
         <a href="Controller?section=panier&action=afficherPanier">lien vers le panier |</a>
+        <a href="Controller?section=log&action=log">lien vers la connexion log |</a>
       
         </div>    
             <c:if test="${not empty msg}">
     <p class="alert alert-success text-center">${msg}</p>
+    <p class="well text-center">objet mis en session : ${auth}</p>
 </c:if>
 
