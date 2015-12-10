@@ -263,7 +263,11 @@ public class beanEssaie implements beanEssaieLocal {
         lcommande.add(new Commande("CMD01", 0, new Date(2015 - 11 - 25)));
         lcommande.add(new Commande("CMD02", 2, new Date(2015 - 11 - 20)));
         lcommande.add(new Commande("CMD03", 1, new Date(2015 - 11 - 28)));
-
+        lserveur.get(0).setCommandes(lcommande);
+        lcommande.get(0).setServeur(lserveur.get(0));
+        lcommande.get(1).setServeur(lserveur.get(0));
+        lcommande.get(2).setServeur(lserveur.get(1));
+        
 //TABLEE------------------------------------------------------------------------
         List<Tablee> ltablee = new ArrayList();
         ltablee.add(new Tablee("T01", 4, 1));
@@ -284,6 +288,9 @@ public class beanEssaie implements beanEssaieLocal {
         llc.get(2).setProduit(lp.get(2));
         llc.get(3).setProduit(lp.get(0));
         llc.get(0).setCommande(lcommande.get(0)); //association ligneCommande -> commande
+        llc.get(1).setCommande(lcommande.get(1));
+        llc.get(2).setCommande(lcommande.get(2));
+        llc.get(3).setCommande(lcommande.get(0));
         //lmenu.get(0).getProduits().add(lp.get(0)); //ajout plat bolognaise ds menu gourmand
         //lmenu.get(0).getProduits().add(lp.get(1)); //ajout entree tomate ds menu gourmand
         

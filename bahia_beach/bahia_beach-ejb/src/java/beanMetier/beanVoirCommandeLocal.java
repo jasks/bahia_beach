@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import entities.Produit;
 import entities.Serveur;
+import java.util.Collection;
 
 import java.util.List;
 import javax.ejb.Local;
@@ -26,12 +27,11 @@ import javax.ejb.Local;
 public interface beanVoirCommandeLocal {
 
     public Serveur getLeServeur(String code);
+    public List<Produit> getLesProduits(String numCommande);
+    public List<Serveur> getLeServeur();
 
     public List<Commande> getLesCommandesEncours(String codeServeur);
 
-    public List<Produit> getLesProduits(String numCommande);
-
-    public List<Serveur> getLeServeur();
 
 
 

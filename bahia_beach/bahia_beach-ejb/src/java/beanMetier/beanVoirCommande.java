@@ -10,6 +10,7 @@ import entities.LigneCommande;
 import entities.Produit;
 import entities.Serveur;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -39,32 +40,31 @@ public class beanVoirCommande implements beanVoirCommandeLocal {
         return (Serveur) qr.getSingleResult();
     }
     
+    
+  
+   
     @Override
     public List<Commande> getLesCommandesEncours(String codeServeur){
         String req="select c from Commande c join Serveur s on c.id=s.id"
                 + " where s.code= :valeur and c.etat < :valeur1";
-               
+            
         Query qr = em.createQuery(req);
         qr.setParameter("valeur", codeServeur);
         qr.setParameter("valeur1", 3);
+        
+        System.out.println(qr);
+        List<Commande> cc = qr.getResultList();    
         return qr.getResultList();
     }
     
   
     @Override
     public List<Produit> getLesProduits(String numCommande){
-       String req ="select lc.produit from LigneCommande lc where lc.commande.numero = :valeur";
-     
+
+       String req ="select lc.produit from LigneCommande lc where lc.commande.numero = :valeur";     
        Query qr=em.createQuery(req);
        qr.setParameter("valeur",numCommande);
-
        return qr.getResultList();
     }
 
-    /*
-     select SERVEUR.NOM, LIGNECOMMANDE.CUISSON, LIGNECOMMANDE.ETAT, COMMANDE.NUMERO, COMMANDE.DATE, COMMANDE.ETAT
-     from SERVEUR JOIN COMMANDE on SERVEUR.ID = COMMANDE.ID
-     JOIN LIGNECOMMANDE on COMMANDE.ID=LIGNECOMMANDE.ID  where SERVEUR.CODE = 'S3001'
-    
-     */
 }
