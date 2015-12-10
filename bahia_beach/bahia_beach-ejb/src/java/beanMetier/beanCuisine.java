@@ -24,5 +24,5 @@ public class beanCuisine implements beanCuisineLocal {
         Query qr = em.createQuery(req);
         return qr.getResultList();
     }
-
+    
 }
