@@ -46,30 +46,31 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
       
         if ("voirCommande".equalsIgnoreCase(action)) {
             
-            List<Serveur> lesServeurs = beanVoirCommande.getLeServeur();
-            request.setAttribute("lesServeurs",lesServeurs);
-            request.setAttribute("msg", s);
-            Serveur serveur= beanVoirCommande.getLeServeur(lesServeurs.get(0).getCode());
+            List<Serveur> serveur= beanVoirCommande.getLeServeur("S3001");
             request.setAttribute("serveur", serveur);
             
-            List<Commande>  lesCommandes = beanVoirCommande.getLesCommandesEncours(serveur.getCode());
+            System.out.println("serveur code>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<"+serveur.get(0).getCode());
+            
+            List<Commande>  lesCommandes = beanVoirCommande.getLesCommandesEncours(serveur.get(0).getCode());
+            
             request.setAttribute("lesCommandes",lesCommandes );
             
             System.out.println("nombre de commande::::::"+lesCommandes.size());
             HashMap<String,List<Produit>> mp= new HashMap();
             for(int i=0;i<lesCommandes.size();i++){
+                System.out.println("index:::::::::::::"+lesCommandes.get(i).getNumero());
             List<Produit> lesProduits= beanVoirCommande.getLesProduits(lesCommandes.get(i).getNumero());
             mp.put(lesCommandes.get(i).getNumero(),lesProduits );
             }
           
-            System.out.println(">>>>>>>>>>>>>>>>>>Parcourt hashMap");
+            System.out.println(">>>>>>>>>>>>>>>>>>Parcourt hashMap"+mp.size());
             for(String c:mp.keySet()){
                 mp.get(c);
-                System.out.println(mp.keySet().toString()+">>>>>>>>>>>>>>>>>>>"+mp.get(c).get(0).getNomProduit());
+                System.out.println(mp.keySet()+">>>>>>>>>>>>>>>>>>>"+mp.get(c));
             }
             System.out.println(" Fin>>>>>>>>>>>>>>>>>>Parcourt hashMap");            
             request.setAttribute("lesProduits",mp);
-
+           
             return "/WEB-INF/voirCommande.jsp";
         }
 

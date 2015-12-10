@@ -44,7 +44,7 @@ public class beanEssaie implements beanEssaieLocal {
         List<Serveur> lserveur = new ArrayList();
         lserveur.add(new Serveur("LAWRENCE", "Jennifer", "S3001"));
         lserveur.add(new Serveur("STONE", "Emma", "S3002", coo03));
-        lserveur.add(new Serveur("ANISTON", "Jennifer", "S3003"));
+        lserveur.add(new Serveur("ANISTON", "Jennifer", "S3003",coo01));
 
 //TYPE--------------------------------------------------------------------------
         List<Type> lty = new ArrayList();
@@ -257,16 +257,22 @@ public class beanEssaie implements beanEssaieLocal {
         llc.add(new LigneCommande(1, 0));
         llc.add(new LigneCommande(2, 1));
         llc.add(new LigneCommande(3, 2));
+        llc.add(new LigneCommande(4, 3));
 
 //COMMANDE----------------------------------------------------------------------
         List<Commande> lcommande = new ArrayList();
         lcommande.add(new Commande("CMD01", 0, new Date(2015 - 11 - 25)));
         lcommande.add(new Commande("CMD02", 2, new Date(2015 - 11 - 20)));
         lcommande.add(new Commande("CMD03", 1, new Date(2015 - 11 - 28)));
+        lcommande.add(new Commande("CMD04", 1, new Date(2015 - 11 - 28)));
+        lcommande.add(new Commande("CMD05", 1, new Date(2015 - 11 - 28)));
+        lcommande.add(new Commande("CMD06", 1, new Date(2015 - 11 - 28)));
         lserveur.get(0).setCommandes(lcommande);
         lcommande.get(0).setServeur(lserveur.get(0));
         lcommande.get(1).setServeur(lserveur.get(0));
         lcommande.get(2).setServeur(lserveur.get(1));
+        lcommande.get(4).setServeur(lserveur.get(1));
+        lcommande.get(5).setServeur(lserveur.get(0));
         
 //TABLEE------------------------------------------------------------------------
         List<Tablee> ltablee = new ArrayList();
