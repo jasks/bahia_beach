@@ -26,11 +26,13 @@ import javax.ejb.Local;
 @Local
 public interface beanVoirCommandeLocal {
 
-    public Serveur getLeServeur(String code);
+    
     public List<Produit> getLesProduits(String numCommande);
     public List<Serveur> getLeServeur();
 
     public List<Commande> getLesCommandesEncours(String codeServeur);
+
+    public List<Serveur> getLeServeur(String code);
 
 
 
