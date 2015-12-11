@@ -9,6 +9,7 @@ import entities.Serveur;
 import entities.Tablee;
 import java.util.List;
 import javax.ejb.Local;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -22,6 +23,10 @@ public interface beanServeurLocal {
     public List<Tablee> afficherTableLibre();
 
     public List<Tablee> attribuerTable(Serveur s, Long id);
+
+    public List<Tablee> afficherTableAttribue(Serveur s);
+
+    public Tablee validerNomTable(String num) throws NoResultException;
 
     
 }

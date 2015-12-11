@@ -6,6 +6,7 @@ import entities.Tablee;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -39,6 +40,26 @@ public class beanServeur implements beanServeurLocal {
         em.persist(t);
         em.persist(s);
         return (List<Tablee>) s.getTables();
+    }
+    
+    @Override
+    public List<Tablee> afficherTableAttribue(Serveur s) {
+        String req = "select s.tables from Serveur s";
+        Query qr = em.createQuery(req);
+        return (List<Tablee>) s.getTables();
+    }
+    
+    @Override
+    public Tablee validerNomTable(String num) throws NoResultException{
+        
+        String req = "select t from Tablee t "
+                + "where t.num = :num";
+        
+        Query qr = em.createQuery(req);
+        qr.setParameter("num", num);
+        
+        return (Tablee) qr.getSingleResult();
+   
     }
     
 }

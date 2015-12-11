@@ -14,5 +14,6 @@
     <a href="Controller?section=server&action=interface">lien interface serveur |</a>
         <a href="Controller?section=server&action=table">lien voir table |</a>
         <a href="Controller?section=server&action=tableLibre">lien voir table libre |</a>
+        <a href="Controller?section=server&action=tableAttribue">lien voir table attribué |</a>
     
         <%@include file="../templates/footer.jsp" %>
