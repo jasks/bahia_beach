@@ -40,41 +40,26 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
     @Override
     public String execute(HttpServletRequest request,
             HttpServletResponse response, HttpServlet servlet) {
-    
-        String s = "dans voir la commande";
         String action = request.getParameter("action");
       
         if ("voirCommande".equalsIgnoreCase(action)) {
             
-            List<Serveur> serveur= beanVoirCommande.getLeServeur("S3001");
+            Serveur serveur= beanVoirCommande.getLeServeur("S3001");
             request.setAttribute("serveur", serveur);
             
-            System.out.println("serveur code>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<"+serveur.get(0).getCode());
-            
-            List<Commande>  lesCommandes = beanVoirCommande.getLesCommandesEncours(serveur.get(0).getCode());
-            
+            List<Commande>  lesCommandes = beanVoirCommande.getLesCommandesEncours(serveur.getCode());
             request.setAttribute("lesCommandes",lesCommandes );
-            
-            System.out.println("nombre de commande::::::"+lesCommandes.size());
-            HashMap<String,List<Produit>> mp= new HashMap();
-            for(int i=0;i<lesCommandes.size();i++){
-                System.out.println("index:::::::::::::"+lesCommandes.get(i).getNumero());
-            List<Produit> lesProduits= beanVoirCommande.getLesProduits(lesCommandes.get(i).getNumero());
-            mp.put(lesCommandes.get(i).getNumero(),lesProduits );
+            List<LigneCommande> lesLignesCommandes = beanVoirCommande.getLesLignes(lesCommandes.get(0).getNumero());
+            request.setAttribute("lesLignesCommandes",lesLignesCommandes );
+            for(LigneCommande lc : lesLignesCommandes){
+                System.out.println("ligne Commande:::::"+lc.getEtat()+"::::"+lc.getCuisson()
+                        +"::::"+lc.getCommande().getNumero());
             }
-          
-            System.out.println(">>>>>>>>>>>>>>>>>>Parcourt hashMap"+mp.size());
-            for(String c:mp.keySet()){
-                mp.get(c);
-                System.out.println(mp.keySet()+">>>>>>>>>>>>>>>>>>>"+mp.get(c));
-            }
-            System.out.println(" Fin>>>>>>>>>>>>>>>>>>Parcourt hashMap");            
-            request.setAttribute("lesProduits",mp);
-           
+                    
             return "/WEB-INF/voirCommande.jsp";
         }
 
-        return "/WEB-INF/index.jsp";
+        return "/WEB-INF/voirCommande.jsp";
     }
 
     private beanVoirCommandeLocal lookupbeanVoirCommandeLocal() {

@@ -25,47 +25,46 @@ public class beanVoirCommande implements beanVoirCommandeLocal {
     private EntityManager em;    
   
     @Override
-    public List<Serveur> getLeServeur() {
-        Serveur s01=em.find(Serveur.class, 3L);
-         List<Serveur> liste = new ArrayList();
-         liste.add(s01);
-
-         return liste;
+    public Serveur getLeServeur(Long id) {
+        Serveur s01=em.find(Serveur.class, id);
+        
+         return s01;
     }     
     
    
     @Override
-    public List<Serveur> getLeServeur(String code){
+    public Serveur getLeServeur(String code){
         String req="select s from Serveur s where s.code= :valeur";
         Query qr= em.createQuery(req);
         qr.setParameter("valeur", code);  
-        List<Serveur> list=qr.getResultList();
-        return qr.getResultList();
+        
+        return (Serveur) qr.getSingleResult();
     }
     
    
     @Override
     public List<Commande> getLesCommandesEncours(String codeServeur){
-        String r="select s.commandes from Serveur s where s.code= :valeur  ";
-        String req="select c from Commande c join Serveur s on c.id=s.id"
-                + " where s.code= :valeur and c.etat < :valeur1";
-            
+        String r="select s.commandes from Serveur s where s.code= :valeur  ";      
         Query qr = em.createQuery(r);
         qr.setParameter("valeur", codeServeur);
-//        qr.setParameter("valeur1", 3);
-        
-        System.out.println("taille donnees:::::::::::::::::"+qr.getResultList().size());  
+        List<Commande> liste =qr.getResultList();
+        for(Commande c : liste){
+            if (c.getEtat()==2){
+                liste.remove(c);  
+            }
+        }  
+        return liste;
+    }
+   
+ 
+    @Override
+    public List<LigneCommande> getLesLignes(String numCommande){
+        String req = "select lc from LigneCommande lc where lc.commande.numero= :valeur";
+        Query qr = em.createQuery(req);
+        qr.setParameter("valeur", numCommande);
         return qr.getResultList();
     }
-    
   
-    @Override
-    public List<Produit> getLesProduits(String numCommande){
-
-       String req ="select lc.produit from LigneCommande lc where lc.commande.numero = :valeur";     
-       Query qr=em.createQuery(req);
-       qr.setParameter("valeur",numCommande);
-       return qr.getResultList();
-    }
+ 
 
 }

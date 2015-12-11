@@ -18,34 +18,52 @@
             <td>code</td>
         </tr>
 
-        <c:forEach items="${serveur}" var="c">
-            <tr>
-                <td>${c.getNom()}</td>
-                <td>${c.getPrenom()}</td>
-                <td>${c.getCode()}</td>
-            </tr>
-        </c:forEach> 
+        <tr>
+            <td>${serveur.getNom()}</td>
+            <td>${serveur.getPrenom()}</td>
+            <td>${serveur.getCode()}</td>
+        </tr>
     </table> 
     <table>
+        <tr>
+            <td>numero Commande</td>
+            <td>etat Commande</td>
+            <td>date Commande</td>
+            <!--  table          : <td></td> -->
+        </tr>
 
-        <c:forEach items="${lesProduits.keySet()}" var="pr">
+        <c:forEach items="${lesCommandes}" var="cm">
 
             <tr>
-                numero Commande: <td>${pr}</td>
+                <td>${cm.getNumero()}</td>
+                <td>${cm.getEtat()}</td>
+                <td>${cm.getDate()}</td>
+                <td>${cm.getTable().getNum()}</td>
             </tr>
             <table>
-                <c:forEach items="${lesProduits.get(pr)}" var="pp">
-                    <tr>
-                        <td> nom Produit:   ${pp.getNomProduit()}</td> 
-                        <td> prix HT Produit:   ${pp.getPrixHT()}</td>
-                        <td> prix HT Produit:   ${pp.getDescritption()}</td>
-                    </tr> 
-                </c:forEach>
+
             </table>
 
         </c:forEach>
 
     </table>
+    <table> 
+        <tr>
+           
+            <td>etat ligne Commande</td>
+            <td>cuisson</td>
+        </tr>
+
+        <c:forEach items="lesLignesCommandes" var="lc">
+            <tr>
+
+                <td>${lc.etat}</td>
+                <td>${lc.cuisson}</td>
+                
+            </tr>
+
+        </c:forEach>
+    </table>        
 
 
 </body>
