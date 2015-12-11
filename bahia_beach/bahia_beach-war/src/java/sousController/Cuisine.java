@@ -10,15 +10,29 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class Cuisine implements ControllerInterface, Serializable {
-    
+
     beanCuisineLocal beanCuisine = lookupbeanCuisineLocal();
-    
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
-      request.setAttribute("cmd", beanCuisine.afficher());
-      return "/WEB-INF/cuisine.jsp";
+        HttpSession session = request.getSession();
+        String action = request.getParameter("action");
+
+        if ("afficherCuisine".equalsIgnoreCase(action)) {
+            request.setAttribute("cmd", beanCuisine.afficherCommande());
+            return "/WEB-INF/cuisine.jsp";
+        }
+
+        if ("modifierEtat".equalsIgnoreCase(action)) {
+            Long id = Long.parseLong(request.getParameter("id"));
+            //request.setAttribute("mod", beanCuisine.afficherCommande());
+            request.setAttribute("cmd", beanCuisine.afficherCommande());
+            return "/WEB-INF/cuisine.jsp";
+        }
+        return "/WEB-INF/index.jsp";
     }
 
     private beanCuisineLocal lookupbeanCuisineLocal() {
@@ -30,5 +44,5 @@ public class Cuisine implements ControllerInterface, Serializable {
             throw new RuntimeException(ne);
         }
     }
-    
+
 }
