@@ -2,6 +2,8 @@
 package sousController;
 
 import beanMetier.beanPanierLocal;
+import entities.Serveur;
+import entities.Tablee;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -91,7 +93,8 @@ public class Panier implements ControllerInterface, Serializable{
         }
         
         if("commander".equalsIgnoreCase(action)) {
-            
+//            beanPanier.validerPanier(Serveur s, Tablee t);
+            return "/WEB-INF/recapCommande.jsp";
         }
         
         return "/WEB-INF/index.jsp";
