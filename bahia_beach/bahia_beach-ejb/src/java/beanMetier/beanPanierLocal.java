@@ -5,6 +5,7 @@
  */
 package beanMetier;
 
+import entities.Commande;
 import entities.LigneCommande;
 import entities.Menu;
 import java.util.Collection;
@@ -36,5 +37,7 @@ public interface beanPanierLocal {
     public void addMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree);
 
     public Menu creerMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree);
+
+    public Commande validerPanier();
     
 }

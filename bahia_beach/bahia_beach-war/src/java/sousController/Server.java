@@ -53,6 +53,12 @@ public class Server implements ControllerInterface, Serializable{
         return "/WEB-INF/serveur/tableAttribuee.jsp";
         }
         
+        if("tableAttribue".equalsIgnoreCase(action)) {
+            List<Tablee> lt = beanServeur.afficherTableAttribue(s);
+            request.setAttribute("tables", lt);
+            return "/WEB-INF/serveur/tableAttribuee.jsp";
+        }
+        
         
         return "/WEB-INF/serveur/interfaceServeur.jsp";
     }

@@ -107,6 +107,7 @@ public class beanPanier implements beanPanierLocal {
         return panier;
     }
 
+    @Override
     public Commande validerPanier() {
         Commande c = new Commande();
         c.setLigneCommandes(panier.values());

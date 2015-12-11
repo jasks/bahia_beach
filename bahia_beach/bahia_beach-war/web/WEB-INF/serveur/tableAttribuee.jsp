@@ -13,8 +13,11 @@
 
 
 <h1>INTERFACE SERVEUR</h1>
-
-<div class="row">
+<c:if test="${empty tables}">
+    <p class="alert alert-danger text-center">vous n'avez attribué aucune table</p>
+</c:if>
+<c:if test="${not empty tables}">
+    <div class="row">
 <div id="mesProduits" class="col-lg-6">
     <h3 class="text-primary">Les tables</h3>
     <table border="1" >
@@ -38,7 +41,7 @@
                     <td>${t.statut}</td>
                     <td>
                         <c:url value="Controller?section=serveur&action=attribuerTable&id=${t.id}" var="url01" />
-                        <a href="${url01}">attribuer</a>
+                        <a href="${url01}">voir interface du client à faire !</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -48,6 +51,8 @@
 </div>
                     
                     
-      </div>              
+      </div>  
+</c:if>
+            
 <%@include file="../templates/footer.jsp" %>
 
