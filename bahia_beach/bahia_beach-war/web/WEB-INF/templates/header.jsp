@@ -9,10 +9,9 @@
            
         <div class="well text-center">
         <a href="Controller?section=admin&action=jeuxDonnee">lien vers jeux donnees |</a>
-        <a href="Controller?section=cuisine">lien vers Cuisne |</a>
-        <a href="Controller?section=carte&action=carte">lien vers ma carte |</a>
+        <a href="Controller?section=cuisine">lien vers Cuisine |</a>
+        <a href="Controller?section=carte&action=carte">lien vers la carte |</a>
         <a href="Controller?section=serveur&action=voirCommande"> lien vers Voir lesCommandes |</a>
-        <a href="Controller?section=connexion">lien vers la connexion |</a>
         <a href="Controller?section=panier&action=afficherPanier">lien vers le panier |</a>
         <a href="Controller?section=log&action=log">lien vers la connexion log |</a>
       

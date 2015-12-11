@@ -89,11 +89,12 @@ public class Panier implements ControllerInterface, Serializable{
             return "/WEB-INF/panier.jsp";
             
         }
-         
+        
+        if("commander".equalsIgnoreCase(action)) {
+            
+        }
         
         return "/WEB-INF/index.jsp";
-  
-    
     }
 
     private beanPanierLocal lookupbeanPanierLocal() {
