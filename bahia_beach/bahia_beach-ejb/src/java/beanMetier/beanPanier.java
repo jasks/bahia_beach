@@ -6,6 +6,8 @@ import entities.Commentaire;
 import entities.LigneCommande;
 import entities.Menu;
 import entities.Produit;
+import entities.Serveur;
+import entities.Tablee;
 import java.util.Collection;
 import java.util.HashMap;
 import javax.annotation.PostConstruct;
@@ -108,7 +110,7 @@ public class beanPanier implements beanPanierLocal {
     }
 
     @Override
-    public Commande validerPanier() {
+    public Commande validerPanier(Serveur s, Tablee t) {
         Commande c = new Commande();
         c.setLigneCommandes(panier.values());
         return c;
