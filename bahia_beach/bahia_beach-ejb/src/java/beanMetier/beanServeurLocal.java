@@ -28,5 +28,6 @@ public interface beanServeurLocal {
 
     public Tablee validerNomTable(String num) throws NoResultException;
 
+
     
 }

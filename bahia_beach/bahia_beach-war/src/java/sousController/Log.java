@@ -44,6 +44,7 @@ public class Log implements ControllerInterface, Serializable {
             
                 try {
                     s = beanLog.connexionServeur(code);
+                    beanLog.setActif(s, 1);
                     session.setAttribute("auth", s);
                     request.setAttribute("msg", "Bonjour "+s.getNom() + " " + s.getPrenom() + ": vous etes bien un "+s.getClass());
                     return "/WEB-INF/serveur/interfaceServeur.jsp";
@@ -60,6 +61,7 @@ public class Log implements ControllerInterface, Serializable {
             
                 try {
                     c = beanLog.connexionCuisinier(code);
+                    beanLog.setActif(c, 1);
                     session.setAttribute("auth", c);
                     request.setAttribute("msg", "Bonjour "+c.getNom() + " " + c.getPrenom() + ": vous etes bien un "+c.getClass());
                 } catch (Exception ex) {
@@ -83,6 +85,7 @@ public class Log implements ControllerInterface, Serializable {
             
             
         }
+
  
         
         return "/WEB-INF/log.jsp";

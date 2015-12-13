@@ -17,6 +17,7 @@ public class Cuisinier implements Serializable {
     private String nom;
     private String prenom;
     private String code;
+    private int actif;
     
     @Embedded
     private Coordonnee coordonnee;
@@ -101,5 +102,15 @@ public class Cuisinier implements Serializable {
     public void setCoordonnee(Coordonnee coordonnee) {
         this.coordonnee = coordonnee;
     }
+
+    public int getActif() {
+        return actif;
+    }
+
+    public void setActif(int actif) {
+        this.actif = actif;
+    }
+    
+    
     
 }

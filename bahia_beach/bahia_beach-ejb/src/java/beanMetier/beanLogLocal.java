@@ -20,5 +20,10 @@ public interface beanLogLocal {
     public Serveur connexionServeur(String code) throws Exception;
 
     public Cuisinier connexionCuisinier(String code) throws Exception;
+
+    public void setActif(Serveur s, int etat);
+
+    public void setActif(Cuisinier c, int etat);
+
     
 }

@@ -109,4 +109,10 @@
         <local>beanMetier.beanClientLocal</local>
         <ejb-link>bahia_beach-ejb.jar#beanClient</ejb-link>
     </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanLog2</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanLogLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanLog</ejb-link>
+    </ejb-local-ref>
 </web-app>

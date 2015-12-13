@@ -26,7 +26,7 @@ public class Tablee implements Serializable {
     private int nbrPlace;
     private int statut;
 
-    @ManyToMany (mappedBy = "tables")
+    @ManyToMany(mappedBy = "tables")
     private Collection<Serveur> serveurs;
     
     @OneToMany(mappedBy = "table")
@@ -122,5 +122,8 @@ public class Tablee implements Serializable {
     public String toString() {
         return "Table num "+num + "{"+id+"}";
     }
+
+
+    
     
 }

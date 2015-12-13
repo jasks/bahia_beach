@@ -49,6 +49,18 @@ public class beanLog implements beanLogLocal {
     }
 
     
+    @Override
+    public void setActif(Serveur s, int etat) {
+        s.setActif(etat);
+        em.merge(s);
+    }
+    
+    @Override
+    public void setActif(Cuisinier c, int etat) {
+        c.setActif(etat);
+        em.merge(c);
+    }
+    
 
     
 }

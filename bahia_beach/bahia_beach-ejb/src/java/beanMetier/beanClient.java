@@ -23,7 +23,7 @@ public class beanClient implements beanClientLocal {
     
     @Override
     public List<Tablee> tableAttribueByServeur() {
-        String req = "select s.tables from Serveur s";
+        String req = "select s.tables from Serveur s where s.actif = 1 ";
         Query qr = em.createQuery(req);
         return qr.getResultList();
     }

@@ -14,8 +14,8 @@
         <a href="Controller?section=serveur&action=voirCommande"> lien vers Voir lesCommandes |</a>
         <a href="Controller?section=panier&action=afficherPanier">lien vers le panier |</a>
         <a href="Controller?section=log&action=log">lien vers la connexion log |</a>
-        <a href="Controller?section=client&action=init">lien vers interface client |</a>
-      
+        <a href="Controller?section=client&action=initTable">lien vers interface client |</a>
+
         </div>    
             <c:if test="${not empty msg}">
     <p class="alert alert-success text-center">${msg}</p>
