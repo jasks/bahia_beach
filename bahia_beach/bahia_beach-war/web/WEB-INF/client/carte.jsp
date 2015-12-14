@@ -9,7 +9,10 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     
-<%@include file="templates/header.jsp" %>
+    
+    <%@include file="../templates/header.jsp" %>
+    
+<%@include file="navBarClient.jsp" %>
 
 
 <h1>Ma CARTE</h1>
@@ -69,7 +72,7 @@
                     <td>${m.nom}</td>
                     <td>${m.prix}</td>
                     <td>
-                        <c:url value="Controller?section=carte&action=voirMenu&nom=${m.nom}&prix=${m.prix}" var="url01" />
+                        <c:url value="Controller?section=carte&action=voirMenu&nom=${m.nom}&prix=${m.prix}&id=${m.id}" var="url01" />
                         <a href="${url01}">Voir</a>
                     </td>
                 </tr>
@@ -83,5 +86,5 @@
     </table>
 </div>
       </div>              
-                    <%@include file="templates/footer.jsp" %>
+                    <%@include file="../templates/footer.jsp" %>
 

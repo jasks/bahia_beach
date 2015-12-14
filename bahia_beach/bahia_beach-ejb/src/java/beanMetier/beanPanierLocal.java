@@ -36,11 +36,11 @@ public interface beanPanierLocal {
 
     public HashMap<Integer, LigneCommande> getPanier();
 
-    public void addMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree);
-
-    public Menu creerMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree);
-
     public Commande validerPanier(Serveur s, Tablee t);
 
     public void persist(Object object);
+
+    public Menu creerMenu(Menu m, Long idPlat, Long idEntree);
+
+    public void addMenu(Menu m, Long idPlat, Long idEntree);
 }

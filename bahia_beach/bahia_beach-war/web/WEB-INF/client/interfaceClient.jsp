@@ -10,6 +10,8 @@
     </head>
     
     <%@include file="../templates/header.jsp" %>
+    
+<%@include file="navBarClient.jsp" %>    
 
 
     <h3>Tables numero ${table.num}</h3> 

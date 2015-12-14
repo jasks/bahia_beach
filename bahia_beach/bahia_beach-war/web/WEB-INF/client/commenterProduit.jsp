@@ -9,7 +9,9 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     
-    <%@include file="templates/header.jsp" %>
+    <%@include file="../templates/header.jsp" %>
+    
+<%@include file="navBarClient.jsp" %>
     
         <h1>laisser un commentaire</h1>
         <form action="Controller">
@@ -21,4 +23,4 @@
             <input type="submit" />
         </form>
         
-    <%@include file="templates/footer.jsp" %>
+    <%@include file="../templates/footer.jsp" %>

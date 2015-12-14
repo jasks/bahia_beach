@@ -9,7 +9,10 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     
-    <%@include file="templates/header.jsp" %>
+    
+    <%@include file="../templates/header.jsp" %>
+    
+<%@include file="navBarClient.jsp" %>
     
         <h1>Panier</h1>
 
@@ -66,7 +69,7 @@
                     <c:if test="${ligne.menu != null}">
                     <tr>
                         <td>${ligne.identifiant}</td>
-                        <td>${ligne.nom}<br>
+                        <td>${ligne.nom} et id : ${ligne.menu.id}<br>
                             <c:forEach var="p" items="${ligne.menu.produits}">
                                 <ul>
                                     <li class="text-primary">${p.nomProduit}</li>
@@ -136,4 +139,4 @@
     </c:if>
 
         
-    <%@include file="templates/footer.jsp" %>
+    <%@include file="../templates/footer.jsp" %>

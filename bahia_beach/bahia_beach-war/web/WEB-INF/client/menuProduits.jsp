@@ -9,7 +9,10 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
 
-    <%@include file="templates/header.jsp" %>
+    
+    <%@include file="../templates/header.jsp" %>
+    
+<%@include file="navBarClient.jsp" %>
 
 
     <h1>produits du menu </h1>
@@ -44,8 +47,8 @@
                 </c:forEach>
             </div>
             
-            <input type="hidden" name="nomMenu" value="${param.nom}" />
-            <input type="hidden" name="prixMenu" value="${param.prix}" />
+            <input type="hidden" name="idMenu" value="${param.id}" />
+            
             <input class="btn btn-primary" type="submit" value="ajouter à la commande" />
 
         </form> 
@@ -57,5 +60,5 @@
 
 
     </div>              
-    <%@include file="templates/footer.jsp" %>
+    <%@include file="../templates/footer.jsp" %>
 
