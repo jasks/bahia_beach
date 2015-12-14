@@ -12,12 +12,8 @@
     <%@include file="../templates/header.jsp" %>
 
 
-    <h1>Tables numero ${table.num} servi par le serveur ${table.serveurs[0]}
-        <c:forEach var="s" items="${table.serveurs}">
-            ${s.nom}
-        </c:forEach></h1>
-        
-    <p class="text-center well">${table}</p>
+    <h3>Tables numero ${table.num}</h3> 
+
 
    
 <%@include file="../templates/footer.jsp" %>

@@ -121,6 +121,17 @@ public class LigneCommande implements Serializable {
         this.prix = prix;
     }
 
+    public String getNom() {
+        String nom = "";
+        if(getProduit() != null) {
+            nom = getProduit().getNomProduit();
+        }
+        if(getMenu()!= null) {
+            nom = getMenu().getNom();
+        }
+        return nom;
+    }
+
     
     
 
