@@ -8,6 +8,6 @@
 </head>
 <%@include file="templates/header.jsp" %>
 <body>
-    Récapitulatif de la commande:
+    Récapitulatif de la commande: ${commande}
 </body>
 <%@include file="templates/footer.jsp" %>

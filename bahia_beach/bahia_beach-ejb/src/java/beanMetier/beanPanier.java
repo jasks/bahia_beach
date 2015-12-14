@@ -9,16 +9,21 @@ import entities.Produit;
 import entities.Serveur;
 import entities.Tablee;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 
 @Stateful
 public class beanPanier implements beanPanierLocal {
     @EJB
     private beanCarteLocal beanCarte;
+    @PersistenceContext(unitName = "RestaurantPU")
+    private EntityManager em;
     
     private HashMap<Integer, LigneCommande> panier;
 
@@ -113,7 +118,22 @@ public class beanPanier implements beanPanierLocal {
     public Commande validerPanier(Serveur s, Tablee t) {
         Commande c = new Commande();
         c.setLigneCommandes(panier.values());
+        c.setNumero("CMD" + c.getId()+1000);
+        c.setEtat(1);
+        Date date = new Date();
+        c.setDate(date);
+        c.setServeur(s);
+        c.setTable(t);
+        for(LigneCommande lc : c.getLigneCommandes()) {
+            em.persist(lc);
+        }
+        em.persist(c);
         return c;
+    }
+
+    @Override
+    public void persist(Object object) {
+        em.persist(object);
     }
     
 }

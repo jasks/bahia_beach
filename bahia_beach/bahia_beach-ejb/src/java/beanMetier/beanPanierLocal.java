@@ -41,5 +41,6 @@ public interface beanPanierLocal {
     public Menu creerMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree);
 
     public Commande validerPanier(Serveur s, Tablee t);
-    
+
+    public void persist(Object object);
 }

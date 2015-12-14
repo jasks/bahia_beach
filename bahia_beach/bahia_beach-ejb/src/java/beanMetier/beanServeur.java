@@ -59,7 +59,17 @@ public class beanServeur implements beanServeurLocal {
         qr.setParameter("num", num);
         
         return (Tablee) qr.getSingleResult();
-   
     }
     
+    @Override
+    public Serveur getServeur(Long id) {
+        Serveur s = em.find(Serveur.class, id);
+        return s;
+    }
+    
+    @Override
+    public Tablee getTablee(Long id) {
+        Tablee t = em.find(Tablee.class, id);
+        return t;
+    }
 }
