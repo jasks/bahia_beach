@@ -28,6 +28,7 @@ public interface beanServeurLocal {
 
     public Tablee validerNomTable(String num) throws NoResultException;
 
+    public Serveur getServeur(Long id);
 
-    
+    public Tablee getTablee(Long id);
 }
