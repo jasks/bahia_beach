@@ -5,10 +5,20 @@
  */
 package sousController;
 
-import beanMetier.beanVoirCommande;
 import beanMetier.beanVoirCommandeLocal;
 import entities.Commande;
+
+import entities.LigneCommande;
+import entities.Produit;
+import entities.Serveur;
+import entities.Tablee;
+import entities.Produit;
+import entities.Serveur;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,25 +38,43 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
     beanVoirCommandeLocal beanVoirCommande = lookupbeanVoirCommandeLocal();
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>VersVoirCommande");
+    public String execute(HttpServletRequest request,
+            HttpServletResponse response, HttpServlet servlet) {
+    
         String s = "dans voir la commande";
         String action = request.getParameter("action");
-        System.out.println("action>>>>>>>>>>>>>>>>>>>>"+action);
-
+      
         if ("voirCommande".equalsIgnoreCase(action)) {
-            System.out.println(">>>>>>>>>>>>>if");
-
-            List<Commande> lesCommandes = beanVoirCommande.voirLesCommandesEnCours();
-            request.setAttribute("lescommandes", lesCommandes);
-            for(Commande c : lesCommandes){
-                System.out.println(":::::::::::::::"+c.getNumero());
+            
+            List<Serveur> serveur= beanVoirCommande.getLeServeur("S3001");
+            request.setAttribute("serveur", serveur);
+            
+            System.out.println("serveur code>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<"+serveur.get(0).getCode());
+            
+            List<Commande>  lesCommandes = beanVoirCommande.getLesCommandesEncours(serveur.get(0).getCode());
+            
+            request.setAttribute("lesCommandes",lesCommandes );
+            
+            System.out.println("nombre de commande::::::"+lesCommandes.size());
+            HashMap<String,List<Produit>> mp= new HashMap();
+            for(int i=0;i<lesCommandes.size();i++){
+                System.out.println("index:::::::::::::"+lesCommandes.get(i).getNumero());
+            List<Produit> lesProduits= beanVoirCommande.getLesProduits(lesCommandes.get(i).getNumero());
+            mp.put(lesCommandes.get(i).getNumero(),lesProduits );
             }
-            request.setAttribute("msg", s);
+          
+            System.out.println(">>>>>>>>>>>>>>>>>>Parcourt hashMap"+mp.size());
+            for(String c:mp.keySet()){
+                mp.get(c);
+                System.out.println(mp.keySet()+">>>>>>>>>>>>>>>>>>>"+mp.get(c));
+            }
+            System.out.println(" Fin>>>>>>>>>>>>>>>>>>Parcourt hashMap");            
+            request.setAttribute("lesProduits",mp);
+           
             return "/WEB-INF/voirCommande.jsp";
         }
 
-        return "/WEB-INF/voirCommande.jsp";
+        return "/WEB-INF/index.jsp";
     }
 
     private beanVoirCommandeLocal lookupbeanVoirCommandeLocal() {

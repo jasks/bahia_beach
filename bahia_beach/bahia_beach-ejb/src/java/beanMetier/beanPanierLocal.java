@@ -5,8 +5,11 @@
  */
 package beanMetier;
 
+import entities.Commande;
 import entities.LigneCommande;
+import entities.Menu;
 import java.util.Collection;
+import java.util.HashMap;
 import javax.ejb.Local;
 
 
@@ -17,7 +20,7 @@ public interface beanPanierLocal {
 
     public void add(Long id);
 
-    public void delete(Long id);
+    public void delete(int id);
 
     public void clearPanier();
 
@@ -26,5 +29,15 @@ public interface beanPanierLocal {
     public boolean isEmpty();
 
     public Float getTotalHT();
+
+    public void ajoutCommentaire(int id, String contenu);
+
+    public HashMap<Integer, LigneCommande> getPanier();
+
+    public void addMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree);
+
+    public Menu creerMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree);
+
+    public Commande validerPanier();
     
 }

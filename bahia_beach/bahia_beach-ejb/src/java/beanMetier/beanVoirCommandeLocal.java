@@ -6,19 +6,36 @@
 package beanMetier;
 
 import entities.Commande;
+
 import entities.LigneCommande;
+import entities.Produit;
+import entities.Serveur;
+import java.util.ArrayList;
+
+import entities.Produit;
+import entities.Serveur;
+import java.util.Collection;
+
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author cdi415
+ * @author cdi418
  */
 @Local
 public interface beanVoirCommandeLocal {
 
-    public List<Commande> voirLesCommandesEnCours();
+    
+    public List<Produit> getLesProduits(String numCommande);
+    public List<Serveur> getLeServeur();
 
-    public List<LigneCommande> voirLesLignesDeCommandes();
+    public List<Commande> getLesCommandesEncours(String codeServeur);
+
+    public List<Serveur> getLeServeur(String code);
+
+
+
+
     
 }

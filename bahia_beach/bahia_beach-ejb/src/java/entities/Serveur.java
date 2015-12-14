@@ -25,7 +25,7 @@ public class Serveur implements Serializable {
     @Embedded
     private Coordonnee coordonnee;
     
-    @ManyToMany(mappedBy = "serveurs")
+    @ManyToMany
     private Collection<Tablee> tables;
     
     @OneToMany(mappedBy = "serveur")
@@ -49,6 +49,15 @@ public class Serveur implements Serializable {
         this.prenom = prenom;
         this.code = code;
         this.coordonnee = coordonnee;
+    }
+
+    public Serveur(String nom, String prenom, String code, Coordonnee coordonnee, Collection<Tablee> tables, Collection<Commande> commandes) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.code = code;
+        this.coordonnee = coordonnee;
+        this.tables = tables;
+        this.commandes = commandes;
     }
 
 

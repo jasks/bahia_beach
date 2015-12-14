@@ -36,6 +36,9 @@ public class Produit implements Serializable {
     private Type type;
     
     @ManyToOne
+    private Famille famille;
+    
+    @ManyToOne
     private Tva tva;
     
     @ManyToMany(mappedBy = "produits")
@@ -64,6 +67,7 @@ public class Produit implements Serializable {
     }
 
     public Produit(String nomProduit, Float prixHT, String descritption, String image, String historique, QualiteNutritive qualiteNutritive) {
+        this();
         this.nomProduit = nomProduit;
         this.prixHT = prixHT;
         this.descritption = descritption;
@@ -73,6 +77,7 @@ public class Produit implements Serializable {
     }
 
     public Produit(String nomProduit, Float prixHT, String descritption, String image, String historique, Categorie categorie, Type type, Tva tva, QualiteNutritive qualiteNutritive) {
+        this();
         this.nomProduit = nomProduit;
         this.prixHT = prixHT;
         this.descritption = descritption;
@@ -83,6 +88,22 @@ public class Produit implements Serializable {
         this.tva = tva;
         this.qualiteNutritive = qualiteNutritive;
     }
+
+    public Produit(String nomProduit, Float prixHT, String descritption, String image, String historique, Categorie categorie, Type type, Famille famille, Tva tva, QualiteNutritive qualiteNutritive) {
+        this();
+        this.nomProduit = nomProduit;
+        this.prixHT = prixHT;
+        this.descritption = descritption;
+        this.image = image;
+        this.historique = historique;
+        this.categorie = categorie;
+        this.type = type;
+        this.tva = tva;
+        this.qualiteNutritive = qualiteNutritive;
+        this.famille = famille;
+    }
+    
+    
     
 // 3°/ GETTER AND SETTER--------------------------------------------------------
     public Long getId() {
@@ -180,6 +201,16 @@ public class Produit implements Serializable {
     public void setQualiteNutritive(QualiteNutritive qualiteNutritive) {
         this.qualiteNutritive = qualiteNutritive;
     }
+
+    public Famille getFamille() {
+        return famille;
+    }
+
+    public void setFamille(Famille famille) {
+        this.famille = famille;
+    }
+    
+    
     
 // 4°/ METHODE------------------------------------------------------------------       
     @Override

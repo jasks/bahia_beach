@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Menu implements Serializable {
@@ -22,6 +23,10 @@ public class Menu implements Serializable {
     
     @ManyToMany
     private Collection<Produit> produits;
+    
+        
+    @OneToMany(mappedBy = "menu")
+    private Collection<LigneCommande> ligneCommandes;
 
     public Menu() {
         produits = new ArrayList();
@@ -63,8 +68,10 @@ public class Menu implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Menu[ id=" + id + " ]";
+        return "Menu{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", produits=" + produits + ", ligneCommandes=" + ligneCommandes + '}';
     }
+
+    
 
     public String getNom() {
         return nom;
@@ -89,5 +96,15 @@ public class Menu implements Serializable {
     public void setProduits(Collection<Produit> produits) {
         this.produits = produits;
     }
+
+    public Collection<LigneCommande> getLigneCommandes() {
+        return ligneCommandes;
+    }
+
+    public void setLigneCommandes(Collection<LigneCommande> ligneCommandes) {
+        this.ligneCommandes = ligneCommandes;
+    }
+    
+    
     
 }

@@ -1,6 +1,9 @@
 package beanMetier;
 
+import entities.Commande;
+import entities.Commentaire;
 import entities.LigneCommande;
+import entities.Menu;
 import entities.Produit;
 import java.util.Collection;
 import java.util.HashMap;
@@ -30,7 +33,26 @@ public class beanPanier implements beanPanierLocal {
     }
 
     @Override
-    public void delete(Long id) {
+    public Menu creerMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree) {
+        Menu m = new Menu();
+        m.setNom(nomMenu);
+        m.setPrix(prixMenu);
+        m.getProduits().add(beanCarte.selectProduit(idPlat));
+        m.getProduits().add(beanCarte.selectProduit(idEntree));
+        return m;
+    }
+    
+
+    @Override
+        public void addMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree){
+            Menu m = creerMenu(nomMenu, prixMenu, idPlat, idEntree);
+            LigneCommande lc = new LigneCommande(m);
+            panier.put(lc.getIdentifiant(), lc);
+    }
+    
+        
+    @Override
+    public void delete(int id){
         panier.remove(id);
     }
 
@@ -52,10 +74,35 @@ public class beanPanier implements beanPanierLocal {
     @Override
     public Float getTotalHT() {
         Float total = 0.0F;
-        for (LigneCommande lc : getListe()) {
-            total += lc.getPrixHT();
+        
+        for(LigneCommande lc : getListe()){
+            if(lc.getProduit() != null) {
+            total += lc.getProduit().getPrixHT();
+            }
+            if(lc.getMenu() != null) {
+            total += lc.getMenu().getPrix();
+            }
         }
         return total;
     }
+    
+    @Override
+    public void ajoutCommentaire(int id, String contenu) {
+        Commentaire c = new Commentaire(contenu);
+        panier.get(id).setCommentaire(c);
+    }
 
+
+    @Override
+    public HashMap<Integer, LigneCommande> getPanier() {
+        return panier;
+    }
+
+    @Override
+    public Commande validerPanier() {
+        Commande c = new Commande();
+        c.setLigneCommandes(panier.values());
+        return c;
+    }
+    
 }

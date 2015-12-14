@@ -38,7 +38,7 @@ public class Panier implements ControllerInterface, Serializable{
         }
         
         if ("remove".equalsIgnoreCase(action)) {
-            Long id = Long.parseLong(request.getParameter("id"));
+            Integer id = Integer.parseInt(request.getParameter("id"));
             beanPanier.delete(id);
             session.setAttribute("panier", beanPanier.getListe());
             session.setAttribute("total", beanPanier.getTotalHT());
@@ -52,6 +52,45 @@ public class Panier implements ControllerInterface, Serializable{
             request.setAttribute("msg", "La commande a été supprimé.");
             return "/WEB-INF/panier.jsp";
         }
+         
+        if("commenter".equalsIgnoreCase(action)) {
+//            Integer id = Integer.parseInt(request.getParameter("id"));
+//            String contenu = beanPanier.getPanier().get(id).getCommentaire().getContenu();
+//            request.setAttribute("contenu", this);
+            return "/WEB-INF/commenterProduit.jsp";
+        } 
+         
+        if("modifierCommenter".equalsIgnoreCase(action)) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+//            pour cibler le contenu du commentaire de la ligne de commande en cour
+//            et l'afficher ds le textarea
+            String contenu = beanPanier.getPanier().get(id).getCommentaire().getContenu();
+            request.setAttribute("contenu", contenu);
+            return "/WEB-INF/commenterProduit.jsp";
+        } 
+         
+        if("setCommentaire".equalsIgnoreCase(action)) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            String contenuCommentaire = request.getParameter("commentaire");
+            beanPanier.ajoutCommentaire(id, contenuCommentaire);
+            request.setAttribute("msg", "votre commentaire a bien été ajouté");
+            return "/WEB-INF/panier.jsp";
+        }
+        
+        if("ajouterMenu".equalsIgnoreCase(action)) {
+            Float prix = Float.parseFloat(request.getParameter("prixMenu"));
+            String nom = request.getParameter("nomMenu");
+            Long idPlat = Long.parseLong(request.getParameter("plat"));
+            Long idEntree = Long.parseLong(request.getParameter("entree"));
+            beanPanier.addMenu("menu "+nom, prix, idPlat, idEntree);
+            session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("total", beanPanier.getTotalHT());
+            request.setAttribute("msg", "Votre menu a bien été ajouté !!!");
+            return "/WEB-INF/panier.jsp";
+            
+        }
+         
+        
         return "/WEB-INF/index.jsp";
     }
 

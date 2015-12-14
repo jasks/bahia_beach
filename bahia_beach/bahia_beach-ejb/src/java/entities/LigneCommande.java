@@ -1,12 +1,10 @@
 package entities;
-
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -18,6 +16,9 @@ public class LigneCommande implements Serializable {
     private Long id;
     private Integer etat;
     private Integer cuisson;
+    private Integer prix;
+    private static Integer staticIdentifiant = 1;
+    private Integer identifiant;
 
     @ManyToOne
     private Commande commande;
@@ -28,14 +29,25 @@ public class LigneCommande implements Serializable {
     @ManyToOne
     private Produit produit;
     
+    @ManyToOne
+    private Menu menu;
+    
     public LigneCommande() {
+        this.identifiant = staticIdentifiant++;
     }
     
      public LigneCommande(Produit produit) {
+         this();
          this.produit = produit;
+    }
+    
+     public LigneCommande(Menu menu) {
+         this();
+         this.menu = menu;
     }
 
     public LigneCommande(Integer etat, Integer cuisson) {
+        this();
         this.etat = etat;
         this.cuisson = cuisson;
     }
@@ -87,9 +99,26 @@ public class LigneCommande implements Serializable {
     public void setProduit(Produit produit) {
         this.produit = produit;
     }
-    
-    public float getPrixHT(){
-        return produit.getPrixHT();
+
+
+    public Integer getIdentifiant() {
+        return identifiant;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
+    public Integer getPrix() {
+        return prix;
+    }
+
+    public void setPrix(Integer prix) {
+        this.prix = prix;
     }
 
     
