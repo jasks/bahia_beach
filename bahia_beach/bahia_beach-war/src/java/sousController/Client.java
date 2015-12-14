@@ -12,6 +12,7 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 public class Client  implements ControllerInterface, Serializable {
@@ -20,13 +21,24 @@ public class Client  implements ControllerInterface, Serializable {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
         
+        HttpSession session = request.getSession();
         String action = request.getParameter("action");
         
-        if("init".equalsIgnoreCase(action)) {
+        if("initTable".equalsIgnoreCase(action)) {
             List<Tablee> lt = beanClient.tableAttribueByServeur();
             request.setAttribute("tab", lt);
             return "/WEB-INF/client/afficherTable.jsp";
         }
+        
+        if("accederTable".equalsIgnoreCase(action)) {
+            Long id = Long.parseLong(request.getParameter("id"));
+            Tablee t = beanClient.selectTable(id);
+            session.setAttribute("table", t);
+            request.setAttribute("msg", t.getNum() + " mis en session" );
+            System.out.println(t);
+            return "/WEB-INF/client/interfaceClient.jsp";
+        }
+        
         return "/WEB-INF/index.jsp";
     }
 

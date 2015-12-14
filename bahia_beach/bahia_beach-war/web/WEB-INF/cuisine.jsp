@@ -9,7 +9,32 @@
     </head>
     <%@include file="templates/header.jsp" %>
         <h1>Cuisine</h1>
-        <c:forEach items="${cmd}" var="p">
-            ${p.nomProduit}<br>
-        </c:forEach>
+                   
+ <table border="1">
+            <thead>
+                <tr>
+                   <th>Nom du produit</th>
+                   <th>Etat du produit</th>
+                   <th>Date</th>
+                   <th>Serveur</th>
+                   <th>Table</th>
+                   <th>Modifier l'état du produit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${cmd}" var="c">
+            <c:forEach items="${c.ligneCommandes}" var="p">
+            <tr>
+                <td>${p.produit.nomProduit}</td>
+                <td>${p.etat}</td>
+                <td>${c.date}</td>
+                <td>${c.serveur}</td>
+                <td>${c.table}</td>
+                <td><a href="Controller?section=cuisine&action=modifierEtat&id=${p.id}">modifier Etat du produit</a></td>
+            </tr>
+            </c:forEach>  
+        </c:forEach>        
+            </tbody>
+        </table>
+
 <%@include file="templates/footer.jsp" %>

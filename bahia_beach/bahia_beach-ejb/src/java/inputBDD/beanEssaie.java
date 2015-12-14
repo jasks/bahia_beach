@@ -300,8 +300,12 @@ public class beanEssaie implements beanEssaieLocal {
         llc.get(1).setCommande(lcommande.get(1));
         llc.get(2).setCommande(lcommande.get(2));
         llc.get(3).setCommande(lcommande.get(0));
-        //lmenu.get(0).getProduits().add(lp.get(0)); //ajout plat bolognaise ds menu gourmand
-        //lmenu.get(0).getProduits().add(lp.get(1)); //ajout entree tomate ds menu gourmand
+        
+        lcommande.get(0).setTable(ltablee.get(0));
+        
+        //test table attribué par un serveur
+        lserveur.get(0).setActif(1);
+        lserveur.get(0).getTables().add(ltablee.get(0));
         
 //PERSIST-----------------------------------------------------------------------
         for (Cuisinier cuisinier : lcuisinier) {
