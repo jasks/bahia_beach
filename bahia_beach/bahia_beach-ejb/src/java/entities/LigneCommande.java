@@ -146,7 +146,7 @@ public class LigneCommande implements Serializable {
 
     @Override
     public String toString() {
-        return "n° ligne de commande : " + id + ", produit = " + produit.getNomProduit();
+        return "n° ligne de commande : " + id;
     }
     
 }

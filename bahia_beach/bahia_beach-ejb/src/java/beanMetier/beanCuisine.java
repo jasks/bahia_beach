@@ -3,6 +3,7 @@ package beanMetier;
 import entities.LigneCommande;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.json.JsonObject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -32,6 +33,11 @@ public class beanCuisine implements beanCuisineLocal {
         }
         System.out.println(">>>>>>>>FIN AFFICHER<<<<<<<<");
         return qr.getResultList();
+    }
+    
+    @Override
+    public void add(JsonObject jsObject){
+        
     }
 
 }

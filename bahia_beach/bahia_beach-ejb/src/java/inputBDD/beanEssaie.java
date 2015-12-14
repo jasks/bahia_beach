@@ -283,7 +283,7 @@ public class beanEssaie implements beanEssaieLocal {
         ltablee.add(new Tablee("T05", 4, 0));
         ltablee.add(new Tablee("T06", 2, 0));
 
-//ASSOCIATION-------------------------------------------------------------------
+////ASSOCIATION-------------------------------------------------------------------
         llc.get(0).setCommande(lcommande.get(0));
         llc.get(1).setCommande(lcommande.get(0));
         llc.get(2).setCommande(lcommande.get(0));
