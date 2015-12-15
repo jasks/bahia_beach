@@ -116,9 +116,10 @@ public class beanPanier implements beanPanierLocal {
         c.setServeur(s);
         c.setTable(t);
         for(LigneCommande lc : c.getLigneCommandes()) {
+            lc.setEtat(1);
             em.persist(lc);
         }
-        em.persist(c);
+        em.persist(c);    
         return c;
     }
 

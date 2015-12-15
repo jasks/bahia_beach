@@ -1,4 +1,5 @@
-var socket = new WebSocket("ws://" + document.location.host + document.location.pathname + "cuisine");
+var url = "ws://PLTZ851:8080/bahia_beach-war/cuisine";
+var socket = new WebSocket(url);
 socket.onmessage = function (evt) {
     onMessage(evt)
 };
@@ -32,19 +33,19 @@ function printPlatElement(plat) {
     platDiv.setAttribute("id", plat.id);
     content.appendChild(platDiv);
     
-    var platDate = document.createElement("span");
-    platDate.innerHTML = "Date: " + plat.commande.date;
+    var platDate = document.createElement("p");
+    platDate.innerHTML = "Produit: " + plat.produit +"<br>";
     platDiv.appendChild(platDate);
     
-    var platType = document.createElement("span");
-    platType.innerHTML = "Nom: " + plat.produit.nomProduit;
+    var platType = document.createElement("p");
+    platType.innerHTML = "Nom: " + plat.produit.nomProduit+"<br>";
     platDiv.appendChild(platType);
     
     var platStatus = document.createElement("span");
-    if (plat.etat === 2) {
-        platStatus.innerHTML = "Status: En préparation (<a href=\"#\" OnClick=toggleDevice(" + plat.id + ")>Changer Etat</a>)";
-    } else if (plat.etat === 3) {
-        platStatus.innerHTML = "Status: Prêt (<a href=\"#\" OnClick=toggleDevice(" + plat.id + ")>Changer Etat</a>)";
+    if (plat.status === 2) {
+        platStatus.innerHTML = "Status: En préparation (<a href=\"#\" OnClick=toggleDevice(" + plat.idProduit + ")>Changer Etat</a>)";
+    } else if (plat.status === 3) {
+        platStatus.innerHTML = "Status: Prêt (<a href=\"#\" OnClick=toggleDevice(" + plat.idProduit + ")>Changer Etat</a>)";
         //deviceDiv.setAttribute("class", "device off");
     }
     platDiv.appendChild(platStatus);

@@ -1,6 +1,7 @@
 
 package sousController;
 
+import beanMetier.beanCuisineLocal;
 import beanMetier.beanPanierLocal;
 import beanMetier.beanServeurLocal;
 import entities.Commande;
@@ -19,8 +20,10 @@ import javax.servlet.http.HttpSession;
 
 
 public class Panier implements ControllerInterface, Serializable{
+    beanCuisineLocal beanCuisine = lookupbeanCuisineLocal();
     beanServeurLocal beanServeur = lookupbeanServeurLocal();
     beanPanierLocal beanPanier = lookupbeanPanierLocal();
+    
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
@@ -123,6 +126,17 @@ public class Panier implements ControllerInterface, Serializable{
             throw new RuntimeException(ne);
         }
     }
+
+    private beanCuisineLocal lookupbeanCuisineLocal() {
+        try {
+            Context c = new InitialContext();
+            return (beanCuisineLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanCuisine!beanMetier.beanCuisineLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+    
     
     
     

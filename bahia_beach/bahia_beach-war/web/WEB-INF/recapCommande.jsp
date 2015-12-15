@@ -9,5 +9,8 @@
 <%@include file="templates/header.jsp" %>
 <body>
     Récapitulatif de la commande: ${commande}
+    <div id="commande" hidden="">${commande.id}</div>
+    <script src="js/monScript.js" type="text/javascript"></script>  
 </body>
+
 <%@include file="templates/footer.jsp" %>

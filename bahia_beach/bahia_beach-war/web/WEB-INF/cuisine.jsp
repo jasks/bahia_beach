@@ -26,7 +26,7 @@
             <hr> 
         </c:forEach>
         <div id="content"></div>
-        <script src="js/monScript.js" type="text/javascript">getEtat(${lc.etat})</script>
+        <script src="js/CuisineWebSocket.js" type="text/javascript"></script>
     </body>
 </html>
 <%@include file="templates/footer.jsp" %>
