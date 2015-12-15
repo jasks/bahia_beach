@@ -305,7 +305,7 @@ public class beanEssaie implements beanEssaieLocal {
         
         //test table attribué par un serveur
         lserveur.get(0).setActif(1);
-        lserveur.get(0).getTables().add(ltablee.get(0));
+        ltablee.get(0).setServeur(lserveur.get(0));
         
 //PERSIST-----------------------------------------------------------------------
         for (Cuisinier cuisinier : lcuisinier) {

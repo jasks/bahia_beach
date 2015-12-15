@@ -34,21 +34,21 @@ public class beanServeur implements beanServeurLocal {
     }
     
     @Override
-    public List<Tablee> attribuerTable(Serveur s, Long id) {
-        Tablee t = em.find(Tablee.class, id); //on identifie l'objet table en question
-        t.setStatut(1); // statut à 1
-        s.getTables().add(t); // on met la table ds le serveur
-        //t.getServeurs().add(s);
-        em.merge(t);
-        em.merge(s);
-        return (List<Tablee>) s.getTables();
-    }
-    
-    @Override
     public List<Tablee> afficherTableAttribue(Serveur s) {
         String req = "select s.tables from Serveur s";
         Query qr = em.createQuery(req);
-        return (List<Tablee>) s.getTables();
+        List<Tablee> ltbl = qr.getResultList();
+        return ltbl;
+    }
+    
+    @Override
+    public List<Tablee> attribuerTable(Serveur s, Long id) {
+        Tablee t = em.find(Tablee.class, id); //on identifie l'objet table en question
+        t.setStatut(1); // statut à 1
+        //s.getTables().add(t); // on met la table ds le serveur
+        t.setServeur(s);
+        em.merge(t);
+        return afficherTableAttribue(s);
     }
     
     @Override

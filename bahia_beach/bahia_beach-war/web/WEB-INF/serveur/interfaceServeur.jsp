@@ -8,15 +8,6 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <%@include file="../templates/header.jsp" %>
-    
-    <h1 class="page-header text-center">Interface serveur</h1>
-
-    <a href="Controller?section=server&action=interface">lien interface serveur |</a>
-        <a href="Controller?section=server&action=table">lien voir table |</a>
-        <a href="Controller?section=server&action=tableLibre">lien voir table libre |</a>
-        <a href="Controller?section=server&action=tableAttribue">lien voir table attribué |</a>
-                <c:if test="${auth != null}">
-            <a href="Controller?section=server&action=deconnexion">lien vers deconnexion |</a>
-        </c:if>
+    <%@include file="navBarServeur.jsp" %>
     
         <%@include file="../templates/footer.jsp" %>

@@ -12,7 +12,8 @@
     <%@include file="../templates/header.jsp" %>
 
 
-<h1>INTERFACE SERVEUR</h1>
+<%@include file="navBarServeur.jsp" %>
+
 <c:if test="${empty tables}">
     <p class="alert alert-danger text-center">vous n'avez attribué aucune table</p>
 </c:if>
