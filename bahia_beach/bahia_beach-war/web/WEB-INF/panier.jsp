@@ -121,6 +121,7 @@
 <p class="text-danger">vous avez la possibilité de laisser une note à chaque produit commandé afin de préciser vos préférences, pour cela cliquer sur "commenter"</p>
 
 <button class="btn btn-primary">valider ma commande <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+<a href="Controller?section=panier&action=commander">lien vers le récapitulatif de la commande</a>
     
 <h3 class="well">test pour identifier si LigneCommande contient un menu ou un produit</h3>
 <c:forEach var="ligne" items="${panier}">

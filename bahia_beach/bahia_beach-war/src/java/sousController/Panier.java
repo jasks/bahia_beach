@@ -2,6 +2,10 @@
 package sousController;
 
 import beanMetier.beanPanierLocal;
+import beanMetier.beanServeurLocal;
+import entities.Commande;
+import entities.Serveur;
+import entities.Tablee;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 
 public class Panier implements ControllerInterface, Serializable{
+    beanServeurLocal beanServeur = lookupbeanServeurLocal();
     beanPanierLocal beanPanier = lookupbeanPanierLocal();
 
     @Override
@@ -89,7 +94,12 @@ public class Panier implements ControllerInterface, Serializable{
             return "/WEB-INF/panier.jsp";
             
         }
-         
+        
+        if("commander".equalsIgnoreCase(action)) {
+            Commande c = beanPanier.validerPanier(beanServeur.getServeur(3L), beanServeur.getTablee(2L));
+            request.setAttribute("commande", c);
+            return "/WEB-INF/recapCommande.jsp";
+        }
         
         return "/WEB-INF/index.jsp";
     }
@@ -102,5 +112,18 @@ public class Panier implements ControllerInterface, Serializable{
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
-    }  
+    }
+
+    private beanServeurLocal lookupbeanServeurLocal() {
+        try {
+            Context c = new InitialContext();
+            return (beanServeurLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanServeur!beanMetier.beanServeurLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+    
+    
+    
 }

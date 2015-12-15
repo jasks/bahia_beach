@@ -10,11 +10,12 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class Cuisine implements ControllerInterface, Serializable {
-    
+
     beanCuisineLocal beanCuisine = lookupbeanCuisineLocal();
-    
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
       request.setAttribute("cmd", beanCuisine.afficher());
@@ -31,5 +32,5 @@ public class Cuisine implements ControllerInterface, Serializable {
             throw new RuntimeException(ne);
         }
     }
-    
+
 }

@@ -35,6 +35,10 @@
             <param-name>server</param-name>
             <param-value>sousController.Server</param-value>
         </init-param>
+        <init-param>
+            <param-name>client</param-name>
+            <param-value>sousController.Client</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
@@ -100,9 +104,15 @@
         <ejb-link>bahia_beach-ejb.jar#beanServeur</ejb-link>
     </ejb-local-ref>
     <ejb-local-ref>
-        <ejb-ref-name>beanCuisine1</ejb-ref-name>
+        <ejb-ref-name>beanClient</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <local>beanMetier.beanCuisineLocal</local>
-        <ejb-link>bahia_beach-ejb.jar#beanCuisine</ejb-link>
+        <local>beanMetier.beanClientLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanClient</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanServeur1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanServeurLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanServeur</ejb-link>
     </ejb-local-ref>
 </web-app>

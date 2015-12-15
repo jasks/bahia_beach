@@ -1,7 +1,9 @@
 
 package beanMetier;
 
+import entities.Commande;
 import entities.LigneCommande;
+import entities.Produit;
 import java.util.List;
 import javax.ejb.Local;
 import javax.json.JsonObject;
@@ -10,8 +12,12 @@ import javax.json.JsonObject;
 @Local
 public interface beanCuisineLocal {
 
-    public List<LigneCommande> afficher();
+    public List<Produit> afficher();
 
-    public void add(JsonObject jsObject);
+    public List<LigneCommande> afficherProduitCommande(String numcommande);
+
+    public List<LigneCommande> afficherLigneCommande();
+
+    public List<Commande> afficherCommande();
     
 }

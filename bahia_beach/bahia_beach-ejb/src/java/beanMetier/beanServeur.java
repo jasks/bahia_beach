@@ -17,6 +17,7 @@ public class beanServeur implements beanServeurLocal {
     @PersistenceContext(unitName = "RestaurantPU")
     private EntityManager em;
     
+
     
     @Override
     public List<Tablee> afficherTable() {
@@ -37,8 +38,9 @@ public class beanServeur implements beanServeurLocal {
         Tablee t = em.find(Tablee.class, id); //on identifie l'objet table en question
         t.setStatut(1); // statut à 1
         s.getTables().add(t); // on met la table ds le serveur
-        em.persist(t);
-        em.persist(s);
+        //t.getServeurs().add(s);
+        em.merge(t);
+        em.merge(s);
         return (List<Tablee>) s.getTables();
     }
     
@@ -59,7 +61,17 @@ public class beanServeur implements beanServeurLocal {
         qr.setParameter("num", num);
         
         return (Tablee) qr.getSingleResult();
-   
     }
     
+    @Override
+    public Serveur getServeur(Long id) {
+        Serveur s = em.find(Serveur.class, id);
+        return s;
+    }
+    
+    @Override
+    public Tablee getTablee(Long id) {
+        Tablee t = em.find(Tablee.class, id);
+        return t;
+    }
 }
