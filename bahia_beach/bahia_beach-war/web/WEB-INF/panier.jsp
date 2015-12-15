@@ -66,7 +66,7 @@
                     <c:if test="${ligne.menu != null}">
                     <tr>
                         <td>${ligne.identifiant}</td>
-                        <td>${ligne.menu.nom}<br>
+                        <td>${ligne.menu.nom} et id : ${ligne.menu.id}<br>
                             <c:forEach var="p" items="${ligne.menu.produits}">
                                 <ul>
                                     <li class="text-primary">${p.nomProduit}</li>

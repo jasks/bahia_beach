@@ -53,8 +53,10 @@ public class Carte implements ControllerInterface, Serializable {
         }
         
         if("voirMenu".equalsIgnoreCase(action)) {
-            String nom = request.getParameter("nom");
-            List<Produit> lp = beanCarte.selectProduitByMenu(nom);
+            Long id = Long.parseLong(request.getParameter("id"));
+            Menu m = beanCarte.selectMenu(id);
+            List<Produit> lp = beanCarte.selectProduitByMenu(m.getNom());
+            request.setAttribute("menu", m);
             request.setAttribute("produits", lp);
             return "/WEB-INF/menuProduits.jsp";
         }

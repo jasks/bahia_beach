@@ -69,7 +69,7 @@
                     <td>${m.nom}</td>
                     <td>${m.prix}</td>
                     <td>
-                        <c:url value="Controller?section=carte&action=voirMenu&nom=${m.nom}&prix=${m.prix}" var="url01" />
+                        <c:url value="Controller?section=carte&action=voirMenu&id=${m.id}" var="url01" />
                         <a href="${url01}">Voir</a>
                     </td>
                 </tr>

@@ -83,11 +83,12 @@ public class Panier implements ControllerInterface, Serializable{
         }
         
         if("ajouterMenu".equalsIgnoreCase(action)) {
-            Float prix = Float.parseFloat(request.getParameter("prixMenu"));
-            String nom = request.getParameter("nomMenu");
+//            Float prix = Float.parseFloat(request.getParameter("prixMenu"));
+//            String nom = request.getParameter("nomMenu");
+            Long idMenu = Long.parseLong(request.getParameter("idMenu"));
             Long idPlat = Long.parseLong(request.getParameter("plat"));
             Long idEntree = Long.parseLong(request.getParameter("entree"));
-            beanPanier.addMenu("menu "+nom, prix, idPlat, idEntree);
+            beanPanier.addMenu(idMenu, idPlat, idEntree);
             session.setAttribute("panier", beanPanier.getListe());
             session.setAttribute("total", beanPanier.getTotalHT());
             request.setAttribute("msg", "Votre menu a bien été ajouté !!!");

@@ -84,6 +84,12 @@ public class beanCarte implements beanCarteLocal {
         return qr.getResultList();
     }
     
+    @Override
+    public Menu selectMenu(Long id) {
+        Menu m = em.find(Menu.class, id);
+        return m;
+    }
+    
     
     @Override
         public Produit selectProduit(Long id) {

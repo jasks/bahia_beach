@@ -44,8 +44,7 @@
                 </c:forEach>
             </div>
             
-            <input type="hidden" name="nomMenu" value="${param.nom}" />
-            <input type="hidden" name="prixMenu" value="${param.prix}" />
+            <input type="hidden" name="idMenu" value="${param.id}" />
             <input class="btn btn-primary" type="submit" value="ajouter à la commande" />
 
         </form> 
