@@ -40,9 +40,7 @@ public interface beanPanierLocal {
 
     public void persist(Object object);
 
-    public Menu creerMenu(Long idMenu, String nomMenu, Float prixMenu, Long idPlat, Long idEntree);
+    public Menu creerMenu(Menu m, Long idPlat, Long idEntree);
 
-    public Menu creerMenu(Long idMenu, Long idPlat, Long idEntree);
-    
-    public void addMenu(Long idMenu, Long idPlat, Long idEntree);
+    public void addMenu(Menu m, Long idPlat, Long idEntree);
 }

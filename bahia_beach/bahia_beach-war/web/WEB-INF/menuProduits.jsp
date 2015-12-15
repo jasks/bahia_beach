@@ -45,6 +45,7 @@
             </div>
             
             <input type="hidden" name="idMenu" value="${param.id}" />
+            
             <input class="btn btn-primary" type="submit" value="ajouter à la commande" />
 
         </form> 
