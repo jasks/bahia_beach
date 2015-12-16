@@ -14,7 +14,7 @@
 <%@include file="navBarClient.jsp" %>    
 
 
-    <h3>Tables numero ${table.num} ${table.serveur}</h3> 
+    <h3>Tables numero ${table.num} / serveur de cette table: ${table.serveur}</h3> 
 
 
    
