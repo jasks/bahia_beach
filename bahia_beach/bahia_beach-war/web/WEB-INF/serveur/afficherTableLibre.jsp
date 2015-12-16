@@ -12,7 +12,7 @@
     <%@include file="../templates/header.jsp" %>
 
 
-<h1>INTERFACE SERVEUR</h1>
+<%@include file="navBarServeur.jsp" %>
 
 <div class="row">
 <div id="mesProduits" class="col-lg-6">
