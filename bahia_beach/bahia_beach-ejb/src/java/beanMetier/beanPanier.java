@@ -108,6 +108,9 @@ public class beanPanier implements beanPanierLocal {
     public Commande validerPanier(Serveur s, Tablee t) {
         Commande c = new Commande();
         c.setLigneCommandes(panier.values());
+        for (LigneCommande lc : panier.values()) {
+            lc.setCommande(c);
+        }
         c.setNumero("CMD" + c.getId() + 1000);
         c.setEtat(1);
         Date date = new Date();
@@ -129,10 +132,4 @@ public class beanPanier implements beanPanierLocal {
     public void persist(Object object) {
         em.persist(object);
     }
-
-    @Override
-    public Menu creerMenu(Long idMenu, String nomMenu, Float prixMenu, Long idPlat, Long idEntree) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
