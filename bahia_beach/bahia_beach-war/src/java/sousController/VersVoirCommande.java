@@ -40,26 +40,31 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
     @Override
     public String execute(HttpServletRequest request,
             HttpServletResponse response, HttpServlet servlet) {
+        String s = "dans voir la commande";
         String action = request.getParameter("action");
       
         if ("voirCommande".equalsIgnoreCase(action)) {
             
+            
             Serveur serveur= beanVoirCommande.getLeServeur("S3001");
             request.setAttribute("serveur", serveur);
             
-            List<Commande>  lesCommandes = beanVoirCommande.getLesCommandesEncours(serveur.getCode());
+            List<Commande> lesCommandes =beanVoirCommande.getLesCommandesEncours(serveur.getCode());
+            
+
             request.setAttribute("lesCommandes",lesCommandes );
-            List<LigneCommande> lesLignesCommandes = beanVoirCommande.getLesLignes(lesCommandes.get(0).getNumero());
-            request.setAttribute("lesLignesCommandes",lesLignesCommandes );
-            for(LigneCommande lc : lesLignesCommandes){
-                System.out.println("ligne Commande:::::"+lc.getEtat()+"::::"+lc.getCuisson()
-                        +"::::"+lc.getCommande().getNumero());
-            }
-                    
+             
+            
             return "/WEB-INF/voirCommande.jsp";
         }
+         System.out.println("request ::::::"+request.getAttribute("action"));
+        if("commande".equalsIgnoreCase(action)){
+            System.out.println("request ::::::"+request.getAttribute("action"));
+        }
+        
+        
 
-        return "/WEB-INF/voirCommande.jsp";
+        return "/WEB-INF/index.jsp";
     }
 
     private beanVoirCommandeLocal lookupbeanVoirCommandeLocal() {
