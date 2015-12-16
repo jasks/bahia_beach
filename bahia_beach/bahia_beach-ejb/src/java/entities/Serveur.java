@@ -21,11 +21,12 @@ public class Serveur implements Serializable {
     private String nom;
     private String prenom;
     private String code;
+    private int actif;
     
     @Embedded
     private Coordonnee coordonnee;
     
-    @ManyToMany
+    @OneToMany(mappedBy = "serveur")
     private Collection<Tablee> tables;
     
     @OneToMany(mappedBy = "serveur")
@@ -115,6 +116,14 @@ public class Serveur implements Serializable {
 
     public void setCommandes(Collection<Commande> commandes) {
         this.commandes = commandes;
+    }
+
+    public int getActif() {
+        return actif;
+    }
+
+    public void setActif(int actif) {
+        this.actif = actif;
     }
     
     

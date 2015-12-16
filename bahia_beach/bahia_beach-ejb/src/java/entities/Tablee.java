@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
@@ -26,14 +26,13 @@ public class Tablee implements Serializable {
     private int nbrPlace;
     private int statut;
 
-    @ManyToMany (mappedBy = "tables")
-    private Collection<Serveur> serveurs;
+    @ManyToOne
+    private Serveur serveur;
     
     @OneToMany(mappedBy = "table")
     private Collection<Commande> commandes;
 
     public Tablee() {
-        this.serveurs = new ArrayList();
         this.commandes = new ArrayList();
     }
     
@@ -80,13 +79,16 @@ public class Tablee implements Serializable {
         this.statut = statut;
     }
 
-    public Collection<Serveur> getServeurs() {
-        return serveurs;
+    public Serveur getServeur() {
+        return serveur;
     }
 
-    public void setServeurs(Collection<Serveur> serveurs) {
-        this.serveurs = serveurs;
+    public void setServeur(Serveur serveur) {
+        this.serveur = serveur;
     }
+
+
+
 
     public Collection<Commande> getCommandes() {
         return commandes;
@@ -122,5 +124,8 @@ public class Tablee implements Serializable {
     public String toString() {
         return "Table num "+num + "{"+id+"}";
     }
+
+
+    
     
 }

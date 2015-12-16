@@ -6,17 +6,24 @@ import entities.Commentaire;
 import entities.LigneCommande;
 import entities.Menu;
 import entities.Produit;
+import entities.Serveur;
+import entities.Tablee;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 
 @Stateful
 public class beanPanier implements beanPanierLocal {
     @EJB
     private beanCarteLocal beanCarte;
+    @PersistenceContext(unitName = "RestaurantPU")
+    private EntityManager em;
     
     private HashMap<Integer, LigneCommande> panier;
 
@@ -40,20 +47,19 @@ public class beanPanier implements beanPanierLocal {
     }
     
         
+   
     @Override
-    public Menu creerMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree) {
-        Menu m = new Menu();
-        m.setNom(nomMenu);
-        m.setPrix(prixMenu);
+    public Menu creerMenu(Menu m, Long idPlat, Long idEntree) {
         m.getProduits().add(beanCarte.selectProduit(idPlat));
         m.getProduits().add(beanCarte.selectProduit(idEntree));
         return m;
     }
     
 
+    
     @Override
-        public void addMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree){
-            Menu m = creerMenu(nomMenu, prixMenu, idPlat, idEntree);
+        public void addMenu(Menu m, Long idPlat, Long idEntree){
+            m = creerMenu(m, idPlat, idEntree);
             LigneCommande lc = new LigneCommande(m);
             panier.put(lc.getIdentifiant(), lc);
     }
@@ -108,10 +114,29 @@ public class beanPanier implements beanPanierLocal {
     }
 
     @Override
-    public Commande validerPanier() {
+    public Commande validerPanier(Serveur s, Tablee t) {
         Commande c = new Commande();
         c.setLigneCommandes(panier.values());
+        c.setNumero("CMD" + c.getId()+1000);
+        c.setEtat(1);
+        Date date = new Date();
+        c.setDate(date);
+        c.setServeur(s);
+        c.setTable(t);
+        for(LigneCommande lc : c.getLigneCommandes()) {
+            lc.setEtat(1);
+            if (lc.getMenu() != null) {
+                em.merge(lc.getMenu());
+            }
+            em.persist(lc);
+        }
+        em.persist(c);
         return c;
+    }
+
+    @Override
+    public void persist(Object object) {
+        em.persist(object);
     }
     
 }

@@ -132,6 +132,17 @@ public class LigneCommande implements Serializable {
         this.prix = prix;
     }
 
+    public String getNom() {
+        String nom = "";
+        if(getProduit() != null) {
+            nom = getProduit().getNomProduit();
+        }
+        if(getMenu()!= null) {
+            nom = getMenu().getNom();
+        }
+        return nom;
+    }
+
     
     
 
@@ -155,9 +166,15 @@ public class LigneCommande implements Serializable {
         return true;
     }
 
+//    @Override
+//    public String toString() {
+//        return "n° ligne de commande : " + identifiant;
+//    }
+
     @Override
     public String toString() {
-        return "n° ligne de commande : " + identifiant;
+        return "LigneCommande{" + "id=" + id + ", etat=" + etat + ", cuisson=" + cuisson + ", prix=" + prix + ", identifiant=" + identifiant + ", commande=" + commande + ", commentaire=" + commentaire + ", produit=" + produit + ", menu=" + menu + '}';
     }
+    
     
 }

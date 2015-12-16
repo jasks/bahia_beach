@@ -9,7 +9,10 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
 
-    <%@include file="templates/header.jsp" %>
+    
+    <%@include file="../templates/header.jsp" %>
+    
+<%@include file="navBarClient.jsp" %>
 
 
     <h1>produits du menu </h1>
@@ -57,5 +60,5 @@
 
 
     </div>              
-    <%@include file="templates/footer.jsp" %>
+    <%@include file="../templates/footer.jsp" %>
 

@@ -12,12 +12,14 @@
     <%@include file="../templates/header.jsp" %>
 
 
-<%@include file="navBarServeur.jsp" %>
+<h1>Tables qui ont ete attribué par un serveur</h1>
 
-<c:if test="${empty tables}">
-    <p class="alert alert-danger text-center">vous n'avez attribué aucune table</p>
+<c:if test="${empty tab}">
+    <p class="alert alert-danger">aucune table n'a ete attribue</p>
 </c:if>
-<c:if test="${not empty tables}">
+
+
+    <c:if test="${not empty tab}">
     <div class="row">
 <div id="mesProduits" class="col-lg-6">
     <h3 class="text-primary">Les tables</h3>
@@ -34,15 +36,15 @@
         </thead>
         <tbody>
             
-            <c:forEach items="${tables}" var="t">
+            <c:forEach items="${tab}" var="t">
                 <tr>
                     <td>${t.id}</td>
                     <td>${t.num}</td>
                     <td>${t.nbrPlace}</td>
                     <td>${t.statut}</td>
                     <td>
-                        <c:url value="Controller?section=serveur&action=attribuerTable&id=${t.id}" var="url01" />
-                        <a href="${url01}">voir interface du client à faire !</a>
+                        <c:url value="Controller?section=client&action=accederTable&id=${t.id}" var="url01" />
+                        <a href="${url01}">accéder à ma table</a>
                     </td>
                 </tr>
             </c:forEach>

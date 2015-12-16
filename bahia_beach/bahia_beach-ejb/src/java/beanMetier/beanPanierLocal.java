@@ -8,6 +8,8 @@ package beanMetier;
 import entities.Commande;
 import entities.LigneCommande;
 import entities.Menu;
+import entities.Serveur;
+import entities.Tablee;
 import java.util.Collection;
 import java.util.HashMap;
 import javax.ejb.Local;
@@ -34,10 +36,11 @@ public interface beanPanierLocal {
 
     public HashMap<Integer, LigneCommande> getPanier();
 
-    public void addMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree);
+    public Commande validerPanier(Serveur s, Tablee t);
 
-    public Menu creerMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree);
+    public void persist(Object object);
 
-    public Commande validerPanier();
-    
+    public Menu creerMenu(Menu m, Long idPlat, Long idEntree);
+
+    public void addMenu(Menu m, Long idPlat, Long idEntree);
 }

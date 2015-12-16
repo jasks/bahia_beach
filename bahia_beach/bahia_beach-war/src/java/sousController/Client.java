@@ -1,7 +1,9 @@
 package sousController;
 
-import beanMetier.beanCuisineLocal;
+import beanMetier.beanClientLocal;
+import entities.Tablee;
 import java.io.Serializable;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -12,37 +14,44 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class Cuisine implements ControllerInterface, Serializable {
 
-    beanCuisineLocal beanCuisine = lookupbeanCuisineLocal();
+public class Client  implements ControllerInterface, Serializable {
+    beanClientLocal beanClient = lookupbeanClientLocal();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
+        
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
-
-        if ("afficherCuisine".equalsIgnoreCase(action)) {
-            request.setAttribute("cmd", beanCuisine.afficherCommande());
-            return "/WEB-INF/cuisine.jsp";
+        
+        if("initTable".equalsIgnoreCase(action)) {
+            List<Tablee> lt = beanClient.tableAttribueByServeur();
+            request.setAttribute("tab", lt);
+            return "/WEB-INF/client/afficherTable.jsp";
         }
-
-        if ("modifierEtat".equalsIgnoreCase(action)) {
+        
+        if("accederTable".equalsIgnoreCase(action)) {
             Long id = Long.parseLong(request.getParameter("id"));
-            //request.setAttribute("mod", beanCuisine.afficherCommande());
-            request.setAttribute("cmd", beanCuisine.afficherCommande());
-            return "/WEB-INF/cuisine.jsp";
+            Tablee t = beanClient.selectTable(id);
+            session.setAttribute("table", t);
+            request.setAttribute("msg", t.getNum() + " mis en session" );
+            System.out.println(t);
+            return "/WEB-INF/client/interfaceClient.jsp";
         }
+        
         return "/WEB-INF/index.jsp";
     }
 
-    private beanCuisineLocal lookupbeanCuisineLocal() {
+    private beanClientLocal lookupbeanClientLocal() {
         try {
             Context c = new InitialContext();
-            return (beanCuisineLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanCuisine!beanMetier.beanCuisineLocal");
+            return (beanClientLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanClient!beanMetier.beanClientLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }
-
+    
+    
+    
 }
