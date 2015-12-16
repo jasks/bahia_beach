@@ -267,12 +267,12 @@ public class beanEssaie implements beanEssaieLocal {
         lcommande.add(new Commande("CMD04", 1, new Date(2015 - 11 - 28)));
         lcommande.add(new Commande("CMD05", 1, new Date(2015 - 11 - 28)));
         lcommande.add(new Commande("CMD06", 1, new Date(2015 - 11 - 28)));
-        lserveur.get(0).setCommandes(lcommande);
-        lcommande.get(0).setServeur(lserveur.get(0));
+         lcommande.get(0).setServeur(lserveur.get(0));
         lcommande.get(1).setServeur(lserveur.get(0));
         lcommande.get(2).setServeur(lserveur.get(1));
+        lcommande.get(3).setServeur(lserveur.get(2));
         lcommande.get(4).setServeur(lserveur.get(1));
-        lcommande.get(5).setServeur(lserveur.get(0));
+        lcommande.get(5).setServeur(lserveur.get(2));
         
 //TABLEE------------------------------------------------------------------------
         List<Tablee> ltablee = new ArrayList();
@@ -288,6 +288,13 @@ public class beanEssaie implements beanEssaieLocal {
         lcommande.get(0).getLigneCommandes().add(llc.get(1));
         lcommande.get(0).getLigneCommandes().add(llc.get(2));
         lcommande.get(1).getLigneCommandes().add(llc.get(3));
+        
+        lcommande.get(0).setTable(ltablee.get(0));
+        lcommande.get(2).setTable(ltablee.get(2));
+        lcommande.get(1).setTable(ltablee.get(1));
+        lcommande.get(0).setTable(ltablee.get(3));
+        lcommande.get(1).setTable(ltablee.get(4));
+        
         llc.get(0).setEtat(2);
         llc.get(1).setEtat(2);
         llc.get(2).setEtat(2);
