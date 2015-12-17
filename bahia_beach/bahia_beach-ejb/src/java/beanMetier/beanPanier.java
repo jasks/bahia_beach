@@ -38,21 +38,21 @@ public class beanPanier implements beanPanierLocal {
         LigneCommande lc = new LigneCommande(p);
         panier.put(lc.getIdentifiant(), lc);
     }
-
+    
+        
+   
     @Override
-    public Menu creerMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree) {
-        Menu m = new Menu();
-        m.setNom(nomMenu);
-        m.setPrix(prixMenu);
+    public Menu creerMenu(Menu m, Long idPlat, Long idEntree) {
         m.getProduits().add(beanCarte.selectProduit(idPlat));
         m.getProduits().add(beanCarte.selectProduit(idEntree));
         return m;
     }
     
 
+    
     @Override
-        public void addMenu(String nomMenu, Float prixMenu, Long idPlat, Long idEntree){
-            Menu m = creerMenu(nomMenu, prixMenu, idPlat, idEntree);
+        public void addMenu(Menu m, Long idPlat, Long idEntree){
+            m = creerMenu(m, idPlat, idEntree);
             LigneCommande lc = new LigneCommande(m);
             panier.put(lc.getIdentifiant(), lc);
     }
@@ -117,6 +117,9 @@ public class beanPanier implements beanPanierLocal {
         c.setTable(t);
         for(LigneCommande lc : c.getLigneCommandes()) {
             lc.setEtat(1);
+            if (lc.getMenu() != null) {
+                em.merge(lc.getMenu());
+            }
             em.persist(lc);
         }
         em.persist(c);    

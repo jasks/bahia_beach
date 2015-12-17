@@ -1,10 +1,12 @@
 
 package sousController;
 
-import beanMetier.beanCuisineLocal;
+import beanMetier.beanCarte;
+import beanMetier.beanCarteLocal;
 import beanMetier.beanPanierLocal;
 import beanMetier.beanServeurLocal;
 import entities.Commande;
+import entities.Menu;
 import entities.Serveur;
 import entities.Tablee;
 import java.io.Serializable;
@@ -20,7 +22,7 @@ import javax.servlet.http.HttpSession;
 
 
 public class Panier implements ControllerInterface, Serializable{
-    beanCuisineLocal beanCuisine = lookupbeanCuisineLocal();
+    beanCarteLocal beanCarte = lookupbeanCarteLocal();
     beanServeurLocal beanServeur = lookupbeanServeurLocal();
     beanPanierLocal beanPanier = lookupbeanPanierLocal();
     
@@ -32,7 +34,7 @@ public class Panier implements ControllerInterface, Serializable{
     
         String action = request.getParameter("action");
         if ("afficherPanier".equalsIgnoreCase(action)) {
-            return "/WEB-INF/panier.jsp";
+            return "/WEB-INF/client/panier.jsp";
         }
         
         
@@ -42,7 +44,7 @@ public class Panier implements ControllerInterface, Serializable{
             session.setAttribute("panier", beanPanier.getListe());
             session.setAttribute("total", beanPanier.getTotalHT());
             request.setAttribute("msg", "Le produit a bien été ajouté à votre commande.");
-            return "/WEB-INF/panier.jsp";
+            return "/WEB-INF/client/panier.jsp";
         }
         
         if ("remove".equalsIgnoreCase(action)) {
@@ -51,21 +53,21 @@ public class Panier implements ControllerInterface, Serializable{
             session.setAttribute("panier", beanPanier.getListe());
             session.setAttribute("total", beanPanier.getTotalHT());
             request.setAttribute("msg", "Le produit a bien été retiré de votre commande.");
-            return "/WEB-INF/panier.jsp";
+            return "/WEB-INF/client/panier.jsp";
         }
         
          if ("clear".equalsIgnoreCase(action)) {
             beanPanier.clearPanier();
             session.setAttribute("panier", beanPanier.getListe());
             request.setAttribute("msg", "La commande a été supprimé.");
-            return "/WEB-INF/panier.jsp";
+            return "/WEB-INF/client/panier.jsp";
         }
          
         if("commenter".equalsIgnoreCase(action)) {
 //            Integer id = Integer.parseInt(request.getParameter("id"));
 //            String contenu = beanPanier.getPanier().get(id).getCommentaire().getContenu();
 //            request.setAttribute("contenu", this);
-            return "/WEB-INF/commenterProduit.jsp";
+            return "/WEB-INF/client/commenterProduit.jsp";
         } 
          
         if("modifierCommenter".equalsIgnoreCase(action)) {
@@ -74,7 +76,7 @@ public class Panier implements ControllerInterface, Serializable{
 //            et l'afficher ds le textarea
             String contenu = beanPanier.getPanier().get(id).getCommentaire().getContenu();
             request.setAttribute("contenu", contenu);
-            return "/WEB-INF/commenterProduit.jsp";
+            return "/WEB-INF/client/commenterProduit.jsp";
         } 
          
         if("setCommentaire".equalsIgnoreCase(action)) {
@@ -82,19 +84,21 @@ public class Panier implements ControllerInterface, Serializable{
             String contenuCommentaire = request.getParameter("commentaire");
             beanPanier.ajoutCommentaire(id, contenuCommentaire);
             request.setAttribute("msg", "votre commentaire a bien été ajouté");
-            return "/WEB-INF/panier.jsp";
+            return "/WEB-INF/client/panier.jsp";
         }
         
         if("ajouterMenu".equalsIgnoreCase(action)) {
-            Float prix = Float.parseFloat(request.getParameter("prixMenu"));
-            String nom = request.getParameter("nomMenu");
+//            Float prix = Float.parseFloat(request.getParameter("prixMenu"));
+//            String nom = request.getParameter("nomMenu");
+            Long idMenu = Long.parseLong(request.getParameter("idMenu"));
+            Menu m = beanCarte.selectMenu(idMenu);
             Long idPlat = Long.parseLong(request.getParameter("plat"));
             Long idEntree = Long.parseLong(request.getParameter("entree"));
-            beanPanier.addMenu("menu "+nom, prix, idPlat, idEntree);
+            beanPanier.addMenu(m, idPlat, idEntree);
             session.setAttribute("panier", beanPanier.getListe());
             session.setAttribute("total", beanPanier.getTotalHT());
             request.setAttribute("msg", "Votre menu a bien été ajouté !!!");
-            return "/WEB-INF/panier.jsp";
+            return "/WEB-INF/client/panier.jsp";
             
         }
         
@@ -127,16 +131,15 @@ public class Panier implements ControllerInterface, Serializable{
         }
     }
 
-    private beanCuisineLocal lookupbeanCuisineLocal() {
+    private beanCarteLocal lookupbeanCarteLocal() {
         try {
             Context c = new InitialContext();
-            return (beanCuisineLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanCuisine!beanMetier.beanCuisineLocal");
+            return (beanCarteLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanCarte!beanMetier.beanCarteLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }
-    
     
     
     

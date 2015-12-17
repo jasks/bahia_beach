@@ -32,7 +32,7 @@
                     <c:if test="${ligne.produit != null}">
                     <tr>
                         <td>${ligne.identifiant}</td>
-                        <td>${ligne.produit.nomProduit}</td>
+                        <td>${ligne.nom}</td>
                         <td>${ligne.cuisson}</td>
                         <td>
                             <fmt:formatNumber 
@@ -66,7 +66,7 @@
                     <c:if test="${ligne.menu != null}">
                     <tr>
                         <td>${ligne.identifiant}</td>
-                        <td>${ligne.menu.nom}<br>
+                        <td>${ligne.nom} et id : ${ligne.menu.id}<br>
                             <c:forEach var="p" items="${ligne.menu.produits}">
                                 <ul>
                                     <li class="text-primary">${p.nomProduit}</li>
@@ -135,5 +135,5 @@
     
     </c:if>
 
-      
+        
     <%@include file="templates/footer.jsp" %>

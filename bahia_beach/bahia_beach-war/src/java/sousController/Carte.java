@@ -34,7 +34,7 @@ public class Carte implements ControllerInterface, Serializable {
             List<Menu> lm = beanCarte.selectAllMenu();
                request.setAttribute("menus", lm);
                
-               return "/WEB-INF/carte.jsp";
+               return "/WEB-INF/client/carte.jsp";
         }
         
         if("produits".equalsIgnoreCase(action)) {
@@ -42,28 +42,30 @@ public class Carte implements ControllerInterface, Serializable {
             if(request.getParameter("notype") != null) {
                 List<Produit> lp = beanCarte.selectAllproduit();
                request.setAttribute("produits", lp);
-               return "/WEB-INF/carteProduits.jsp";
+               return "/WEB-INF/client/carteProduits.jsp";
             }
             
             Long id = Long.parseLong(request.getParameter("type"));
             List<Produit> lp = beanCarte.selectProduitByType(beanCarte.selectType(id));
                request.setAttribute("produits", lp);
                request.setAttribute("msg", id);
-               return "/WEB-INF/carteProduits.jsp";
+               return "/WEB-INF/client/carteProduits.jsp";
         }
         
         if("voirMenu".equalsIgnoreCase(action)) {
+//            Long idMenu = Long.parseLong(request.getParameter("idMenu"));
+//            Menu m = beanCarte.selectMenu(idMenu);
             String nom = request.getParameter("nom");
             List<Produit> lp = beanCarte.selectProduitByMenu(nom);
             request.setAttribute("produits", lp);
-            return "/WEB-INF/menuProduits.jsp";
+            return "/WEB-INF/client/menuProduits.jsp";
         }
         
         if("description".equalsIgnoreCase(action)) {
             Long id = Long.parseLong(request.getParameter("id"));
             Produit p = beanCarte.selectProduit(id);
             request.setAttribute("description", p);
-            return "/WEB-INF/carteDescriptionProduit.jsp";
+            return "/WEB-INF/client/carteDescriptionProduit.jsp";
         }
         
 //        if("produits".equalsIgnoreCase(action)) {
@@ -72,13 +74,6 @@ public class Carte implements ControllerInterface, Serializable {
 //               request.setAttribute("produits", lp);
 //               return "/WEB-INF/carteProduits.jsp";
 //        }
-
-        
-        if("type".equalsIgnoreCase(action)) {
-            Type t = beanCarte.selectType(3l);
-            request.setAttribute("type", t);
-               return "/WEB-INF/test.jsp";
-        }
  
         
         return "/WEB-INF/index.jsp";

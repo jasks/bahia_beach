@@ -19,6 +19,7 @@
         </div>    
             <c:if test="${not empty msg}">
     <p class="alert alert-success text-center">${msg}</p>
-    <p class="well text-center">utilisateur mis en session : ${auth}</p>
 </c:if>
+    <p class="well text-center">utilisateur mis en session : ${auth}</p>
+        <p class="text-center well">table mis en session : ${table}</p>
 
