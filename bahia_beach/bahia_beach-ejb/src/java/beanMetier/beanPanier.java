@@ -100,6 +100,26 @@ public class beanPanier implements beanPanierLocal {
         Commentaire c = new Commentaire(contenu);
         panier.get(id).setCommentaire(c);
     }
+    
+    @Override
+    public void modifierCommentaire(int id, String contenu) {
+        Commentaire c = new Commentaire(contenu);
+        panier.get(id).setCommentaire(c);
+    }
+    
+    @Override
+    public void isCommentaire(int id) {
+        if(panier.get(id).getCommentaire().getContenu().trim().equalsIgnoreCase("")) {
+            supprimerCommentaire(id);
+        }
+    }
+    
+    @Override
+    public void supprimerCommentaire(int id) {
+        panier.get(id).getCommentaire().setContenu(null);
+        System.out.println("Commentaire Supprimer test");
+        System.out.println("Commentaire Supprimer" + panier.get(id).getCommentaire().getContenu());
+    }
 
     @Override
     public HashMap<Integer, LigneCommande> getPanier() {
@@ -113,6 +133,7 @@ public class beanPanier implements beanPanierLocal {
         for (LigneCommande lc : panier.values()) {
             lc.setCommande(c);
             lc.setEtat(1);
+            em.persist(lc.getCommentaire());
             if (lc.getMenu() != null) {
                 em.merge(lc.getMenu());
             }
