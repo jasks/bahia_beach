@@ -7,9 +7,9 @@
     <h1 class="text-center page-header">BAHIA BEACH</h1>
 
         <div class="nav text-center">
-            <a href="Controller?section=admin&action=jeuxDonnee">lien vers jeux donnees</a>
-            <a href="Controller?section=cuisine&action=afficherCuisine">lien vers Cuisne</a>
-            <a href="Controller?section=serveur&action=voirCommande"> lien vers Voir lesCommandes</a>
+            <a href="Controller?section=admin&action=jeuxDonnee">lien vers jeu de donnees</a>
+            <a href="Controller?section=cuisine&action=afficherCuisine">lien vers Cuisine</a>
+            <a href="Controller?section=serveur&action=voirCommande"> lien vers Voir les Commandes</a>
             <a href="Controller?section=log&action=log">lien vers la connexion log</a>
             <a href="Controller?section=client&action=initTable">lien vers interface client</a>
 
