@@ -22,7 +22,7 @@ public interface beanServeurLocal {
 
     public List<Tablee> afficherTableLibre();
 
-    public List<Tablee> attribuerTable(Serveur s, Long id);
+    public void attribuerTable(Serveur s, Long id);
 
     public List<Tablee> afficherTableAttribue(Serveur s);
 

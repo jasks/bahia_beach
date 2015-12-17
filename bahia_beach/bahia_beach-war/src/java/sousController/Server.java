@@ -48,8 +48,9 @@ public class Server implements ControllerInterface, Serializable{
         }
         
         if("attribuerTable".equalsIgnoreCase(action)) {
-        Long id = Long.parseLong(request.getParameter("id"));    
-        List<Tablee> lt = beanServeur.attribuerTable(s, id);
+        Long id = Long.parseLong(request.getParameter("id"));
+        beanServeur.attribuerTable(s, id);
+        List<Tablee> lt = beanServeur.afficherTableAttribue(s);
         request.setAttribute("tables", lt);
         request.setAttribute("msg", "vous avez attribué une table");
         return "/WEB-INF/serveur/tableAttribuee.jsp";

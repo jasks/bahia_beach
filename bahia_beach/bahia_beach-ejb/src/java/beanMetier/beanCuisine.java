@@ -51,10 +51,5 @@ public class beanCuisine implements beanCuisineLocal {
         return qr.getResultList();
       }
       
-      /*
-      public 
-      */
-      
-      
 }
 
