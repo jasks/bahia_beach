@@ -13,5 +13,7 @@ public interface beanCuisineLocal {
     public List<LigneCommande> afficher();
 
     public Commande add(String id);
+
+    public LigneCommande toggle(String id);
     
 }

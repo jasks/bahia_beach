@@ -27,51 +27,10 @@ import javax.websocket.server.ServerEndpoint;
 @ApplicationScoped
 @ServerEndpoint("/cuisine")
 public class EndPoint {
-
+    
+//BEAN METIER-------------------------------------------------------------------
     beanCuisineLocal beanCuisine = lookupbeanCuisineLocal();
-
-    private static Set<Session> peers = new HashSet<Session>();
-
-    @OnOpen
-    public void open(Session session) {
-        System.out.println("Je suis dans open");
-        System.out.println(session);
-        peers.add(session);
-    }
-
-    @OnClose
-    public void close(Session session) {
-        peers.remove(session);
-    }
-
-    @OnError
-    public void onError(Throwable error) {
-        Logger.getLogger(EndPoint.class.getName()).log(Level.SEVERE, null, error);
-    }
-
-    @OnMessage
-    public void onMessage(String message) {
-        System.out.println("Je suis dans onMessage");
-        System.out.println("Message :" + message);
-        try (JsonReader reader = Json.createReader(new StringReader(message))) {
-            JsonObject jsonMessage = reader.readObject();
-            System.out.println("Je suis dans try");
-            System.out.println(jsonMessage.getString("action"));
-            if ("add".equals(jsonMessage.getString("action"))) {
-                Commande c = beanCuisine.add(jsonMessage.getString("id"));
-                System.out.println("test:" + c);
-                add(c);
-            }
-        }
-    }
-
-    public void add(Commande c) {
-        for (LigneCommande lc : c.getLigneCommandes()) {
-            JsonObject addMessage = createAddMessage(lc);
-            sendToAllConnectedSessions(addMessage);
-        }
-    }
-
+    
     private beanCuisineLocal lookupbeanCuisineLocal() {
         try {
             Context c = new InitialContext();
@@ -82,6 +41,79 @@ public class EndPoint {
         }
     }
 
+//SET DES SESSIONS CONNECTER----------------------------------------------------
+    private static Set<Session> peers = new HashSet<Session>();
+   
+//METHODE DE ENDPOINT-----------------------------------------------------------
+    @OnOpen
+    public void open(Session session) {
+        //Lorsque le navigateur se connecte à une jsp avec le script js qui à
+        //l'URI du websocket, la session est enregister dans le set de l'EndPoint
+        peers.add(session);
+    }
+
+    @OnClose
+    public void close(Session session) {
+        //Lorsque le navigateur se deconnecte à une jsp avec le script js qui à
+        //l'URI du websocket, la session est retirer dans le set de l'EndPoint
+        peers.remove(session);
+    }
+
+    @OnError
+    public void onError(Throwable error) {
+        Logger.getLogger(EndPoint.class.getName()).log(Level.SEVERE, null, error);
+    }
+
+    @OnMessage
+    public void onMessage(String message) {
+        //C'est ici que le JSON(JavaScript Object Notation) est envoyé et traité
+        System.out.println("Je suis dans onMessage");
+        System.out.println("Message :" + message);
+        try (JsonReader reader = Json.createReader(new StringReader(message))) {
+            JsonObject jsonMessage = reader.readObject();
+            System.out.println("Je suis dans try");
+            System.out.println(jsonMessage.getString("action"));
+            if ("add".equals(jsonMessage.getString("action"))) {
+                Commande c = beanCuisine.add(jsonMessage.getString("id"));
+                add(c);
+            }
+            if ("toggle".equals(jsonMessage.getString("action"))) {
+                LigneCommande lc = beanCuisine.toggle(jsonMessage.getString("id"));
+                System.out.println("test:" + lc);
+                toggle(lc);
+            }
+        }
+    }
+    
+//METHODE DE TRAITEMENR---------------------------------------------------------
+    //Methode pour rajouter les plats d'une commande
+    public void add(Commande c) {
+        for (LigneCommande lc : c.getLigneCommandes()) {
+            JsonObject addMessage = createAddMessage(lc);
+            sendToAllConnectedSessions(addMessage);
+        }
+    }
+    
+    //Methode pour changer l'état d'un plat
+    public void toggle(LigneCommande lc) {
+        JsonProvider provider = JsonProvider.provider();
+        if (lc != null) {
+            if (1 == lc.getEtat()) {
+                lc.setEtat(2);
+            } else {
+                lc.setEtat(3);
+            }
+            JsonObject updateDevMessage = provider.createObjectBuilder()
+                    .add("action", "toggle")
+                    .add("id", lc.getId())
+                    .add("status", lc.getEtat())
+                    .build();
+            sendToAllConnectedSessions(updateDevMessage);
+        }
+    }
+
+//METHODE DE RENVOIE------------------------------------------------------------
+    //Methode de traitement de l'objet java en JSON
     private JsonObject createAddMessage(LigneCommande lc) {
         JsonProvider provider = JsonProvider.provider();
         JsonObject addMessage = provider.createObjectBuilder()
@@ -93,7 +125,8 @@ public class EndPoint {
                 .build();
         return addMessage;
     }
-
+    
+    //Methode pour envoyé le JSON à une session
     private void sendToSession(Session session, JsonObject message) {
         try {
             System.err.println("Dans catch SentToSession" + message);
@@ -102,10 +135,13 @@ public class EndPoint {
             peers.remove(session);
         }
     }
-
+    
+    //Methode pour envoyé le JSON à toutes les sessions connectés
     private void sendToAllConnectedSessions(JsonObject message) {
         for (Session session : peers) {
             sendToSession(session, message);
         }
     }
+
+    
 }

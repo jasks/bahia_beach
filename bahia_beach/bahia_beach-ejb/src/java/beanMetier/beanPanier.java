@@ -109,13 +109,13 @@ public class beanPanier implements beanPanierLocal {
     public Commande validerPanier(Serveur s, Tablee t) {
         Commande c = new Commande();
         c.setLigneCommandes(panier.values());
-        c.setNumero("CMD" + c.getId()+1000);
+        c.setNumero("CMD" + c.getId()+ 1000);
         c.setEtat(1);
         Date date = new Date();
         c.setDate(date);
         c.setServeur(s);
         c.setTable(t);
-        for(LigneCommande lc : c.getLigneCommandes()) {
+        for(LigneCommande lc : panier.values()) {
             lc.setEtat(1);
             if (lc.getMenu() != null) {
                 em.merge(lc.getMenu());

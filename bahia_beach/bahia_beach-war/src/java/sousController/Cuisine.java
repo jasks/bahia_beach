@@ -10,7 +10,6 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class Cuisine implements ControllerInterface, Serializable {
 
@@ -19,7 +18,6 @@ public class Cuisine implements ControllerInterface, Serializable {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
       request.setAttribute("cmd", beanCuisine.afficher());
-      System.out.println(">>>>>>>>MILIEU CONTROLEUR<<<<<<<<");
       return "/WEB-INF/cuisine.jsp";
     }
 
