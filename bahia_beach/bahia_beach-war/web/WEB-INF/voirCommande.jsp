@@ -12,19 +12,19 @@
 <%@include file="templates/header.jsp" %>
 <body>
     <h1>le serveur</h1>
-    <table>
+    <table border="1px">
         <tr>
             <td>nom Serveur </td>
             <td>prenom Serveur</td>
         </tr>
 
-            <tr>
-                <td>${lesCommandes.get(0).getServeur().getNom()}</td>
-                <td>${lesCommandes.get(0).serveur.getPrenom()}</td>
-            </tr>
-       
+        <tr>
+            <td>${lesCommandes.get(0).getServeur().getNom()}</td>
+            <td>${lesCommandes.get(0).serveur.getPrenom()}</td>
+        </tr>
+
     </table> 
-    <table>
+    <table border="1px">
         <tr>
             <td>Numero Table </td>
             <td>numero Commande </td>
@@ -38,14 +38,12 @@
                 <td>${cm.getNumero()}</td>
                 <td>${cm.getEtat()}</td>
                 <td>${cm.getDate()}</td>
-                <td><c:url value="Controller?section=serveur&action=commande&numCommande=${cm.getNumero()}" var="url01" />
+                <td><c:url value="Controller?section=serveur&action=commande&numCommande=${cm.getNumero()}&numTable=${cm.getTable().getNum()}" var="url01" />
                     <a href="${url01}">Voir</a></td>
-            </tr>
-            
+            </tr>      
         </c:forEach>
 
-    </table>
-
+    </table>     
 
 </body>
 </html>
