@@ -267,7 +267,7 @@ public class beanEssaie implements beanEssaieLocal {
         lcommande.add(new Commande("CMD04", 1, new Date(2015 - 11 - 28)));
         lcommande.add(new Commande("CMD05", 1, new Date(2015 - 11 - 28)));
         lcommande.add(new Commande("CMD06", 1, new Date(2015 - 11 - 28)));
-         lcommande.get(0).setServeur(lserveur.get(0));
+        lcommande.get(0).setServeur(lserveur.get(0));
         lcommande.get(1).setServeur(lserveur.get(0));
         lcommande.get(2).setServeur(lserveur.get(1));
         lcommande.get(3).setServeur(lserveur.get(2));
@@ -294,6 +294,12 @@ public class beanEssaie implements beanEssaieLocal {
         lcommande.get(1).setTable(ltablee.get(1));
         lcommande.get(0).setTable(ltablee.get(3));
         lcommande.get(1).setTable(ltablee.get(4));
+        lcommande.get(2).setTable(ltablee.get(5));
+        lcommande.get(3).setTable(ltablee.get(0));
+        lcommande.get(4).setTable(ltablee.get(1));
+        lcommande.get(5).setTable(ltablee.get(2));
+        
+//        lcommande.get(1).setTable(ltablee.get(6));
         
         llc.get(0).setEtat(2);
         llc.get(1).setEtat(2);
@@ -313,6 +319,13 @@ public class beanEssaie implements beanEssaieLocal {
         //test table attribué par un serveur
         lserveur.get(0).setActif(1);
         ltablee.get(0).setServeur(lserveur.get(0));
+        ltablee.get(1).setServeur(lserveur.get(0));
+        
+        ltablee.get(2).setServeur(lserveur.get(1));
+        ltablee.get(3).setServeur(lserveur.get(1));
+        
+        ltablee.get(4).setServeur(lserveur.get(2));
+        ltablee.get(5).setServeur(lserveur.get(2));
         
 //PERSIST-----------------------------------------------------------------------
         for (Cuisinier cuisinier : lcuisinier) {
