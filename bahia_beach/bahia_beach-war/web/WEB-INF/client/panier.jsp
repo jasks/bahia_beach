@@ -46,7 +46,10 @@
                         </td>
                        <c:if test="${ligne.commentaire.contenu != null}">
                             <td>
-                            <a href="Controller?section=panier&action=modifierCommenter&id=${ligne.identifiant}"> modifier commentaire </a>
+                            <a href="Controller?section=panier&action=modifierCommenter&id=${ligne.identifiant}"> modifier le commentaire </a>
+                        </td>
+                        <td>
+                            <a href="Controller?section=panier&action=supprimerCommentaire&id=${ligne.identifiant}"> supprimer le commentaire </a>
                         </td>
                         </c:if>
                         
@@ -61,7 +64,7 @@
                         </td>
                         
                         <c:if test="${ligne.commentaire.contenu != null}">
-                            <td class="text-success">contenu commentaire: ${ligne.commentaire.contenu}</td>
+                            <td class="text-success">${ligne.commentaire.contenu}</td>
                         </c:if>
                     </tr>
                     </c:if>
@@ -89,6 +92,9 @@
                             <td>
                             <a href="Controller?section=panier&action=modifierCommenter&id=${ligne.identifiant}"> modifier commentaire </a>
                         </td>
+                        <td>
+                            <a href="Controller?section=panier&action=supprimerCommentaire&id=${ligne.identifiant}"> supprimer le commentaire </a>
+                        </td>
                         </c:if>
                         
                         <c:if test="${ligne.commentaire.contenu == null}">
@@ -102,7 +108,7 @@
                         </td>
                         
                         <c:if test="${ligne.commentaire.contenu != null}">
-                            <td class="text-success">contenu commentaire: ${ligne.commentaire.contenu}</td>
+                            <td class="text-success">${ligne.commentaire.contenu}</td>
                         </c:if>
                     </tr>
                     </c:if>
@@ -123,8 +129,8 @@
         </table>
 <p class="text-danger">vous avez la possibilité de laisser une note à chaque produit commandé afin de préciser vos préférences, pour cela cliquer sur "commenter"</p>
 
-<button class="btn btn-primary">valider ma commande <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-<a href="Controller?section=panier&action=commander">lien vers le récapitulatif de la commande</a>
+
+<a href="Controller?section=panier&action=commander"><button class="btn btn-primary">valider ma commande <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button></a>
     
 <h3 class="well">test pour identifier si LigneCommande contient un menu ou un produit</h3>
 <c:forEach var="ligne" items="${panier}">

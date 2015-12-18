@@ -6,6 +6,7 @@
 package beanMetier;
 
 import entities.Commande;
+import entities.Commentaire;
 import entities.LigneCommande;
 import entities.Menu;
 import entities.Serveur;
@@ -43,4 +44,10 @@ public interface beanPanierLocal {
     public Menu creerMenu(Menu m, Long idPlat, Long idEntree);
 
     public void addMenu(Menu m, Long idPlat, Long idEntree);
+
+    public void supprimerCommentaire(int id);
+
+    public void isCommentaire(int id);
+
+    public void modifierCommentaire(int id, String contenu);
 }

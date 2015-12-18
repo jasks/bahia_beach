@@ -6,6 +6,7 @@ import beanMetier.beanCarteLocal;
 import beanMetier.beanPanierLocal;
 import beanMetier.beanServeurLocal;
 import entities.Commande;
+import entities.Commentaire;
 import entities.Menu;
 import entities.Serveur;
 import entities.Tablee;
@@ -82,7 +83,24 @@ public class Panier implements ControllerInterface, Serializable{
             Integer id = Integer.parseInt(request.getParameter("id"));
             String contenuCommentaire = request.getParameter("commentaire");
             beanPanier.ajoutCommentaire(id, contenuCommentaire);
+            beanPanier.isCommentaire(id);
             request.setAttribute("msg", "votre commentaire a bien été ajouté");
+            return "/WEB-INF/client/panier.jsp";
+        }
+        
+        if("modifierCommentaire".equalsIgnoreCase(action)) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            String contenuCommentaire = request.getParameter("commentaire");
+            beanPanier.modifierCommentaire(id, contenuCommentaire);
+            beanPanier.isCommentaire(id);
+            request.setAttribute("msg", "votre commentaire a bien été ajouté");
+            return "/WEB-INF/client/panier.jsp";
+        }
+        
+        if("supprimerCommentaire".equalsIgnoreCase(action)) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            beanPanier.supprimerCommentaire(id);
+            request.setAttribute("msg", "Votre commentaire a bien été supprimé");
             return "/WEB-INF/client/panier.jsp";
         }
         
