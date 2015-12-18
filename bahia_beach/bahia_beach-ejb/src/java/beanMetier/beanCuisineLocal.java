@@ -15,5 +15,7 @@ public interface beanCuisineLocal {
     public Commande add(String id);
 
     public LigneCommande toggle(String id);
+
+    public void actualiser(LigneCommande lc);
     
 }

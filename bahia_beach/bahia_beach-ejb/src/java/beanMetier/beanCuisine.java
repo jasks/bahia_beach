@@ -13,7 +13,7 @@ public class beanCuisine implements beanCuisineLocal {
 
     @PersistenceContext(unitName = "RestaurantPU")
     private EntityManager em;
-    
+
     //Methode d'affichage des plats commandés
     @Override
     public List<LigneCommande> afficher() {
@@ -22,18 +22,23 @@ public class beanCuisine implements beanCuisineLocal {
         Query qr = em.createQuery(req);
         return qr.getResultList();
     }
-    
+
     //Methode d'ajout de plat commandés
     @Override
     public Commande add(String id) {
         Long idCommande = Long.parseLong(id);
         return em.find(Commande.class, idCommande);
     }
-    
+
     //Methode de changement d'état d'un plat commandés
     @Override
     public LigneCommande toggle(String id) {
         Long idLc = Long.parseLong(id);
         return em.find(LigneCommande.class, idLc);
+    }
+
+    @Override
+    public void actualiser(LigneCommande lc) {
+        em.merge(lc);
     }
 }

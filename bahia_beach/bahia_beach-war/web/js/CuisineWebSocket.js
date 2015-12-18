@@ -10,21 +10,15 @@ function onMessage(event) {
         printPlatElement(plat);
     }
 
-    if (plat.action === "remove") {
-        document.getElementById(device.id).remove();
-        //device.parentNode.removeChild(device);
-    }
-
     if (plat.action === "toggle") {
         var node = document.getElementById(plat.id);
-        var statusText = node.children[2];
+        var statusText = node.children[5];
         if (plat.status === 1) {
-            statusText.innerHTML = "Status: En Commande (<a href=\"#\" OnClick=toggleDevice(" + plat.idProduit + ")>Changer Etat</a>)<br><hr>";
+            statusText.innerHTML = "Status: En Commande";
         } else if (plat.status === 2) {
-            statusText.innerHTML = "Status: En Préparation (<a href=\"#\" OnClick=toggleDevice(" + plat.idProduit + ")>Changer Etat</a>)<br><hr>";
-            //deviceDiv.setAttribute("class", "device off");
+            statusText.innerHTML = "Status: En Préparation";
         } else if (plat.status === 3) {
-            statusText.innerHTML = "Status: Prêt (<a href=\"#\" OnClick=toggleDevice(" + plat.idProduit + ")>Changer Etat</a>)<br><hr>";
+            statusText.innerHTML = "Status: Prêt";
         }
     }
 }
@@ -36,43 +30,60 @@ function printPlatElement(plat) {
     platDiv.setAttribute("id", plat.id);
     content.appendChild(platDiv);
 
+    var platCommande = document.createElement("p");
+    platCommande.innerHTML = "Commande: " + plat.commande;
+    platDiv.appendChild(platCommande);
+    
     var platDate = document.createElement("p");
-    platDate.innerHTML = "Produit: " + plat.produit + "<br>";
+    platDate.innerHTML = "Date: " + plat.date;
     platDiv.appendChild(platDate);
 
     var platType = document.createElement("p");
-    platType.innerHTML = "Nom: " + plat.produit + "<br>";
+    platType.innerHTML = "Nom: " + plat.produit;
     platDiv.appendChild(platType);
+
+    var platCommentaire = document.createElement("p");
+    platCommentaire.innerHTML = "Commentaire: " + plat.commentaire;
+    platDiv.appendChild(platCommentaire);
+    
+    var platCuisson = document.createElement("p");
+    if (plat.cuisson === 1) {
+        platCuisson.innerHTML = "Cuisson: Bleu";
+    } else if (plat.cuisson === 2) {
+        platCuisson.innerHTML = "Cuisson: Saignant";
+    } else if (plat.cuisson === 3) {
+        platCuisson.innerHTML = "Cuisson: A point";
+    }else if (plat.cuisson === 3) {
+        platCuisson.innerHTML = "Cuisson: Bien Cuit";
+    }else if (plat.cuisson === 0) {
+        platCuisson.innerHTML = "Cuisson:";
+    }
+    platDiv.appendChild(platCuisson);
 
     var platStatus = document.createElement("p");
     if (plat.status === 1) {
-        platStatus.innerHTML = "Status: En Commande (<a href=\"#\" OnClick=toggleDevice(" + plat.idProduit + ")>Changer Etat</a>)<br><hr>";
+        platStatus.innerHTML = "Status: En Commande";
     } else if (plat.status === 2) {
-        platStatus.innerHTML = "Status: En Préparation (<a href=\"#\" OnClick=toggleDevice(" + plat.idProduit + ")>Changer Etat</a>)<br><hr>";
-        //deviceDiv.setAttribute("class", "device off");
+        platStatus.innerHTML = "Status: En Préparation";
     } else if (plat.status === 3) {
-        platStatus.innerHTML = "Status: Prêt (<a href=\"#\" OnClick=toggleDevice(" + plat.idProduit + ")>Changer Etat</a>)<br><hr>";
+        platStatus.innerHTML = "Status: Prêt";
     }
     platDiv.appendChild(platStatus);
-
-//    var deviceDescription = document.createElement("span");
-//    deviceDescription.innerHTML = "<b>Comments:</b> " + device.description;
-//    deviceDiv.appendChild(deviceDescription);
-//    
-//    var removeDevice = document.createElement("span");
-//    removeDevice.setAttribute("class", "removeDevice");
-//    removeDevice.innerHTML = "<a href=\"#\" OnClick=removeDevice(" + device.id + ")>Remove device</a>";
-//    deviceDiv.appendChild(removeDevice);
+    
+        
+    var platChangement = document.createElement("p");
+    platChangement.innerHTML = "<button type=\"button\" class=\"btn btn-secondary\" OnClick=\"toggleDevice("+plat.id+",1); return false;\">En Préparation</button>"+
+                               "<button type=\"button\" class=\"btn btn-secondary\" OnClick=\"toggleDevice("+plat.id+",2); return false;\">Prêt</button><hr>";
+    platDiv.appendChild(platChangement);
+    
 }
 
-function toggleDevice(element) {
-    var id = element;
-    var DeviceAction = {
+function toggleDevice(element,element2) {
+    var plat = {
         action: "toggle",
-        id: id
+        id: element + "",
+        c: element2 + ""
     };
-    socket.send(JSON.stringify(DeviceAction));
+    setTimeout(socket.send(JSON.stringify(plat)), 500);
 }
-
-
 

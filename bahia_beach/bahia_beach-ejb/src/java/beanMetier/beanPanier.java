@@ -120,13 +120,13 @@ public class beanPanier implements beanPanierLocal {
         }
         em.persist(c);
         //on persiste c pour avoir le ID ensuite
+        c.setLigneCommandes(panier.values());
         c.setNumero("CMD" + c.getId() + 1000);
         c.setEtat(1);
         Date date = new Date();
         c.setDate(date);
         c.setServeur(s);
         c.setTable(t);
-        
         em.merge(c);
         return c;
     }

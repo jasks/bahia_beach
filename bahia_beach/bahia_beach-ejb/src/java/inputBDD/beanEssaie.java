@@ -267,7 +267,7 @@ public class beanEssaie implements beanEssaieLocal {
         lcommande.add(new Commande("CMD04", 1, new Date(2015 - 11 - 28)));
         lcommande.add(new Commande("CMD05", 1, new Date(2015 - 11 - 28)));
         lcommande.add(new Commande("CMD06", 1, new Date(2015 - 11 - 28)));
-         lcommande.get(0).setServeur(lserveur.get(0));
+        lcommande.get(0).setServeur(lserveur.get(0));
         lcommande.get(1).setServeur(lserveur.get(0));
         lcommande.get(2).setServeur(lserveur.get(1));
         lcommande.get(3).setServeur(lserveur.get(2));
@@ -353,7 +353,6 @@ public class beanEssaie implements beanEssaieLocal {
         }
 
         for (LigneCommande lc : llc) {
-            System.out.println(lc);
             em.persist(lc);
         }
 
