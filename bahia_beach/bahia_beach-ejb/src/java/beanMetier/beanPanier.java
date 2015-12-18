@@ -109,7 +109,6 @@ public class beanPanier implements beanPanierLocal {
     @Override
     public Commande validerPanier(Serveur s, Tablee t) {
         Commande c = new Commande();
-        //c.setLigneCommandes(panier.values());
         for (LigneCommande lc : panier.values()) {
             lc.setCommande(c);
             lc.setEtat(1);
@@ -118,16 +117,13 @@ public class beanPanier implements beanPanierLocal {
             }
             em.persist(lc);
         }
-        em.persist(c);
-        //on persiste c pour avoir le ID ensuite
         c.setNumero("CMD" + c.getId() + 1000);
         c.setEtat(1);
         Date date = new Date();
         c.setDate(date);
         c.setServeur(s);
         c.setTable(t);
-        
-        em.merge(c);
+        em.persist(c);
         return c;
     }
 
