@@ -9,11 +9,11 @@
     <class>entities.Famille</class>
     <class>entities.LigneCommande</class>
     <class>entities.Menu</class>
-    <class>entities.Produit</class>
     <class>entities.Serveur</class>
     <class>entities.Tablee</class>
     <class>entities.Tva</class>
     <class>entities.Type</class>
+    <class>entities.Produit</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>

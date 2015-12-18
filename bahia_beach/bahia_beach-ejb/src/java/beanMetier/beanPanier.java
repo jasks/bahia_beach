@@ -47,8 +47,11 @@ public class beanPanier implements beanPanierLocal {
    
     @Override
     public Menu creerMenu(Menu m, Long idPlat, Long idEntree) {
-        m.getProduits().add(beanCarte.selectProduit(idPlat));
-        m.getProduits().add(beanCarte.selectProduit(idEntree));
+        LigneCommande lc01 = new LigneCommande(beanCarte.selectProduit(idPlat));
+        LigneCommande lc02 = new LigneCommande(beanCarte.selectProduit(idEntree));
+        m.getLigneCommandes().add(lc01);
+        m.getLigneCommandes().add(lc02);
+        
         return m;
     }
 
