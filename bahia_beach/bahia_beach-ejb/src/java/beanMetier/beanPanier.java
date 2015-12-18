@@ -65,9 +65,11 @@ public class beanPanier implements beanPanierLocal {
         panier.remove(id);
     }
 
+    
     @Override
-    public void clearPanier() {
+    public Collection<LigneCommande> clearPanier() {
         panier.clear();
+        return panier.values();
     }
 
     @Override
@@ -116,7 +118,7 @@ public class beanPanier implements beanPanierLocal {
     
     @Override
     public void supprimerCommentaire(int id) {
-        panier.get(id).getCommentaire().setContenu(null);
+        panier.get(id).getCommentaire().setContenu("");
         System.out.println("Commentaire Supprimer test");
         System.out.println("Commentaire Supprimer" + panier.get(id).getCommentaire().getContenu());
     }
@@ -132,6 +134,10 @@ public class beanPanier implements beanPanierLocal {
         for (LigneCommande lc : panier.values()) {
             lc.setCommande(c);
             lc.setEtat(1);
+            if(lc.getCommentaire()==null) {
+                Commentaire com = new Commentaire("");
+                lc.setCommentaire(com);
+            }
             em.persist(lc.getCommentaire());
             if (lc.getMenu() != null) {
                 em.merge(lc.getMenu());

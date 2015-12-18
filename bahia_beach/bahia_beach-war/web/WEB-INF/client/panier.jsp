@@ -143,6 +143,14 @@
     </c:forEach>
     
     </c:if>
+            
+            
+            <c:if test="${commande != null}">
+                <hr>
+                temporairement pour phase de test :
+                <p class="well">Récapitulatif de la commande: ${commande}</p>
+                <hr>
+            </c:if>
 
         
     <%@include file="../templates/footer.jsp" %>

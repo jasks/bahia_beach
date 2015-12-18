@@ -121,8 +121,11 @@ public class Panier implements ControllerInterface, Serializable{
         
         if("commander".equalsIgnoreCase(action)) {
             Commande c = beanPanier.validerPanier(beanServeur.getServeur(3L), beanServeur.getTablee(2L));
+            session.setAttribute("panier", beanPanier.clearPanier());
             request.setAttribute("commande", c);
-            return "/WEB-INF/recapCommande.jsp";
+            request.setAttribute("msg", "votre commande a bien été prise en compte. Vous pouvez voir l'avancée de la commande");
+            return "/WEB-INF/client/panier.jsp";
+            //return "/WEB-INF/recapCommande.jsp";
         }
         
         return "/WEB-INF/index.jsp";
