@@ -18,12 +18,14 @@ import javax.persistence.PersistenceContext;
 
 @Stateful
 public class beanPanier implements beanPanierLocal {
+    @EJB
+    private beanServeurLocal beanServeur;
 
     @EJB
     private beanCarteLocal beanCarte;
     @PersistenceContext(unitName = "RestaurantPU")
     private EntityManager em;
-    
+
     private HashMap<Integer, LigneCommande> panier;
 
     @PostConstruct
@@ -34,9 +36,11 @@ public class beanPanier implements beanPanierLocal {
 
     @Override
     public void add(Long id) {
+
         Produit p = beanCarte.selectProduit(id);
         LigneCommande lc = new LigneCommande(p);
         panier.put(lc.getIdentifiant(), lc);
+
     }
     
         
@@ -47,7 +51,6 @@ public class beanPanier implements beanPanierLocal {
         m.getProduits().add(beanCarte.selectProduit(idEntree));
         return m;
     }
-    
 
     
     @Override
@@ -56,10 +59,9 @@ public class beanPanier implements beanPanierLocal {
             LigneCommande lc = new LigneCommande(m);
             panier.put(lc.getIdentifiant(), lc);
     }
-    
-        
+
     @Override
-    public void delete(int id){
+    public void delete(int id) {
         panier.remove(id);
     }
 
@@ -81,24 +83,23 @@ public class beanPanier implements beanPanierLocal {
     @Override
     public Float getTotalHT() {
         Float total = 0.0F;
-        
-        for(LigneCommande lc : getListe()){
-            if(lc.getProduit() != null) {
-            total += lc.getProduit().getPrixHT();
+
+        for (LigneCommande lc : getListe()) {
+            if (lc.getProduit() != null) {
+                total += lc.getProduit().getPrixHT();
             }
-            if(lc.getMenu() != null) {
-            total += lc.getMenu().getPrix();
+            if (lc.getMenu() != null) {
+                total += lc.getMenu().getPrix();
             }
         }
         return total;
     }
-    
+
     @Override
     public void ajoutCommentaire(int id, String contenu) {
         Commentaire c = new Commentaire(contenu);
         panier.get(id).setCommentaire(c);
     }
-
 
     @Override
     public HashMap<Integer, LigneCommande> getPanier() {
@@ -108,21 +109,25 @@ public class beanPanier implements beanPanierLocal {
     @Override
     public Commande validerPanier(Serveur s, Tablee t) {
         Commande c = new Commande();
-        c.setLigneCommandes(panier.values());
-        c.setNumero("CMD" + c.getId()+ 1000);
-        c.setEtat(1);
-        Date date = new Date();
-        c.setDate(date);
-        c.setServeur(s);
-        c.setTable(t);
-        for(LigneCommande lc : panier.values()) {
+        //c.setLigneCommandes(panier.values());
+        for (LigneCommande lc : panier.values()) {
+            lc.setCommande(c);
             lc.setEtat(1);
             if (lc.getMenu() != null) {
                 em.merge(lc.getMenu());
             }
             em.persist(lc);
         }
-        em.persist(c);    
+        em.persist(c);
+        //on persiste c pour avoir le ID ensuite
+        c.setNumero("CMD" + c.getId() + 1000);
+        c.setEtat(1);
+        Date date = new Date();
+        c.setDate(date);
+        c.setServeur(s);
+        c.setTable(t);
+        
+        em.merge(c);
         return c;
     }
 
@@ -130,5 +135,4 @@ public class beanPanier implements beanPanierLocal {
     public void persist(Object object) {
         em.persist(object);
     }
-    
 }

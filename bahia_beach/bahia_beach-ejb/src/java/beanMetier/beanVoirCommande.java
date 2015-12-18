@@ -24,48 +24,41 @@ public class beanVoirCommande implements beanVoirCommandeLocal {
     @PersistenceContext(unitName = "RestaurantPU")
     private EntityManager em;    
   
-    @Override
-    public List<Serveur> getLeServeur() {
-        Serveur s01=em.find(Serveur.class, 3L);
-         List<Serveur> liste = new ArrayList();
-         liste.add(s01);
-
-         return liste;
-    }     
+    //    public List<Serveur> getLeServeur() {
+//        Serveur s01=em.find(Serveur.class, 3L);
+//         List<Serveur> liste = new ArrayList();
+//         liste.add(s01);
+//
+//         return liste;
+//    }     
     
    
     @Override
-    public List<Serveur> getLeServeur(String code){
+    public Serveur getLeServeur(String code){
         String req="select s from Serveur s where s.code= :valeur";
         Query qr= em.createQuery(req);
         qr.setParameter("valeur", code);  
-        List<Serveur> list=qr.getResultList();
-        return qr.getResultList();
+        
+        return (Serveur) qr.getSingleResult();
     }
     
-   
     @Override
     public List<Commande> getLesCommandesEncours(String codeServeur){
-        String r="select s.commandes from Serveur s where s.code= :valeur  ";
-        String req="select c from Commande c join Serveur s on c.id=s.id"
-                + " where s.code= :valeur and c.etat < :valeur1";
-            
-        Query qr = em.createQuery(r);
+       String req ="select c from Commande c where c.serveur.code= :valeur and c.etat< :etat";
+        Query qr=em.createQuery(req);
         qr.setParameter("valeur", codeServeur);
-//        qr.setParameter("valeur1", 3);
-        
-        System.out.println("taille donnees:::::::::::::::::"+qr.getResultList().size());  
+        qr.setParameter("etat",2);
         return qr.getResultList();
     }
     
   
     @Override
-    public List<Produit> getLesProduits(String numCommande){
-
-       String req ="select lc.produit from LigneCommande lc where lc.commande.numero = :valeur";     
-       Query qr=em.createQuery(req);
-       qr.setParameter("valeur",numCommande);
-       return qr.getResultList();
+    public List<LigneCommande> getAllLigneCommande(String numCommande){
+        String req ="select lc from LigneCommande lc where lc.commande.numero= :numero";
+        Query qr = em.createQuery(req);
+        qr.setParameter("numero", numCommande);
+        return qr.getResultList();
     }
+ 
 
 }

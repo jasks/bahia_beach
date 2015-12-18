@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,41 +9,39 @@
     <link href="css/bootstrap/css/bootstrapPaper.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
 </head>
-
+<%@include file="templates/header.jsp" %>
 <body>
     <h1>le serveur</h1>
     <table>
         <tr>
-            <td>nom Serveur</td>
+            <td>nom Serveur </td>
             <td>prenom Serveur</td>
-            <td>code</td>
         </tr>
 
-        <c:forEach items="${serveur}" var="c">
             <tr>
-                <td>${c.getNom()}</td>
-                <td>${c.getPrenom()}</td>
-                <td>${c.getCode()}</td>
+                <td>${lesCommandes.get(0).getServeur().getNom()}</td>
+                <td>${lesCommandes.get(0).serveur.getPrenom()}</td>
             </tr>
-        </c:forEach> 
+       
     </table> 
     <table>
-
-        <c:forEach items="${lesProduits.keySet()}" var="pr">
+        <tr>
+            <td>Numero Table </td>
+            <td>numero Commande </td>
+            <td>etat Commande </td>
+            <td>date Commande </td>
+        </tr>
+        <c:forEach items="${lesCommandes}" var="cm">
 
             <tr>
-                numero Commande: <td>${pr}</td>
+                <td>${cm.getTable().getNum()}</td>
+                <td>${cm.getNumero()}</td>
+                <td>${cm.getEtat()}</td>
+                <td>${cm.getDate()}</td>
+                <td><c:url value="Controller?section=serveur&action=commande&numCommande=${cm.getNumero()}" var="url01" />
+                    <a href="${url01}">Voir</a></td>
             </tr>
-            <table>
-                <c:forEach items="${lesProduits.get(pr)}" var="pp">
-                    <tr>
-                        <td> nom Produit:   ${pp.getNomProduit()}</td> 
-                        <td> prix HT Produit:   ${pp.getPrixHT()}</td>
-                        <td> prix HT Produit:   ${pp.getDescritption()}</td>
-                    </tr> 
-                </c:forEach>
-            </table>
-
+            
         </c:forEach>
 
     </table>

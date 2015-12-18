@@ -35,6 +35,17 @@ public class LigneCommande implements Serializable {
     public LigneCommande() {
         this.identifiant = staticIdentifiant++;
     }
+
+    public LigneCommande(Integer etat, Integer cuisson, Integer prix, Integer identifiant, Commande commande, Commentaire commentaire, Produit produit, Menu menu) {
+        this.etat = etat;
+        this.cuisson = cuisson;
+        this.prix = prix;
+        this.identifiant = identifiant;
+        this.commande = commande;
+        this.commentaire = commentaire;
+        this.produit = produit;
+        this.menu = menu;
+    }
     
      public LigneCommande(Produit produit) {
          this();
