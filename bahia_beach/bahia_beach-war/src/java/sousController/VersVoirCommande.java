@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sousController;
 
+import beanMetier.beanPanierLocal;
 import beanMetier.beanVoirCommandeLocal;
 import entities.Commande;
 
@@ -37,33 +34,42 @@ import javax.servlet.http.HttpSession;
 public class VersVoirCommande implements ControllerInterface, Serializable {
 
     beanVoirCommandeLocal beanVoirCommande = lookupbeanVoirCommandeLocal();
-
+    
     @Override
     public String execute(HttpServletRequest request,
             HttpServletResponse response, HttpServlet servlet) {
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
-      
-        if ("voirCommande".equalsIgnoreCase(action)) {
-            
-            
-            Serveur serveur= beanVoirCommande.getLeServeur("S3001");
+        
+        if ("voirCommande".equalsIgnoreCase(action)) {                        
+            Serveur serveur= beanVoirCommande.getLeServeur("S3002");
             session.setAttribute("serveur", serveur);            
-            List<Commande> lesCommandes =beanVoirCommande.getLesCommandesEncours(serveur.getCode());
-            request.setAttribute("lesCommandes",lesCommandes );             
+            List<Commande> lesCommandes =beanVoirCommande.getLesCommandesEncours(serveur.getCode());     
+            request.setAttribute("lesCommandes",lesCommandes );            
             return "/WEB-INF/voirCommande.jsp";
         }
         
-        if("commande".equalsIgnoreCase(action)){
+        if("lignecommande".equalsIgnoreCase(action)){
+            String numCommande=request.getParameter("numCommande");            
             List<LigneCommande> lesLignesCommandes = beanVoirCommande.getAllLigneCommande(request.getParameter("numCommande"));
-            request.setAttribute("lesLignesCommandes", lesLignesCommandes);
-            request.setAttribute("numCommande",request.getParameter("numCommande"));
+            request.setAttribute("numCommande",numCommande);
             request.setAttribute("numTable",request.getParameter("numTable"));
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+request.getParameter("numTable"));
+            request.setAttribute("lesLignesCommandes", lesLignesCommandes);
+            request.setAttribute("propriete",request.getParameter("propriete"));
+            
             return "/WEB-INF/ligneCommande.jsp";
         }
-          
-
+        
+        if("mettreAjourCommande".equalsIgnoreCase(action)){
+            String numCommande = request.getParameter("numCommande");
+            beanVoirCommande.mettreAjourCommande(numCommande);            
+            return "/WEB-INF/ligneCommande.jsp";
+        }
+        if("modifierCommande".equalsIgnoreCase(action)){
+            String numCommande = request.getParameter("numCommande");
+                      
+            return "/WEB-INF/panier.jsp";
+        }
         return "/WEB-INF/index.jsp";
     }
 
