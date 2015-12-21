@@ -6,7 +6,6 @@ import entities.Commentaire;
 import entities.LigneCommande;
 import java.io.IOException;
 import java.io.StringReader;
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
