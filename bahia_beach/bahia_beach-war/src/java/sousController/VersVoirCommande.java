@@ -40,10 +40,11 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
             HttpServletResponse response, HttpServlet servlet) {
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
-        
-        
-        if ("voirCommande".equalsIgnoreCase(action)) {                        
-            Serveur serveur= beanVoirCommande.getLeServeur("S3001");
+      
+        if ("voirCommande".equalsIgnoreCase(action)) {
+            
+            
+            Serveur serveur= beanVoirCommande.getLeServeur("S3002");
             session.setAttribute("serveur", serveur);            
             List<Commande> lesCommandes =beanVoirCommande.getLesCommandesEncours(serveur.getCode());     
             request.setAttribute("lesCommandes",lesCommandes );            
