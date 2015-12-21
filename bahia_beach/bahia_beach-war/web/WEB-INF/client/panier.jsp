@@ -73,9 +73,9 @@
                     <tr>
                         <td>${ligne.identifiant}</td>
                         <td>${ligne.nom} et id : ${ligne.menu.id}<br>
-                            <c:forEach var="p" items="${ligne.menu.produits}">
+                            <c:forEach var="lc" items="${ligne.menu.ligneCommandes}">
                                 <ul>
-                                    <li class="text-primary">${p.nomProduit}</li>
+                                    <li class="text-primary">${lc.nom}</li>
                                 </ul> 
                             </c:forEach>
                         </td>
@@ -143,6 +143,14 @@
     </c:forEach>
     
     </c:if>
+            
+            
+            <c:if test="${commande != null}">
+                <hr>
+                temporairement pour phase de test :
+                <p class="well">Récapitulatif de la commande: ${commande}</p>
+                <hr>
+            </c:if>
 
         
     <%@include file="../templates/footer.jsp" %>

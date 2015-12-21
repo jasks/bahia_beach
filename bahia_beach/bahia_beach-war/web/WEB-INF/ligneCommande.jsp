@@ -34,10 +34,6 @@
                     <td>${lc.getProduit().getType().getNomType()}</td>                        
                     <td>${lc.getCuisson()}</td>
 
-                    <td> <INPUT type= "radio" name="${lesLignesCommandes.getEtat()}" value="${lc.getEtat()}" checked=""> en attente</td>
-                    <td> <INPUT type= "radio" name="${lesLignesCommandes.getEtat()}" value="${lc.getEtat()}"> servi</td>
-
-
                 </tr>
             </c:forEach>
         </table>

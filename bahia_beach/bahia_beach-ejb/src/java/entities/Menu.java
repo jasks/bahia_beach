@@ -21,15 +21,13 @@ public class Menu implements Serializable {
     private String nom;
     private Float prix;
     
-    @ManyToMany
-    private Collection<Produit> produits;
     
         
     @OneToMany(mappedBy = "menu")
     private Collection<LigneCommande> ligneCommandes;
 
     public Menu() {
-        produits = new ArrayList();
+        ligneCommandes = new ArrayList();
     }
 
     public Menu(String nom, Float prix) {
@@ -68,8 +66,9 @@ public class Menu implements Serializable {
 
     @Override
     public String toString() {
-        return "Menu{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", produits=" + produits + ", ligneCommandes=" + ligneCommandes + '}';
+        return "Menu{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", ligneCommandes=" + ligneCommandes + '}';
     }
+
 
     
 
@@ -87,14 +86,6 @@ public class Menu implements Serializable {
 
     public void setPrix(Float prix) {
         this.prix = prix;
-    }
-
-    public Collection<Produit> getProduits() {
-        return produits;
-    }
-
-    public void setProduits(Collection<Produit> produits) {
-        this.produits = produits;
     }
 
     public Collection<LigneCommande> getLigneCommandes() {

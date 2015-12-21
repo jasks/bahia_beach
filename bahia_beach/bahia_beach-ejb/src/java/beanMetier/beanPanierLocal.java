@@ -25,7 +25,7 @@ public interface beanPanierLocal {
 
     public void delete(int id);
 
-    public void clearPanier();
+    public Collection<LigneCommande> clearPanier();
 
     public Collection<LigneCommande> getListe();
 
