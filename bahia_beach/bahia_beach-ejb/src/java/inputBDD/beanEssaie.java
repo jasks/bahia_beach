@@ -261,12 +261,13 @@ public class beanEssaie implements beanEssaieLocal {
 
 //COMMANDE----------------------------------------------------------------------
         List<Commande> lcommande = new ArrayList();
-        lcommande.add(new Commande("CMD01", 0, new Date(2015 - 11 - 25)));
-        lcommande.add(new Commande("CMD02", 2, new Date(2015 - 11 - 20)));
-        lcommande.add(new Commande("CMD03", 1, new Date(2015 - 11 - 28)));
-        lcommande.add(new Commande("CMD04", 1, new Date(2015 - 11 - 28)));
-        lcommande.add(new Commande("CMD05", 1, new Date(2015 - 11 - 28)));
-        lcommande.add(new Commande("CMD06", 1, new Date(2015 - 11 - 28)));
+        Commande c = new Commande();
+        lcommande.add(new Commande("CMD"+c.genererCode(10), 0, new Date(2015 - 11 - 25)));
+        lcommande.add(new Commande("CMD"+c.genererCode(10), 2, new Date(2015 - 11 - 20)));
+        lcommande.add(new Commande("CMD"+c.genererCode(10), 1, new Date(2015 - 11 - 28)));
+        lcommande.add(new Commande("CMD"+c.genererCode(10), 1, new Date(2015 - 11 - 28)));
+        lcommande.add(new Commande("CMD"+c.genererCode(10), 1, new Date(2015 - 11 - 28)));
+        lcommande.add(new Commande("CMD"+c.genererCode(10), 1, new Date(2015 - 11 - 28)));
         lcommande.get(0).setServeur(lserveur.get(0));
         lcommande.get(1).setServeur(lserveur.get(0));
         lcommande.get(2).setServeur(lserveur.get(1));

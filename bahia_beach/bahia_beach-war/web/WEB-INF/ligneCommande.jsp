@@ -43,8 +43,10 @@
                     <td>
                         <c:if test="${lc.getEtat() == '1'}">
                             <input type="radio" name="etat" value="en attente" checked>en attente
+                            <input type="radio" name="etat" value="servi" >servi
                         </c:if>
                         <c:if test="${lc.getEtat() == '2'}">
+                            <input type="radio" name="etat" value="en attente">en attente
                             <input type="radio" name="etat" value="servi" checked>servi
                         </c:if>
                     </td>
@@ -53,7 +55,7 @@
             </c:forEach>
         </table>
     </c:if>
-
+    
     <c:if test="${propriete == 'valid'}">
         <c:url value="Controller?section=serveur&action=mettreAjourCommande&numCommande=${numCommande}" var="url01"/>
         <a href="${url01}">valider la commande</a>
