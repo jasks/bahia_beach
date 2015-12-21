@@ -29,6 +29,7 @@
                 <td>TVA</td>
                 <td>Type</td>                        
                 <td>Cuisson</td>
+                <td>etat</td>
 
             </tr>
             <c:forEach items="${lesLignesCommandes}" var="lc">
@@ -39,7 +40,14 @@
                     <td>${lc.getProduit().getTva().getTauxTva()}</td>
                     <td>${lc.getProduit().getType().getNomType()}</td>                        
                     <td>${lc.getCuisson()}</td>
-                    <td>${lc.getEtat()}</td>
+                    <td>
+                        <c:if test="${lc.getEtat() == '1'}">
+                            <input type="radio" name="etat" value="en attente" checked>en attente
+                        </c:if>
+                        <c:if test="${lc.getEtat() == '2'}">
+                            <input type="radio" name="etat" value="servi" checked>servi
+                        </c:if>
+                    </td>
 
                 </tr>
             </c:forEach>
@@ -49,7 +57,7 @@
     <c:if test="${propriete == 'valid'}">
         <c:url value="Controller?section=serveur&action=mettreAjourCommande&numCommande=${numCommande}" var="url01"/>
         <a href="${url01}">valider la commande</a>
-        
+
     </c:if>
     <c:if test="${propriete == 'modif'}">
         <c:url value="Controller?section=serveur&action=modifierCommande&numCommande=${numCommande}" var="url01"/>
