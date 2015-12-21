@@ -28,6 +28,7 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,29 +41,28 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
     @Override
     public String execute(HttpServletRequest request,
             HttpServletResponse response, HttpServlet servlet) {
-        String s = "dans voir la commande";
+        HttpSession session = request.getSession();
         String action = request.getParameter("action");
       
         if ("voirCommande".equalsIgnoreCase(action)) {
             
             
-            Serveur serveur= beanVoirCommande.getLeServeur("S3001");
-            request.setAttribute("serveur", serveur);
-            
+            Serveur serveur= beanVoirCommande.getLeServeur("S3002");
+            session.setAttribute("serveur", serveur);            
             List<Commande> lesCommandes =beanVoirCommande.getLesCommandesEncours(serveur.getCode());
-            
-
-            request.setAttribute("lesCommandes",lesCommandes );
-             
-            
+            request.setAttribute("lesCommandes",lesCommandes );             
             return "/WEB-INF/voirCommande.jsp";
         }
-         System.out.println("request ::::::"+request.getAttribute("action"));
+        
         if("commande".equalsIgnoreCase(action)){
-            System.out.println("request ::::::"+request.getAttribute("action"));
+            List<LigneCommande> lesLignesCommandes = beanVoirCommande.getAllLigneCommande(request.getParameter("numCommande"));
+            request.setAttribute("lesLignesCommandes", lesLignesCommandes);
+            request.setAttribute("numCommande",request.getParameter("numCommande"));
+            request.setAttribute("numTable",request.getParameter("numTable"));
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+request.getParameter("numTable"));
+            return "/WEB-INF/ligneCommande.jsp";
         }
-        
-        
+          
 
         return "/WEB-INF/index.jsp";
     }
