@@ -310,6 +310,7 @@ public class beanEssaie implements beanEssaieLocal {
         llc.get(1).setProduit(lp.get(1));
         llc.get(2).setProduit(lp.get(2));
         llc.get(3).setProduit(lp.get(0));
+        llc.get(0).setCommentaire(lcommentaire.get(0));
         llc.get(0).setCommande(lcommande.get(0)); //association ligneCommande -> commande
         llc.get(1).setCommande(lcommande.get(1));
         llc.get(2).setCommande(lcommande.get(2));

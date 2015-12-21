@@ -176,7 +176,7 @@ public class Produit implements Serializable {
     }
 
 
-    public Collection<LigneCommande> getLignecommandes() {
+    public Collection<LigneCommande> getLigneCommandes() {
         return ligneCommandes;
     }
 
@@ -225,7 +225,7 @@ public class Produit implements Serializable {
 
     @Override
     public String toString() {
-        return "produit : "+nomProduit+"{"+id+"}";
+        return "Produit(id="+id+";nom="+nomProduit+")";
     }
     
 }

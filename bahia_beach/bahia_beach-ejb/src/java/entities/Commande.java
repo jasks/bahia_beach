@@ -15,6 +15,7 @@ import javax.persistence.Temporal;
 
 @Entity
 public class Commande implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,17 +24,16 @@ public class Commande implements Serializable {
     private Integer etat;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date date;
-    
-    
+
     @ManyToOne
     private Tablee table;
-    
+
     @ManyToOne
     private Serveur serveur;
-    
+
     @OneToMany(mappedBy = "commande")
     private Collection<LigneCommande> ligneCommandes;
-    
+
     @OneToOne
     private Commentaire commentaire;
 
@@ -58,7 +58,7 @@ public class Commande implements Serializable {
         this.ligneCommandes = ligneCommandes;
         this.commentaire = commentaire;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -104,11 +104,7 @@ public class Commande implements Serializable {
 	    return code;
     }
 
-    @Override
-    public String toString() {
-        return "Commande{" + "id=" + id + ", numero=" + numero + ", etat=" + etat + ", date=" + date + ", table=" + table + ", serveur=" + serveur + ", ligneCommandes=" + ligneCommandes + ", commentaire=" + commentaire + '}';
-    }
-    
+
     public String getNumero() {
         return numero;
     }
@@ -164,5 +160,5 @@ public class Commande implements Serializable {
     public void setCommentaire(Commentaire commentaire) {
         this.commentaire = commentaire;
     }
-    
+
 }
