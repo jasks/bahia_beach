@@ -6,6 +6,7 @@ import beanMetier.beanCarteLocal;
 import beanMetier.beanPanierLocal;
 import beanMetier.beanServeurLocal;
 import entities.Commande;
+import entities.Commentaire;
 import entities.Menu;
 import entities.Serveur;
 import entities.Tablee;
@@ -82,7 +83,24 @@ public class Panier implements ControllerInterface, Serializable{
             Integer id = Integer.parseInt(request.getParameter("id"));
             String contenuCommentaire = request.getParameter("commentaire");
             beanPanier.ajoutCommentaire(id, contenuCommentaire);
+            beanPanier.isCommentaire(id);
             request.setAttribute("msg", "votre commentaire a bien été ajouté");
+            return "/WEB-INF/client/panier.jsp";
+        }
+        
+        if("modifierCommentaire".equalsIgnoreCase(action)) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            String contenuCommentaire = request.getParameter("commentaire");
+            beanPanier.modifierCommentaire(id, contenuCommentaire);
+            beanPanier.isCommentaire(id);
+            request.setAttribute("msg", "votre commentaire a bien été ajouté");
+            return "/WEB-INF/client/panier.jsp";
+        }
+        
+        if("supprimerCommentaire".equalsIgnoreCase(action)) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            beanPanier.supprimerCommentaire(id);
+            request.setAttribute("msg", "Votre commentaire a bien été supprimé");
             return "/WEB-INF/client/panier.jsp";
         }
         
@@ -103,8 +121,11 @@ public class Panier implements ControllerInterface, Serializable{
         
         if("commander".equalsIgnoreCase(action)) {
             Commande c = beanPanier.validerPanier(beanServeur.getServeur(3L), beanServeur.getTablee(2L));
+            session.setAttribute("panier", beanPanier.clearPanier());
             request.setAttribute("commande", c);
-            return "/WEB-INF/recapCommande.jsp";
+            request.setAttribute("msg", "votre commande a bien été prise en compte. Vous pouvez voir l'avancée de la commande");
+            return "/WEB-INF/client/panier.jsp";
+            //return "/WEB-INF/recapCommande.jsp";
         }
         
         return "/WEB-INF/index.jsp";

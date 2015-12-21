@@ -13,10 +13,14 @@
 <%@include file="templates/header.jsp" %>
 
 <body>
-    Commande : ${numCommande}<br>
-    Table : ${numTable}
+    <c:if test="${empty lesLignesCommandes}">
+        votre commande est validé<br>
+        <a  href="Controller?section=serveur&action=voirCommande">aller au commande</a>
+    </c:if>
 
     <c:if test="${not empty lesLignesCommandes}">
+        Commande : ${numCommande}<br>
+        Table : ${numTable}
         <table border="1px">
             <tr>
                 <td>nom Produit</td>
@@ -37,11 +41,7 @@
                     <td>${lc.getCuisson()}</td>
                     <td>${lc.getEtat()}</td>
 
-                    <td><form>                   
-                            <INPUT type= "radio" name="${lc.getEtat()}"   id="${lc.getEtat()}" checked> en attente       
-                            <INPUT type= "radio" name="${lc.getEtat()}"    id="${lc.getEtat()}" > servi</form></td> 
-
-                </tr> 
+                </tr>
             </c:forEach>
         </table>
     </c:if>
@@ -49,6 +49,7 @@
     <c:if test="${propriete == 'valid'}">
         <c:url value="Controller?section=serveur&action=mettreAjourCommande&numCommande=${numCommande}" var="url01"/>
         <a href="${url01}">valider la commande</a>
+        
     </c:if>
     <c:if test="${propriete == 'modif'}">
         <c:url value="Controller?section=serveur&action=modifierCommande&numCommande=${numCommande}" var="url01"/>

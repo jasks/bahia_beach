@@ -40,9 +40,7 @@ public class Produit implements Serializable {
     
     @ManyToOne
     private Tva tva;
-    
-    @ManyToMany(mappedBy = "produits")
-    private Collection<Menu> menus;
+
     
     @OneToMany(mappedBy = "produit")
     private Collection<LigneCommande> ligneCommandes;
@@ -53,7 +51,6 @@ public class Produit implements Serializable {
     
 // 2°/ CONSTRUCTOR--------------------------------------------------------------
     public Produit() {
-        menus = new ArrayList();
         ligneCommandes = new ArrayList();
     }
 
@@ -178,13 +175,6 @@ public class Produit implements Serializable {
         this.tva = tva;
     }
 
-    public Collection<Menu> getMenus() {
-        return menus;
-    }
-
-    public void setMenus(Collection<Menu> menus) {
-        this.menus = menus;
-    }
 
     public Collection<LigneCommande> getLignecommandes() {
         return ligneCommandes;

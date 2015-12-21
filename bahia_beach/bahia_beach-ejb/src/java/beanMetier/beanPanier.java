@@ -47,8 +47,11 @@ public class beanPanier implements beanPanierLocal {
    
     @Override
     public Menu creerMenu(Menu m, Long idPlat, Long idEntree) {
-        m.getProduits().add(beanCarte.selectProduit(idPlat));
-        m.getProduits().add(beanCarte.selectProduit(idEntree));
+        LigneCommande lc01 = new LigneCommande(beanCarte.selectProduit(idPlat));
+        LigneCommande lc02 = new LigneCommande(beanCarte.selectProduit(idEntree));
+        m.getLigneCommandes().add(lc01);
+        m.getLigneCommandes().add(lc02);
+        
         return m;
     }
 
@@ -65,9 +68,11 @@ public class beanPanier implements beanPanierLocal {
         panier.remove(id);
     }
 
+    
     @Override
-    public void clearPanier() {
+    public Collection<LigneCommande> clearPanier() {
         panier.clear();
+        return panier.values();
     }
 
     @Override
@@ -100,6 +105,26 @@ public class beanPanier implements beanPanierLocal {
         Commentaire c = new Commentaire(contenu);
         panier.get(id).setCommentaire(c);
     }
+    
+    @Override
+    public void modifierCommentaire(int id, String contenu) {
+        Commentaire c = new Commentaire(contenu);
+        panier.get(id).setCommentaire(c);
+    }
+    
+    @Override
+    public void isCommentaire(int id) {
+        if(panier.get(id).getCommentaire().getContenu().trim().equalsIgnoreCase("")) {
+            supprimerCommentaire(id);
+        }
+    }
+    
+    @Override
+    public void supprimerCommentaire(int id) {
+        panier.get(id).getCommentaire().setContenu("");
+        System.out.println("Commentaire Supprimer test");
+        System.out.println("Commentaire Supprimer" + panier.get(id).getCommentaire().getContenu());
+    }
 
     @Override
     public HashMap<Integer, LigneCommande> getPanier() {
@@ -109,25 +134,26 @@ public class beanPanier implements beanPanierLocal {
     @Override
     public Commande validerPanier(Serveur s, Tablee t) {
         Commande c = new Commande();
-        //c.setLigneCommandes(panier.values());
         for (LigneCommande lc : panier.values()) {
             lc.setCommande(c);
             lc.setEtat(1);
+            if(lc.getCommentaire()==null) {
+                Commentaire com = new Commentaire("");
+                lc.setCommentaire(com);
+            }
+            em.persist(lc.getCommentaire());
             if (lc.getMenu() != null) {
                 em.merge(lc.getMenu());
             }
             em.persist(lc);
         }
-        em.persist(c);
-        //on persiste c pour avoir le ID ensuite
         c.setNumero("CMD" + c.getId() + 1000);
         c.setEtat(1);
         Date date = new Date();
         c.setDate(date);
         c.setServeur(s);
         c.setTable(t);
-        
-        em.merge(c);
+        em.persist(c);
         return c;
     }
 

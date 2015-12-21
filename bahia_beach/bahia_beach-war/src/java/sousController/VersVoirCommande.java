@@ -41,8 +41,9 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
         
+        
         if ("voirCommande".equalsIgnoreCase(action)) {                        
-            Serveur serveur= beanVoirCommande.getLeServeur("S3002");
+            Serveur serveur= beanVoirCommande.getLeServeur("S3001");
             session.setAttribute("serveur", serveur);            
             List<Commande> lesCommandes =beanVoirCommande.getLesCommandesEncours(serveur.getCode());     
             request.setAttribute("lesCommandes",lesCommandes );            
@@ -67,8 +68,12 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
         }
         if("modifierCommande".equalsIgnoreCase(action)){
             String numCommande = request.getParameter("numCommande");
-                      
-            return "/WEB-INF/panier.jsp";
+            Commande commande=beanVoirCommande.getCommandeByNum(numCommande);
+            List<LigneCommande> lesLignesCommandes = beanVoirCommande.getAllLigneCommande(numCommande);
+            commande.setLigneCommandes(lesLignesCommandes);
+            request.setAttribute("commande", commande);
+            request.setAttribute("lesLignesCommandes", lesLignesCommandes);
+            return "/WEB-INF/recapCommande.jsp";
         }
         return "/WEB-INF/index.jsp";
     }
@@ -83,7 +88,5 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
             throw new RuntimeException(ne);
         }
     }
-
-    
 
 }
