@@ -120,6 +120,7 @@ public class Panier implements ControllerInterface, Serializable{
         }
         
         if("commander".equalsIgnoreCase(action)) {
+//            supprimer les id(L) en dur
             Commande c = beanPanier.validerPanier(beanServeur.getServeur(3L), beanServeur.getTablee(2L));
             session.setAttribute("panier", beanPanier.clearPanier());
             request.setAttribute("commande", c);

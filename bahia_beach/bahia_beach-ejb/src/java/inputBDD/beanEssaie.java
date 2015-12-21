@@ -276,9 +276,9 @@ public class beanEssaie implements beanEssaieLocal {
         
 //TABLEE------------------------------------------------------------------------
         List<Tablee> ltablee = new ArrayList();
-        ltablee.add(new Tablee("T01", 4, 1));
+        ltablee.add(new Tablee("T01", 4, 0));
         ltablee.add(new Tablee("T02", 6, 0));
-        ltablee.add(new Tablee("T03", 4, 1));
+        ltablee.add(new Tablee("T03", 4, 0));
         ltablee.add(new Tablee("T04", 8, 0));
         ltablee.add(new Tablee("T05", 4, 0));
         ltablee.add(new Tablee("T06", 2, 0));
@@ -318,14 +318,14 @@ public class beanEssaie implements beanEssaieLocal {
         
         //test table attribué par un serveur
         lserveur.get(0).setActif(1);
-        ltablee.get(0).setServeur(lserveur.get(0));
-        ltablee.get(1).setServeur(lserveur.get(0));
-        
-        ltablee.get(2).setServeur(lserveur.get(1));
-        ltablee.get(3).setServeur(lserveur.get(1));
-        
-        ltablee.get(4).setServeur(lserveur.get(2));
-        ltablee.get(5).setServeur(lserveur.get(2));
+//        ltablee.get(0).setServeur(lserveur.get(0));
+//        ltablee.get(1).setServeur(lserveur.get(0));
+//        
+//        ltablee.get(2).setServeur(lserveur.get(1));
+//        ltablee.get(3).setServeur(lserveur.get(1));
+//        
+//        ltablee.get(4).setServeur(lserveur.get(2));
+//        ltablee.get(5).setServeur(lserveur.get(2));
         
 //PERSIST-----------------------------------------------------------------------
         for (Cuisinier cuisinier : lcuisinier) {

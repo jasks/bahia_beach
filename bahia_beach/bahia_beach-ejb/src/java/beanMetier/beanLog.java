@@ -32,10 +32,17 @@ public class beanLog implements beanLogLocal {
     
     @Override
     public Tablee connexionTablee(String code) throws Exception {
+        String requete = "select t.serveur from Tablee t where t.num = :code";
+        Query query = em.createQuery(requete);
+        query.setParameter("code", code);
+        if(query != null) {
         String req = "select t from Tablee t where t.num = :code";
         Query qr = em.createQuery(req);
         qr.setParameter("code", code);
         return (Tablee) qr.getSingleResult();
+        } else {
+            return null;
+        }
     }
 
     @Override
