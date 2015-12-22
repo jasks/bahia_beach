@@ -1,4 +1,4 @@
-var url = "ws://PLTZ851:8080/bahia_beach-war/cuisine";
+var url = "ws://PLTZ893:8080/bahia_beach-war/cuisine";
 var socket = new WebSocket(url);
 window.onload = setTimeout(init,500);
 
