@@ -41,6 +41,7 @@
        <input type="hidden" name="section" value="panier" />
             <input type="hidden" name="action" value="setCuisson" />
             <input type="hidden" name="id" value="${ligne.identifiant}" />
+            <label>cuisson </label>
             <select name="cuisson" onchange="this.form.submit()">
         <option value="1">bleu</option>
         <option value="2">saignant</option>
