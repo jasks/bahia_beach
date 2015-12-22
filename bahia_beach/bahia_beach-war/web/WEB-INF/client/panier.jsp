@@ -25,7 +25,6 @@
                 <tr>
                     <th>Id</th>
                     <th>Nom</th>
-                    <th>Cuisson</th>
                     <th>prixHt</th>
                     <th>Action</th>
                 </tr>
@@ -35,8 +34,24 @@
                     <c:if test="${ligne.produit != null}">
                     <tr>
                         <td>${ligne.identifiant}</td>
-                        <td>${ligne.nom}</td>
-                        <td>${ligne.cuisson}</td>
+                        <td>${ligne.nom}
+                        <c:if test="${ligne.produit.categorie.nomCategorie == 'Viande'}">
+                            <br>
+                            <form method="get" action="Controller">
+       <input type="hidden" name="section" value="panier" />
+            <input type="hidden" name="action" value="setCuisson" />
+            <input type="hidden" name="id" value="${ligne.identifiant}" />
+            <select name="cuisson" onchange="this.form.submit()">
+        <option value="1">bleu</option>
+        <option value="2">saignant</option>
+        <option value="3">à point</option>
+        <option value="4">cuit</option>
+    </select>
+       
+
+</form>
+                        </c:if>
+                            </td>
                         <td>
                             <fmt:formatNumber 
                                 value="${ligne.produit.prixHT}"
@@ -76,11 +91,28 @@
                             <c:forEach var="lc" items="${ligne.menu.ligneCommandes}">
                                 <ul>
                                     <li class="text-primary">${lc.nom}</li>
+                                    <c:if test="${lc.produit.categorie.nomCategorie == 'Viande'}">
+                            <br>
+                            <form method="get" action="Controller">
+       <input type="hidden" name="section" value="panier" />
+            <input type="hidden" name="action" value="setCuissonMenu" />
+            <input type="hidden" name="idMenu" value="${ligne.identifiant}" />
+            <input type="hidden" name="idLc" value="${lc.identifiant}" />
+            <label>cuisson </label>
+            <select name="cuisson" onchange="this.form.submit()">
+        <option value="1">bleu</option>
+        <option value="2">saignant</option>
+        <option value="3">à point</option>
+        <option value="4">cuit</option>
+    </select>
+
+</form>
+                        </c:if>
+                                    
                                 </ul> 
                             </c:forEach>
                         </td>
                         
-                        <td>${ligne.cuisson}</td>
                         <td>
                             <fmt:formatNumber 
                                 value="${ligne.menu.prix}"
@@ -139,6 +171,9 @@
         </c:if>
         <c:if test="${ligne.menu != null}">
             <p class="text-primary">id ligne commmande <span class="text-success">menu</span> ajouté : ${ligne.identifiant}</p>
+            <c:forEach var="lc" items="${ligne.menu.ligneCommandes}">
+                <p class="text-primary">id ligne commmande <span class="text-success">menu.ligneCommande</span> ajouté : ${lc.identifiant} / ayant comme produit: ${lc.produit.nomProduit}</p>
+            </c:forEach>
         </c:if>
     </c:forEach>
     
@@ -152,5 +187,11 @@
                 <hr>
             </c:if>
 
-        
+                <script src="js/jquery.js" type="text/javascript"></script>
+                <script>
+ /*                   $( document ).ready(function() {
+    alert("bonsoir bonsoir");
+    */
+});
+                </script>
     <%@include file="../templates/footer.jsp" %>

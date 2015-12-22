@@ -87,6 +87,23 @@ public class Panier implements ControllerInterface, Serializable{
             request.setAttribute("msg", "votre commentaire a bien été ajouté");
             return "/WEB-INF/client/panier.jsp";
         }
+         
+        if("setCuisson".equalsIgnoreCase(action)) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            Integer cuisson = Integer.parseInt(request.getParameter("cuisson"));
+            beanPanier.cuissonViande(id, cuisson);
+            request.setAttribute("msg", beanPanier.getPanier().get(id));
+            return "/WEB-INF/client/panier.jsp";
+        }
+         
+        if("setCuissonMenu".equalsIgnoreCase(action)) {
+            Integer idMenu = Integer.parseInt(request.getParameter("idMenu"));
+            Integer idLc = Integer.parseInt(request.getParameter("idLc"));
+            Integer cuisson = Integer.parseInt(request.getParameter("cuisson"));
+            beanPanier.cuissonViandeMenu(idMenu, idLc, cuisson);
+            request.setAttribute("msg", beanPanier.getPanier().get(idMenu));
+            return "/WEB-INF/client/panier.jsp";
+        }
         
         if("modifierCommentaire".equalsIgnoreCase(action)) {
             Integer id = Integer.parseInt(request.getParameter("id"));
@@ -103,6 +120,8 @@ public class Panier implements ControllerInterface, Serializable{
             request.setAttribute("msg", "Votre commentaire a bien été supprimé");
             return "/WEB-INF/client/panier.jsp";
         }
+        
+        
         
         if("ajouterMenu".equalsIgnoreCase(action)) {
 //            Float prix = Float.parseFloat(request.getParameter("prixMenu"));
