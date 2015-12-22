@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sousController.ControllerInterface;
+
 
 public class Controller extends HttpServlet {
 
@@ -39,7 +41,6 @@ public class Controller extends HttpServlet {
             } catch (IllegalAccessException ex) {
                 Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
     }
 
@@ -49,12 +50,12 @@ public class Controller extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         /*
-        comment marche mvc2: 
-        -on ne touche plus au controller principal
-        -on cree un sous controller implementant l'interface ControllerInterface
-        -notre variable 'section' on la met ds le fichier web.xml --> parameterName(nom parametre GET) / parameterValue(chemin du sousController ENTIER)
-        -ds le sous controller on retourne un String, qui est en realité le lien de l'url.
-        */
+         comment marche mvc2: 
+         -on ne touche plus au controller principal
+         -on cree un sous controller implementant l'interface ControllerInterface
+         -notre variable 'section' on la met ds le fichier web.xml --> parameterName(nom parametre GET) / parameterValue(chemin du sousController ENTIER)
+         -ds le sous controller on retourne un String, qui est en realité le lien de l'url.
+         */
         String section = request.getParameter("section");
 
         //page sur laquelle renvoie l'appli au debut

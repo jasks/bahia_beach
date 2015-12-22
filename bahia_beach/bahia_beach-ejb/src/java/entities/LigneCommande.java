@@ -20,10 +20,10 @@ public class LigneCommande implements Serializable {
     private static Integer staticIdentifiant = 1;
     private Integer identifiant;
 
-    @OneToOne
+    @ManyToOne
     private Commande commande;
     
-    @OneToOne
+    @OneToOne(mappedBy = "ligneCommande")
     private Commentaire commentaire;
     
     @ManyToOne

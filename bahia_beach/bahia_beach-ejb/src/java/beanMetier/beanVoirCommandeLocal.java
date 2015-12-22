@@ -32,10 +32,9 @@ public interface beanVoirCommandeLocal {
 
     public Serveur getLeServeur(String code);
 
+    public void mettreAjourCommande(String numCommande);
 
-
-
-
+    public Commande getCommandeByNum(String numCommande);
 
 
 

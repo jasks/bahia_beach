@@ -2,7 +2,6 @@ package beanMetier;
 
 import entities.Commande;
 import entities.LigneCommande;
-import entities.Produit;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -11,45 +10,35 @@ import javax.persistence.Query;
 
 @Stateless
 public class beanCuisine implements beanCuisineLocal {
-    
+
     @PersistenceContext(unitName = "RestaurantPU")
     private EntityManager em;
 
-    public void persist(Object object) {
-        em.persist(object);
-    }
-    
+    //Methode d'affichage des plats commandés
     @Override
-    public List<Produit> afficher(){
-        String req = "SELECT lc.produit FROM LigneCommande lc "
-                + "WHERE lc.etat = 2";
+    public List<LigneCommande> afficher() {
+        String req = "SELECT lc FROM LigneCommande lc "
+                + "WHERE lc.etat <> 4 ";
         Query qr = em.createQuery(req);
         return qr.getResultList();
     }
-    
-    //----------------------------------------------------------------
-    @Override
-     public List<LigneCommande> afficherProduitCommande(String numcommande){
-        String req = "SELECT lc.produit FROM LigneCommande lc "
-                + "WHERE lc.commande = :numcommande";
-        Query qr = em.createQuery(req);
-        qr.setParameter("numcommande", numcommande);
-        return qr.getResultList();
-    }
-    
-    @Override
-      public List<LigneCommande> afficherLigneCommande(){
-        String req = "SELECT lc FROM LigneCommande lc";
-        Query qr = em.createQuery(req);
-        return qr.getResultList();
-    }
-      
-    @Override
-      public List<Commande> afficherCommande(){
-        String req = "SELECT cmd FROM Commande cmd";
-        Query qr = em.createQuery(req);
-        return qr.getResultList();
-      }
-      
-}
 
+    //Methode d'ajout de plat commandés
+    @Override
+    public Commande add(String id) {
+        Long idCommande = Long.parseLong(id);
+        return em.find(Commande.class, idCommande);
+    }
+
+    //Methode de changement d'état d'un plat commandés
+    @Override
+    public LigneCommande toggle(String id) {
+        Long idLc = Long.parseLong(id);
+        return em.find(LigneCommande.class, idLc);
+    }
+
+    @Override
+    public void actualiser(LigneCommande lc) {
+        em.merge(lc);
+    }
+}

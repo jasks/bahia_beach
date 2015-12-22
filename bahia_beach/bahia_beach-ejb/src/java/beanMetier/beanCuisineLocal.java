@@ -3,7 +3,6 @@ package beanMetier;
 
 import entities.Commande;
 import entities.LigneCommande;
-import entities.Produit;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -11,12 +10,12 @@ import javax.ejb.Local;
 @Local
 public interface beanCuisineLocal {
 
-    public List<Produit> afficher();
+    public List<LigneCommande> afficher();
 
-    public List<LigneCommande> afficherProduitCommande(String numcommande);
+    public Commande add(String id);
 
-    public List<LigneCommande> afficherLigneCommande();
+    public LigneCommande toggle(String id);
 
-    public List<Commande> afficherCommande();
+    public void actualiser(LigneCommande lc);
     
 }
