@@ -26,6 +26,7 @@ public class Panier implements ControllerInterface, Serializable{
     beanCarteLocal beanCarte = lookupbeanCarteLocal();
     beanServeurLocal beanServeur = lookupbeanServeurLocal();
     beanPanierLocal beanPanier = lookupbeanPanierLocal();
+    
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {

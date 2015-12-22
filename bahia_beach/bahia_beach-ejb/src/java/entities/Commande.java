@@ -15,6 +15,7 @@ import javax.persistence.Temporal;
 
 @Entity
 public class Commande implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,17 +24,16 @@ public class Commande implements Serializable {
     private Integer etat;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date date;
-    
-    
+
     @ManyToOne
     private Tablee table;
-    
+
     @ManyToOne
     private Serveur serveur;
-    
+
     @OneToMany(mappedBy = "commande")
     private Collection<LigneCommande> ligneCommandes;
-    
+
     @OneToOne
     private Commentaire commentaire;
 
@@ -58,7 +58,7 @@ public class Commande implements Serializable {
         this.ligneCommandes = ligneCommandes;
         this.commentaire = commentaire;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -91,12 +91,20 @@ public class Commande implements Serializable {
 //    public String toString() {
 //        return "entities.Commande[ id=" + id + " ]";
 //    }
-
-    @Override
-    public String toString() {
-        return "Commande{" + "id=" + id + ", numero=" + numero + ", etat=" + etat + ", date=" + date + ", table=" + table + ", serveur=" + serveur + ", ligneCommandes=" + ligneCommandes + ", commentaire=" + commentaire + '}';
-    }
     
+    public String genererCode(int length){
+
+	    String chars = "1234567890"; 
+	    String code = "";
+	    for(int x=0;x<length;x++)
+	    {
+	       int i = (int)Math.floor(Math.random() * 10); 
+	       code += chars.charAt(i);
+	    }
+	    return code;
+    }
+
+
     public String getNumero() {
         return numero;
     }
@@ -152,5 +160,5 @@ public class Commande implements Serializable {
     public void setCommentaire(Commentaire commentaire) {
         this.commentaire = commentaire;
     }
-    
+
 }
