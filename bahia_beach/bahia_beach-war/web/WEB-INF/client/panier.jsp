@@ -94,13 +94,13 @@
                                     <li class="text-primary">${lc.nom}</li>
                                     <c:if test="${lc.produit.categorie.nomCategorie == 'Viande'}">
                             <br>
-                            <form method="get" action="Controller">
-       <input type="hidden" name="section" value="panier" />
-            <input type="hidden" name="action" value="setCuissonMenu" />
-            <input type="hidden" name="idMenu" value="${ligne.identifiant}" />
-            <input type="hidden" name="idLc" value="${lc.identifiant}" />
+                            <form id="formMenu" method="get" action="Controller">
+       <input id="section" type="hidden" name="section" value="panier" />
+            <input id="action" type="hidden" name="action" value="setCuissonMenu" />
+            <input id="idMenu" type="hidden" name="idMenu" value="${ligne.identifiant}" />
+            <input id="idLc" type="hidden" name="idLc" value="${lc.identifiant}" />
             <label>cuisson </label>
-            <select name="cuisson" onchange="this.form.submit()">
+            <select id="cuisson" name="cuisson" onchange="ok()">
         <option value="1">bleu</option>
         <option value="2">saignant</option>
         <option value="3">à point</option>
@@ -190,9 +190,20 @@
 
                 <script src="js/jquery.js" type="text/javascript"></script>
                 <script>
- /*                   $( document ).ready(function() {
-    alert("bonsoir bonsoir");
-    */
-});
+                    $( document ).ready(function() {
+    function ok(){
+        
+    /*    var section = $('#section');
+        var action = $('#action');
+        var idMenu = $('#idMenu');
+        var idLc = $('#idLc');
+        var cuisson = $('#cuisson');
+     */   
+        $('h1').hide();
+  
+   
+
+};
+    }
                 </script>
     <%@include file="../templates/footer.jsp" %>

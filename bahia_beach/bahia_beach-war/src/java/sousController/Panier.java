@@ -94,6 +94,7 @@ public class Panier implements ControllerInterface, Serializable{
             Integer cuisson = Integer.parseInt(request.getParameter("cuisson"));
             beanPanier.cuissonViande(id, cuisson);
             request.setAttribute("msg", beanPanier.getPanier().get(id));
+            System.out.println(beanPanier.getPanier().get(id));
             return "/WEB-INF/client/panier.jsp";
         }
          
@@ -103,6 +104,7 @@ public class Panier implements ControllerInterface, Serializable{
             Integer cuisson = Integer.parseInt(request.getParameter("cuisson"));
             beanPanier.cuissonViandeMenu(idMenu, idLc, cuisson);
             request.setAttribute("msg", beanPanier.getPanier().get(idMenu));
+            System.out.println(beanPanier.getPanier().get(idMenu));
             return "/WEB-INF/client/panier.jsp";
         }
         
