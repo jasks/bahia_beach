@@ -50,4 +50,8 @@ public interface beanPanierLocal {
     public void isCommentaire(int id);
 
     public void modifierCommentaire(int id, String contenu);
+
+    public void cuissonViande(int id, int cuisson);
+
+    public void cuissonViandeMenu(int idMenu, int idLc, int cuisson);
 }

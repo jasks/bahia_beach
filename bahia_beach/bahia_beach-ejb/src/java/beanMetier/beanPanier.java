@@ -39,8 +39,8 @@ public class beanPanier implements beanPanierLocal {
 
         Produit p = beanCarte.selectProduit(id);
         LigneCommande lc = new LigneCommande(p);
+        lc.setCuisson(0);
         panier.put(lc.getIdentifiant(), lc);
-
     }
     
         
@@ -59,7 +59,11 @@ public class beanPanier implements beanPanierLocal {
     @Override
         public void addMenu(Menu m, Long idPlat, Long idEntree){
             m = creerMenu(m, idPlat, idEntree);
+            for (LigneCommande lc : m.getLigneCommandes()) {
+            lc.setCuisson(0);
+        }
             LigneCommande lc = new LigneCommande(m);
+            lc.setCuisson(0);
             panier.put(lc.getIdentifiant(), lc);
     }
 
@@ -98,6 +102,20 @@ public class beanPanier implements beanPanierLocal {
             }
         }
         return total;
+    }
+    
+    @Override
+    public void cuissonViande(int id, int cuisson) {
+        panier.get(id).setCuisson(cuisson);
+    }
+    
+    @Override
+    public void cuissonViandeMenu(int idMenu, int idLc, int cuisson) {
+        for (LigneCommande lc : panier.get(idMenu).getMenu().getLigneCommandes()) {
+            if(lc.getProduit().getCategorie().getNomCategorie().equalsIgnoreCase("Viande")){
+            lc.setCuisson(cuisson);
+            }
+        }
     }
 
     @Override
@@ -156,6 +174,7 @@ public class beanPanier implements beanPanierLocal {
         em.persist(c);
         return c;
     }
+
 
     @Override
     public void persist(Object object) {
