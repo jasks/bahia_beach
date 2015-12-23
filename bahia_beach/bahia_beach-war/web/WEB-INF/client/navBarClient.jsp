@@ -8,5 +8,5 @@
     </c:if>
         <a href="Controller?section=carte&action=carte">lien vers ma carte</a>
         <a href="Controller?section=panier&action=afficherPanier">lien vers le panier</a>
-
+        <a href="Controller?section=client&action=appelerServeur">appeler Serveur</a>
         </div>  

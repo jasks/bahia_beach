@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,7 +32,7 @@ public class Commande implements Serializable {
     @ManyToOne
     private Serveur serveur;
 
-    @OneToMany(mappedBy = "commande")
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "commande")
     private Collection<LigneCommande> ligneCommandes;
 
     @OneToOne
@@ -91,26 +92,7 @@ public class Commande implements Serializable {
 //    public String toString() {
 //        return "entities.Commande[ id=" + id + " ]";
 //    }
-
-    @Override
-    public String toString() {
-        return "Commande{" + "id=" + id + ", numero=" + numero + ", etat=" + etat + ", date=" + date + ", table=" + table + ", serveur=" + serveur + ", ligneCommandes=" + ligneCommandes + ", commentaire=" + commentaire + '}';
-    }
-    
-    
-    
-    public String genererCode(int length){
-
-	    String chars = "1234567890"; 
-	    String code = "";
-	    for(int x=0;x<length;x++)
-	    {
-	       int i = (int)Math.floor(Math.random() * 10); 
-	       code += chars.charAt(i);
-	    }
-	    return code;
-    }
-
+   
 
     public String getNumero() {
         return numero;

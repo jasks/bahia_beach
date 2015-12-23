@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,10 +27,10 @@ public class Serveur implements Serializable {
     @Embedded
     private Coordonnee coordonnee;
     
-    @OneToMany(mappedBy = "serveur")
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "serveur")
     private Collection<Tablee> tables;
     
-    @OneToMany(mappedBy = "serveur")
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "serveur")
     private Collection<Commande> commandes;
 
     public Serveur() {

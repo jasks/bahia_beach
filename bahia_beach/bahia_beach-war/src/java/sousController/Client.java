@@ -1,6 +1,7 @@
 package sousController;
 
 import beanMetier.beanClientLocal;
+import entities.Serveur;
 import entities.Tablee;
 import java.io.Serializable;
 import java.util.List;
@@ -37,6 +38,13 @@ public class Client  implements ControllerInterface, Serializable {
             request.setAttribute("msg", t.getNum() + " mis en session" );
             System.out.println(t);
             return "/WEB-INF/client/interfaceClient.jsp";
+        }
+        if("appelerServeur".equalsIgnoreCase(action)){
+            Tablee t = beanClient.appelerServeur("T01");
+            request.setAttribute("uneTable", t);
+            request.setAttribute("serveur", t.getServeur());
+            
+            return "/WEB-INF/client/appelerServeur.jsp";
         }
         
         return "/WEB-INF/index.jsp";

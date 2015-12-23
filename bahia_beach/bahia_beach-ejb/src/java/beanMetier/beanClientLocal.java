@@ -5,6 +5,7 @@
  */
 package beanMetier;
 
+import entities.Serveur;
 import entities.Tablee;
 import java.util.List;
 import javax.ejb.Local;
@@ -19,5 +20,7 @@ public interface beanClientLocal {
     public Tablee selectTable(Long id);
 
     public List<Tablee> tableAttribueByServeur();
-    
+
+    public Tablee appelerServeur(String numTable);
+   
 }

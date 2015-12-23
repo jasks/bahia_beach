@@ -21,4 +21,16 @@ public class MesOutils {
         s+=rand.nextInt(999999999);
         return s;
     }
+     public String genererCode(int length){
+
+	    String chars = "1234567890"; 
+	    String code = "";
+	    for(int x=0;x<length;x++)
+	    {
+	       int i = (int)Math.floor(Math.random() * 10); 
+	       code += chars.charAt(i);
+	    }
+	    return code;
+    }
+
 }

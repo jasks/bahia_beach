@@ -1,5 +1,6 @@
 package beanMetier;
 
+import entities.Serveur;
 import entities.Tablee;
 import entities.Type;
 import java.util.List;
@@ -27,6 +28,16 @@ public class beanClient implements beanClientLocal {
         Query qr = em.createQuery(req);
         return qr.getResultList();
     }
-    
+     
+    @Override
+    public Tablee appelerServeur(String numTable){
+        String req = "select t from Tablee t where t.num= :valeur";
+        Query qr = em.createQuery(req);
+        qr.setParameter("valeur", numTable);
+        System.out.println("tablle "+qr.getSingleResult().toString());
+        
+        return (Tablee) qr.getSingleResult();
+    }
+
    
 }
