@@ -8,6 +8,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Tablee implements Serializable {
     @ManyToOne
     private Serveur serveur;
     
-    @OneToMany(mappedBy = "table")
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "table")
     private Collection<Commande> commandes;
 
     public Tablee() {

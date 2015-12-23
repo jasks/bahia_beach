@@ -8,7 +8,9 @@
         <a href="Controller?section=server&action=table">lien voir table |</a>
         <a href="Controller?section=server&action=tableLibre">lien voir table libre |</a>
         <a href="Controller?section=server&action=tableAttribue">lien voir table attribué |</a>
+        <a href="Controller?section=server&action=repondreClient">repondre au Client |</a>
                 <c:if test="${auth != null}">
             <a href="Controller?section=server&action=deconnexion">lien vers deconnexion |</a>
+            
         </c:if>
     </div>

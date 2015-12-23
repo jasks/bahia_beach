@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class Type implements Serializable {
     
     private String nomType;
     
-    @OneToMany(mappedBy = "type")
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "type")
     Collection<Produit> produits;
 // 2°/ CONSTRUCTOR--------------------------------------------------------------    
     public Type() {

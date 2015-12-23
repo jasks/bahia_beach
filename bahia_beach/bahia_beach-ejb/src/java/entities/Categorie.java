@@ -3,6 +3,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class Categorie implements Serializable {
 
     private String nomCategorie;
     
-    @OneToMany(mappedBy = "categorie")
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "categorie")
     private Collection<Produit> produits;
     
 // 2°/ CONSTRUCTOR--------------------------------------------------------------

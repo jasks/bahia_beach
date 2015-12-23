@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Tva implements Serializable {
     private Date date;
     
     // associations
-    @OneToMany(mappedBy = "Tva")
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "Tva")
     private Collection<Produit> produits;
 
     public Tva() {
