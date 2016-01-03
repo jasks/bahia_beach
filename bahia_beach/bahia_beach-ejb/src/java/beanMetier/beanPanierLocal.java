@@ -54,4 +54,6 @@ public interface beanPanierLocal {
     public void cuissonViande(int id, int cuisson);
 
     public void cuissonViandeMenu(int idMenu, int idLc, int cuisson);
+
+    public int getNombreProduit();
 }

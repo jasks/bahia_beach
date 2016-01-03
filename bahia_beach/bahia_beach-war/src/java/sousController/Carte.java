@@ -1,9 +1,11 @@
 
 package sousController;
 
+import beanMetier.beanAppelLocal;
 import beanMetier.beanCarteLocal;
 import entities.Menu;
 import entities.Produit;
+import entities.Tablee;
 import entities.Type;
 import java.io.Serializable;
 import java.util.List;
@@ -15,16 +17,18 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 public class Carte implements ControllerInterface, Serializable {
+    beanAppelLocal beanAppel = lookupbeanAppelLocal();
     beanCarteLocal beanCarte = lookupbeanCarteLocal();
     
     
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
-        
+         HttpSession session = request.getSession();
         String action = request.getParameter("action");
         
         if("carte".equalsIgnoreCase(action)) {
@@ -74,6 +78,17 @@ public class Carte implements ControllerInterface, Serializable {
 //               request.setAttribute("produits", lp);
 //               return "/WEB-INF/carteProduits.jsp";
 //        }
+        
+        if("appel".equalsIgnoreCase(action)) {
+            beanAppel.addAppel((Tablee) session.getAttribute("table"));
+            List<Type> lt = beanCarte.selectAllType();
+               request.setAttribute("types", lt);
+            List<Menu> lm = beanCarte.selectAllMenu();
+               request.setAttribute("menus", lm);
+            request.setAttribute("msg", "votre serveur vous sera envoyé de suite, merci de patienter");
+            return "/WEB-INF/client/carte.jsp";
+        }
+        
  
         
         return "/WEB-INF/index.jsp";
@@ -83,6 +98,16 @@ public class Carte implements ControllerInterface, Serializable {
         try {
             Context c = new InitialContext();
             return (beanCarteLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanCarte!beanMetier.beanCarteLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private beanAppelLocal lookupbeanAppelLocal() {
+        try {
+            Context c = new InitialContext();
+            return (beanAppelLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanAppel!beanMetier.beanAppelLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

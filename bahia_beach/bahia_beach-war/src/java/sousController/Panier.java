@@ -43,6 +43,7 @@ public class Panier implements ControllerInterface, Serializable{
             Long id = Long.parseLong(request.getParameter("id"));
             beanPanier.add(id);
             session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("nombre", beanPanier.getNombreProduit());
             session.setAttribute("total", beanPanier.getTotalHT());
             request.setAttribute("msg", "Le produit a bien été ajouté à votre commande.");
             return "/WEB-INF/client/panier.jsp";
@@ -52,6 +53,7 @@ public class Panier implements ControllerInterface, Serializable{
             Integer id = Integer.parseInt(request.getParameter("id"));
             beanPanier.delete(id);
             session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("nombre", beanPanier.getNombreProduit());
             session.setAttribute("total", beanPanier.getTotalHT());
             request.setAttribute("msg", "Le produit a bien été retiré de votre commande.");
             return "/WEB-INF/client/panier.jsp";
@@ -135,6 +137,7 @@ public class Panier implements ControllerInterface, Serializable{
             Long idEntree = Long.parseLong(request.getParameter("entree"));
             beanPanier.addMenu(m, idPlat, idEntree);
             session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("nombre", beanPanier.getNombreProduit());
             session.setAttribute("total", beanPanier.getTotalHT());
             request.setAttribute("msg", "Votre menu a bien été ajouté !!!");
             return "/WEB-INF/client/panier.jsp";

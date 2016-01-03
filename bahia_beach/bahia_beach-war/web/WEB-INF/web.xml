@@ -121,4 +121,22 @@
         <local>beanMetier.beanCuisineLocal</local>
         <ejb-link>bahia_beach-ejb.jar#beanCuisine</ejb-link>
     </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanAppel</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanAppelLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanAppel</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanAppel1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanAppelLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanAppel</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanAppel2</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanAppelLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanAppel</ejb-link>
+    </ejb-local-ref>
 </web-app>
