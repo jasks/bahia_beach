@@ -1,6 +1,7 @@
 
 package sousController;
 
+import beanMetier.beanAppelLocal;
 import beanMetier.beanLogLocal;
 import entities.Cuisinier;
 import entities.Serveur;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 
 public class Log implements ControllerInterface, Serializable {
+    beanAppelLocal beanAppel = lookupbeanAppelLocal();
     beanLogLocal beanLog = lookupbeanLogLocal();
     
     
@@ -46,6 +48,7 @@ public class Log implements ControllerInterface, Serializable {
                     s = beanLog.connexionServeur(code);
                     beanLog.setActif(s, 1);
                     session.setAttribute("auth", s);
+                    request.setAttribute("nombre", beanAppel.getNombreAppel(s));
                     request.setAttribute("msg", "Bonjour "+s.getNom() + " " + s.getPrenom() + ": vous etes bien un "+s.getClass());
                     return "/WEB-INF/serveur/interfaceServeur.jsp";
                 } catch (Exception ex) {
@@ -95,6 +98,16 @@ public class Log implements ControllerInterface, Serializable {
         try {
             Context c = new InitialContext();
             return (beanLogLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanLog!beanMetier.beanLogLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private beanAppelLocal lookupbeanAppelLocal() {
+        try {
+            Context c = new InitialContext();
+            return (beanAppelLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanAppel!beanMetier.beanAppelLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

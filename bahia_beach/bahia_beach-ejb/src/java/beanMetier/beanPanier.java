@@ -148,6 +148,11 @@ public class beanPanier implements beanPanierLocal {
     public HashMap<Integer, LigneCommande> getPanier() {
         return panier;
     }
+    
+    @Override
+       public int getNombreProduit() {
+        return this.getListe().size();
+    }
 
     @Override
     public Commande validerPanier(Serveur s, Tablee t) {

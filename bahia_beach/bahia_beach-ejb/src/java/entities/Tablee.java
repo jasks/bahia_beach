@@ -26,6 +26,8 @@ public class Tablee implements Serializable {
     private String num;
     private int nbrPlace;
     private int statut;
+    
+    private int call;
 
     @ManyToOne
     private Serveur serveur;
@@ -97,6 +99,14 @@ public class Tablee implements Serializable {
 
     public void setCommandes(Collection<Commande> commandes) {
         this.commandes = commandes;
+    }
+
+    public int getCall() {
+        return call;
+    }
+
+    public void setCall(int call) {
+        this.call = call;
     }
     
     

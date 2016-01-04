@@ -14,11 +14,7 @@
 
 <%@include file="navBarServeur.jsp" %>
 
-<c:if test="${empty tables}">
-    <p class="alert alert-danger text-center">vous n'avez attribué aucune table</p>
-</c:if>
-<c:if test="${not empty tables}">
-    <div class="row">
+<div class="row">
 <div id="mesProduits" class="col-lg-6">
     <h3 class="text-primary">Les tables</h3>
     <table border="1" >
@@ -27,7 +23,7 @@
                 <th>ID</th>
                 <th>nom table</th>
                 <th>nbre place</th>
-                <th>statut</th>
+                <th>action</th>
                 
 
             </tr>
@@ -39,10 +35,9 @@
                     <td>${t.id}</td>
                     <td>${t.num}</td>
                     <td>${t.nbrPlace}</td>
-                    <td>${t.statut}</td>
                     <td>
-                        <c:url value="Controller?section=server&action=carte&id=${t.id}" var="url01" />
-                        <a href="${url01}">voir interface du client à faire !</a>
+                        <c:url value="Controller?section=server&action=repondreAppel&id=${t.id}" var="url01" />
+                        <a href="${url01}">répondre</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -52,8 +47,6 @@
 </div>
                     
                     
-      </div>  
-</c:if>
-            
+      </div>              
 <%@include file="../templates/footer.jsp" %>
 
