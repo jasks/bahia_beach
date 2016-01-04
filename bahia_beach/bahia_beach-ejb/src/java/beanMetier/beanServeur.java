@@ -1,8 +1,10 @@
 
 package beanMetier;
 
+import entities.LigneCommande;
 import entities.Serveur;
 import entities.Tablee;
+import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -16,7 +18,6 @@ public class beanServeur implements beanServeurLocal {
 
     @PersistenceContext(unitName = "RestaurantPU")
     private EntityManager em;
-    
 
     
     @Override
@@ -74,4 +75,6 @@ public class beanServeur implements beanServeurLocal {
         Tablee t = em.find(Tablee.class, id);
         return t;
     }
+
+    
 }

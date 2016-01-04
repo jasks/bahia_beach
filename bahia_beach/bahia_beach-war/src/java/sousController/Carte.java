@@ -80,13 +80,23 @@ public class Carte implements ControllerInterface, Serializable {
 //        }
         
         if("appel".equalsIgnoreCase(action)) {
-            beanAppel.addAppel((Tablee) session.getAttribute("table"));
+            Tablee t = (Tablee) session.getAttribute("table");
+            if(t.getCall()==0){
+            beanAppel.addAppel(t);
             List<Type> lt = beanCarte.selectAllType();
                request.setAttribute("types", lt);
             List<Menu> lm = beanCarte.selectAllMenu();
                request.setAttribute("menus", lm);
             request.setAttribute("msg", "votre serveur vous sera envoyé de suite, merci de patienter");
             return "/WEB-INF/client/carte.jsp";
+            } else {
+                List<Type> lt = beanCarte.selectAllType();
+               request.setAttribute("types", lt);
+            List<Menu> lm = beanCarte.selectAllMenu();
+               request.setAttribute("menus", lm);
+                request.setAttribute("msg", "Un serveur a déjà été demandé pour cette table, veuillez patienter s'il vous plait");
+            return "/WEB-INF/client/carte.jsp";
+            }
         }
         
  

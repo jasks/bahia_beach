@@ -139,4 +139,28 @@
         <local>beanMetier.beanAppelLocal</local>
         <ejb-link>bahia_beach-ejb.jar#beanAppel</ejb-link>
     </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanPanierServeur</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanPanierServeurLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanPanierServeur</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanPanierServeur1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanPanierServeurLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanPanierServeur</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanCarte</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanCarteLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanCarte</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanPanier1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanPanierLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanPanier</ejb-link>
+    </ejb-local-ref>
 </web-app>
