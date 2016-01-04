@@ -32,17 +32,10 @@ public class beanLog implements beanLogLocal {
     
     @Override
     public Tablee connexionTablee(String code) throws Exception {
-        String requete = "select t.serveur from Tablee t where t.num = :code";
-        Query query = em.createQuery(requete);
-        query.setParameter("code", code);
-        if(query != null) {
-        String req = "select t from Tablee t where t.num = :code";
+        String req = "select t from Tablee t where t.num = :code AND t.serveur != null";
         Query qr = em.createQuery(req);
         qr.setParameter("code", code);
         return (Tablee) qr.getSingleResult();
-        } else {
-            return null;
-        }
     }
 
     @Override
@@ -61,5 +54,20 @@ public class beanLog implements beanLogLocal {
     public void setActif(Tablee t, int etat) {
         t.setStatut(etat);
         em.merge(t);
+    }
+    
+    @Override
+    public void viderTable(Tablee t) {
+        t.setServeur(null);
+        em.merge(t);
+    }
+    
+    @Override
+    public Serveur logout(String code) {
+        // comparer le code avec le code serveur dans la bdd
+        String req = "select s from Serveur s where s.code = :code";
+        Query qr = em.createQuery(req);
+        qr.setParameter("code", code);
+        return (Serveur)qr.getSingleResult();
     }
 }

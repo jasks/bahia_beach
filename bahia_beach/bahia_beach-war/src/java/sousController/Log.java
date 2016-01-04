@@ -27,7 +27,6 @@ public class Log implements ControllerInterface, Serializable {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
-
         HttpSession session = request.getSession();
 
         String action = request.getParameter("action");
@@ -38,7 +37,6 @@ public class Log implements ControllerInterface, Serializable {
         }
 
         if ("verifierCode".equalsIgnoreCase(action)) {
-
             if (code.substring(0, 1).equalsIgnoreCase("S")) {
                 Serveur s = new Serveur();
 

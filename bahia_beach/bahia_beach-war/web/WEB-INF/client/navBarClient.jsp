@@ -8,6 +8,6 @@
     </c:if>
         <a href="Controller?section=carte&action=carte">lien vers la carte</a>
         <a href="Controller?section=panier&action=afficherPanier">lien vers le panier</a>
-        <a href="Controller?section=panier&action=deconnexion">déconnexion</a>
+        <a href="Controller?section=client&action=deconnexion">déconnexion</a>
 
         </div>  

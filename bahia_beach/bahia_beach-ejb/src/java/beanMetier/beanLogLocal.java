@@ -20,4 +20,8 @@ public interface beanLogLocal {
     public Tablee connexionTablee(String code) throws Exception;
 
     public void setActif(Tablee t, int etat);
+
+    public void viderTable(Tablee t);
+
+    public Serveur logout(String code);
 }
