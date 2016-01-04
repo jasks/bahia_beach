@@ -40,7 +40,7 @@
                     <td>${p.type.nomType}</td>
                     
                     <td>
-                        <c:url value="Controller?section=panier&action=add&id=${p.id}" var="url01" />
+                        <c:url value="Controller?section=server&action=add&id=${p.id}" var="url01" />
                         <a href="${url01}">Ajouter au panier</a>
                     </td>
                 </tr>

@@ -11,4 +11,4 @@
         </c:if>
             
         </div>  
-        <p class="well">panier envoyé au serveur : ${panierServeurRequest}</p>
+        

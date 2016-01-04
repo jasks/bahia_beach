@@ -56,4 +56,6 @@ public interface beanPanierLocal {
     public void cuissonViandeMenu(int idMenu, int idLc, int cuisson);
 
     public int getNombreProduit();
+
+    public void setPanier(HashMap<Integer, LigneCommande> panier);
 }
