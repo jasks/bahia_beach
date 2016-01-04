@@ -179,6 +179,7 @@
     </c:forEach>
     
     </c:if>
+                <button>click</button>
             
             
             <c:if test="${commande != null}">
@@ -189,21 +190,5 @@
             </c:if>
 
                 <script src="js/jquery.js" type="text/javascript"></script>
-                <script>
-                    $( document ).ready(function() {
-    function ok(){
-        
-    /*    var section = $('#section');
-        var action = $('#action');
-        var idMenu = $('#idMenu');
-        var idLc = $('#idLc');
-        var cuisson = $('#cuisson');
-     */   
-        $('h1').hide();
-  
-   
-
-};
-    }
-                </script>
+                
     <%@include file="../templates/footer.jsp" %>
