@@ -1,7 +1,6 @@
 package sousController;
 
 import beanMetier.beanAppelLocal;
-import beanMetier.beanCarte;
 import beanMetier.beanCarteLocal;
 import beanMetier.beanLogLocal;
 import entities.Cuisinier;
