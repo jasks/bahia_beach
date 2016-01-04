@@ -116,27 +116,51 @@
         <ejb-link>bahia_beach-ejb.jar#beanServeur</ejb-link>
     </ejb-local-ref>
     <ejb-local-ref>
+        <ejb-ref-name>beanCuisine1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanCuisineLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanCuisine</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanAppel</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanAppelLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanAppel</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanAppel1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanAppelLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanAppel</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanAppel2</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanAppelLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanAppel</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanPanierServeur</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanPanierServeurLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanPanierServeur</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanPanierServeur1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanPanierServeurLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanPanierServeur</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
         <ejb-ref-name>beanCarte</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
         <local>beanMetier.beanCarteLocal</local>
         <ejb-link>bahia_beach-ejb.jar#beanCarte</ejb-link>
     </ejb-local-ref>
     <ejb-local-ref>
-        <ejb-ref-name>beanCarte1</ejb-ref-name>
+        <ejb-ref-name>beanPanier1</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <local>beanMetier.beanCarteLocal</local>
-        <ejb-link>bahia_beach-ejb.jar#beanCarte</ejb-link>
-    </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>beanClient1</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>beanMetier.beanClientLocal</local>
-        <ejb-link>bahia_beach-ejb.jar#beanClient</ejb-link>
-    </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>beanLog2</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>beanMetier.beanLogLocal</local>
-        <ejb-link>bahia_beach-ejb.jar#beanLog</ejb-link>
+        <local>beanMetier.beanPanierLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanPanier</ejb-link>
     </ejb-local-ref>
 </web-app>

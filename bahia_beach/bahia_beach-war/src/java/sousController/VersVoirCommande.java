@@ -43,9 +43,10 @@ public class VersVoirCommande implements ControllerInterface, Serializable {
       
         if ("voirCommande".equalsIgnoreCase(action)) {
             
+            Serveur serveur = (Serveur) session.getAttribute("auth");
+        //    Serveur serveur= beanVoirCommande.getLeServeur(s.getCode());
+            session.setAttribute("serveur", serveur); 
             
-            Serveur serveur= beanVoirCommande.getLeServeur("S3002");
-            session.setAttribute("serveur", serveur);            
             List<Commande> lesCommandes =beanVoirCommande.getLesCommandesEncours(serveur.getCode());     
             request.setAttribute("lesCommandes",lesCommandes );            
             return "/WEB-INF/voirCommande.jsp";

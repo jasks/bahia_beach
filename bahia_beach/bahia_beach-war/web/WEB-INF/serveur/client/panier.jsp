@@ -10,9 +10,11 @@
     </head>
     
     
-    <%@include file="../templates/header.jsp" %>
+    <%@include file="../../templates/header.jsp" %>
     
-<%@include file="navBarClient.jsp" %>
+<%@include file="../navBarServeur.jsp" %>
+   
+    <%@include file="navBarClient.jsp" %>
     
         <h1>Panier</h1>
 
@@ -95,7 +97,7 @@
                                     <c:if test="${lc.produit.categorie.nomCategorie == 'Viande'}">
                             <br>
                             <form id="formMenu" method="get" action="Controller">
-       <input id="section" type="hidden" name="section" value="panier" />
+       <input id="section" type="hidden" name="section" value="server" />
             <input id="action" type="hidden" name="action" value="setCuissonMenu" />
             <input id="idMenu" type="hidden" name="idMenu" value="${ligne.identifiant}" />
             <input id="idLc" type="hidden" name="idLc" value="${lc.identifiant}" />
@@ -123,21 +125,21 @@
                         </td>
                        <c:if test="${ligne.commentaire.contenu != null}">
                             <td>
-                            <a href="Controller?section=panier&action=modifierCommenter&id=${ligne.identifiant}"> modifier commentaire </a>
+                            <a href="Controller?section=server&action=modifierCommenter&id=${ligne.identifiant}"> modifier commentaire </a>
                         </td>
                         <td>
-                            <a href="Controller?section=panier&action=supprimerCommentaire&id=${ligne.identifiant}"> supprimer le commentaire </a>
+                            <a href="Controller?section=server&action=supprimerCommentaire&id=${ligne.identifiant}"> supprimer le commentaire </a>
                         </td>
                         </c:if>
                         
                         <c:if test="${ligne.commentaire.contenu == null}">
                             <td>
-                            <a href="Controller?section=panier&action=commenter&id=${ligne.identifiant}"> laisser un commentaire </a>
+                            <a href="Controller?section=server&action=commenter&id=${ligne.identifiant}"> laisser un commentaire </a>
                         </td>
                         </c:if>
                        
                         <td>
-                            <a href="Controller?section=panier&action=remove&id=${ligne.identifiant}"> supprimer </a>
+                            <a href="Controller?section=server&action=remove&id=${ligne.identifiant}"> supprimer </a>
                         </td>
                         
                         <c:if test="${ligne.commentaire.contenu != null}">
@@ -163,7 +165,7 @@
 <p class="text-danger">vous avez la possibilité de laisser une note à chaque produit commandé afin de préciser vos préférences, pour cela cliquer sur "commenter"</p>
 
 
-<a href="Controller?section=panier&action=commander"><button class="btn btn-primary">valider ma commande <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button></a>
+<a href="Controller?section=server&action=commander"><button class="btn btn-primary">valider ma commande <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button></a>
     
 <h3 class="well">test pour identifier si LigneCommande contient un menu ou un produit</h3>
 <c:forEach var="ligne" items="${panier}">
@@ -206,4 +208,4 @@
 };
     }
                 </script>
-    <%@include file="../templates/footer.jsp" %>
+    <%@include file="../../templates/footer.jsp" %>

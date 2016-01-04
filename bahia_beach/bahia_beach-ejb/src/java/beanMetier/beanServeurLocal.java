@@ -31,4 +31,5 @@ public interface beanServeurLocal {
     public Serveur getServeur(Long id);
 
     public Tablee getTablee(Long id);
+
 }

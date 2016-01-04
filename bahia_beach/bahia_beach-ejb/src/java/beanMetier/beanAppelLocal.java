@@ -12,15 +12,16 @@ import javax.ejb.Local;
 
 /**
  *
- * @author cdi418
+ * @author kevin
  */
 @Local
-public interface beanClientLocal {
+public interface beanAppelLocal {
+    
+    public void addAppel(Tablee t);
 
-    public Tablee selectTable(Long id);
+    public void responseAppel(Tablee t);
 
-    public List<Tablee> tableAttribueByServeur();
+    public List<Tablee> afficherAppelTable(Serveur s);
 
-    public Tablee appelerServeur(String numTable);
-   
+    public int getNombreAppel(Serveur s);
 }

@@ -4,6 +4,7 @@ package sousController;
 import beanMetier.beanCarte;
 import beanMetier.beanCarteLocal;
 import beanMetier.beanPanierLocal;
+import beanMetier.beanPanierServeurLocal;
 import beanMetier.beanServeurLocal;
 import entities.Commande;
 import entities.Commentaire;
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +25,7 @@ import javax.servlet.http.HttpSession;
 
 
 public class Panier implements ControllerInterface, Serializable{
+    beanPanierServeurLocal beanPanierServeur = lookupbeanPanierServeurLocal();
     beanCarteLocal beanCarte = lookupbeanCarteLocal();
     beanServeurLocal beanServeur = lookupbeanServeurLocal();
     beanPanierLocal beanPanier = lookupbeanPanierLocal();
@@ -32,6 +35,7 @@ public class Panier implements ControllerInterface, Serializable{
     public String execute(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet) {
         
         HttpSession session = request.getSession();
+        ServletContext application = servlet.getServletContext();
     
         String action = request.getParameter("action");
         if ("afficherPanier".equalsIgnoreCase(action)) {
@@ -43,7 +47,12 @@ public class Panier implements ControllerInterface, Serializable{
             Long id = Long.parseLong(request.getParameter("id"));
             beanPanier.add(id);
             session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("nombre", beanPanier.getNombreProduit());
             session.setAttribute("total", beanPanier.getTotalHT());
+            //update panier donc update panierServeur
+            Tablee t = (Tablee) session.getAttribute("table");
+            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
             request.setAttribute("msg", "Le produit a bien été ajouté à votre commande.");
             return "/WEB-INF/client/panier.jsp";
         }
@@ -52,7 +61,12 @@ public class Panier implements ControllerInterface, Serializable{
             Integer id = Integer.parseInt(request.getParameter("id"));
             beanPanier.delete(id);
             session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("nombre", beanPanier.getNombreProduit());
             session.setAttribute("total", beanPanier.getTotalHT());
+            //update panier donc update panierServeur
+            Tablee t = (Tablee) session.getAttribute("table");
+            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
             request.setAttribute("msg", "Le produit a bien été retiré de votre commande.");
             return "/WEB-INF/client/panier.jsp";
         }
@@ -60,6 +74,10 @@ public class Panier implements ControllerInterface, Serializable{
          if ("clear".equalsIgnoreCase(action)) {
             beanPanier.clearPanier();
             session.setAttribute("panier", beanPanier.getListe());
+            //update panier donc update panierServeur
+            Tablee t = (Tablee) session.getAttribute("table");
+            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
             request.setAttribute("msg", "La commande a été supprimé.");
             return "/WEB-INF/client/panier.jsp";
         }
@@ -94,6 +112,7 @@ public class Panier implements ControllerInterface, Serializable{
             Integer cuisson = Integer.parseInt(request.getParameter("cuisson"));
             beanPanier.cuissonViande(id, cuisson);
             request.setAttribute("msg", beanPanier.getPanier().get(id));
+            System.out.println(beanPanier.getPanier().get(id));
             return "/WEB-INF/client/panier.jsp";
         }
          
@@ -103,6 +122,7 @@ public class Panier implements ControllerInterface, Serializable{
             Integer cuisson = Integer.parseInt(request.getParameter("cuisson"));
             beanPanier.cuissonViandeMenu(idMenu, idLc, cuisson);
             request.setAttribute("msg", beanPanier.getPanier().get(idMenu));
+            System.out.println(beanPanier.getPanier().get(idMenu));
             return "/WEB-INF/client/panier.jsp";
         }
         
@@ -133,7 +153,12 @@ public class Panier implements ControllerInterface, Serializable{
             Long idEntree = Long.parseLong(request.getParameter("entree"));
             beanPanier.addMenu(m, idPlat, idEntree);
             session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("nombre", beanPanier.getNombreProduit());
             session.setAttribute("total", beanPanier.getTotalHT());
+            //update panier donc update panierServeur
+            Tablee t = (Tablee) session.getAttribute("table");
+            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
             request.setAttribute("msg", "Votre menu a bien été ajouté !!!");
             return "/WEB-INF/client/panier.jsp";
             
@@ -176,6 +201,16 @@ public class Panier implements ControllerInterface, Serializable{
         try {
             Context c = new InitialContext();
             return (beanCarteLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanCarte!beanMetier.beanCarteLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private beanPanierServeurLocal lookupbeanPanierServeurLocal() {
+        try {
+            Context c = new InitialContext();
+            return (beanPanierServeurLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanPanierServeur!beanMetier.beanPanierServeurLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

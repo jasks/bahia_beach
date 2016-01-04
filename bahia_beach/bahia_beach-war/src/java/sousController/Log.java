@@ -1,6 +1,6 @@
 package sousController;
 
-import beanMetier.beanCarteLocal;
+import beanMetier.beanAppelLocal;
 import beanMetier.beanLogLocal;
 import entities.Cuisinier;
 import entities.Menu;
@@ -20,9 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class Log implements ControllerInterface, Serializable {
-
-    beanCarteLocal beanCarte = lookupbeanCarteLocal();
-
+    beanAppelLocal beanAppel = lookupbeanAppelLocal();
     beanLogLocal beanLog = lookupbeanLogLocal();
 
     @Override
@@ -44,7 +42,8 @@ public class Log implements ControllerInterface, Serializable {
                     s = beanLog.connexionServeur(code);
                     beanLog.setActif(s, 1);
                     session.setAttribute("auth", s);
-                    request.setAttribute("msg", "Bonjour " + s.getNom() + " " + s.getPrenom() + ": vous etes bien un " + s.getClass());
+                    request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+                    request.setAttribute("msg", "Bonjour "+s.getNom() + " " + s.getPrenom() + ": vous etes bien un "+s.getClass());
                     return "/WEB-INF/serveur/interfaceServeur.jsp";
                 } catch (Exception ex) {
                     request.setAttribute("msg", ex);
@@ -108,14 +107,15 @@ public class Log implements ControllerInterface, Serializable {
         }
     }
 
-    private beanCarteLocal lookupbeanCarteLocal() {
+    private beanAppelLocal lookupbeanAppelLocal() {
         try {
             Context c = new InitialContext();
-            return (beanCarteLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanCarte!beanMetier.beanCarteLocal");
+            return (beanAppelLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanAppel!beanMetier.beanAppelLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }
+
 
 }

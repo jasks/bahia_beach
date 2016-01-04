@@ -8,6 +8,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,11 +26,13 @@ public class Tablee implements Serializable {
     private String num;
     private int nbrPlace;
     private int statut;
+    
+    private int call;
 
     @ManyToOne
     private Serveur serveur;
     
-    @OneToMany(mappedBy = "table")
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "table")
     private Collection<Commande> commandes;
 
     public Tablee() {
@@ -96,6 +99,14 @@ public class Tablee implements Serializable {
 
     public void setCommandes(Collection<Commande> commandes) {
         this.commandes = commandes;
+    }
+
+    public int getCall() {
+        return call;
+    }
+
+    public void setCall(int call) {
+        this.call = call;
     }
     
     
