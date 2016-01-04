@@ -1,6 +1,8 @@
 package sousController;
 
 import beanMetier.beanAppelLocal;
+import beanMetier.beanCarte;
+import beanMetier.beanCarteLocal;
 import beanMetier.beanLogLocal;
 import entities.Cuisinier;
 import entities.Menu;
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class Log implements ControllerInterface, Serializable {
+    beanCarteLocal beanCarte = lookupbeanCarteLocal();
     beanAppelLocal beanAppel = lookupbeanAppelLocal();
     beanLogLocal beanLog = lookupbeanLogLocal();
 
@@ -111,6 +114,16 @@ public class Log implements ControllerInterface, Serializable {
         try {
             Context c = new InitialContext();
             return (beanAppelLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanAppel!beanMetier.beanAppelLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private beanCarteLocal lookupbeanCarteLocal() {
+        try {
+            Context c = new InitialContext();
+            return (beanCarteLocal) c.lookup("java:global/bahia_beach/bahia_beach-ejb/beanCarte!beanMetier.beanCarteLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
