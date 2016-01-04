@@ -41,7 +41,7 @@
                     <td>${t.nbrPlace}</td>
                     <td>${t.statut}</td>
                     <td>
-                        <c:url value="Controller?section=server&action=carte&id=${t.id}" var="url01" />
+                        <c:url value="Controller?section=server&action=partieClient&id=${t.id}" var="url01" />
                         <a href="${url01}">voir interface du client à faire !</a>
                     </td>
                 </tr>
