@@ -7,14 +7,17 @@ import entities.Menu;
 import entities.Produit;
 import entities.Serveur;
 import entities.Tablee;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 @Stateful
 public class beanPanier implements beanPanierLocal {
@@ -171,6 +174,17 @@ public class beanPanier implements beanPanierLocal {
         for (LigneCommande lc : panier.values()) {
             lc.setCommande(c);
             lc.setEtat(1);
+            
+            /*---------------- pour mettre l'état d'une ligne de commande contenu dans un menu ------------ */
+            if(lc.getMenu() != null) {
+                for(LigneCommande lcm : lc.getMenu().getLigneCommandes()) {
+                    //c'est la ligneCommande menu qui a une commande ou aussi les ligne de produit contenu dedans ?
+                    //lcm.setCommande(c); 
+                    lcm.setEtat(1);
+                }
+            }
+            
+            /*---------------------------------------------------------------------------------------------*/
             if(lc.getCommentaire()==null) {
                 Commentaire com = new Commentaire("");
                 lc.setCommentaire(com);
@@ -189,6 +203,17 @@ public class beanPanier implements beanPanierLocal {
         c.setTable(t);
         em.persist(c);
         return c;
+    }
+    
+    @Override
+    public List<LigneCommande> afficherLigneEnCour(Tablee t, int etat) {
+        List<LigneCommande> lc = new ArrayList();
+        String req = "select c.ligneCommandes from Commande c where c.table = :table AND c.etat =:etat";
+        Query qr = em.createQuery(req);
+        qr.setParameter("table", t);
+        qr.setParameter("etat", etat);
+        lc = qr.getResultList();
+        return lc;
     }
 
 

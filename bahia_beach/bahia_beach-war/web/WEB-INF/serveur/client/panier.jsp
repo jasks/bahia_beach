@@ -189,6 +189,70 @@
                 temporairement pour phase de test :
                 <p class="well">Récapitulatif de la commande: ${commande}</p>
                 <hr>
+                
+                <div class="col-lg-8">
+        <table class="table table-hover" >
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>nom</th>
+                    <th>etat</th>
+                    <th>type</th>
+
+                </tr>
+            </thead>
+
+            <c:forEach var="ligne" items="${ligneEnCour}">
+
+
+                <c:if test="${ligne.menu != null}">
+                    <c:forEach var="lc" items="${ligne.menu.ligneCommandes}">
+                        <tr>
+                            <td>${lc.id}</td>
+                            <td>menu ${ligne.menu.nom} - ${lc.nom}</td>
+                            <c:if test="${lc.etat == 1}">
+                                <td>en cuisine</td>
+                            </c:if>
+                            <c:if test="${lc.etat == 2}">
+                                <td>en préparation</td>
+                            </c:if>
+                            <c:if test="${lc.etat == 3}">
+                                <td>servi</td>
+                            </c:if>
+                            <td>${lc.produit.type.nomType}</td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+
+
+                <c:if test="${ligne.produit != null}">
+                    <c:if test="${ligne.produit.type.nomType != 'Boisson'}">
+
+                        <tr>
+                            <td>${ligne.id}</td>
+                            <td>${ligne.nom}</td>
+                            <c:if test="${ligne.etat == 1}">
+                                <td>en cuisine</td>
+                            </c:if>
+                            <c:if test="${ligne.etat == 2}">
+                                <td>en préparation</td>
+                            </c:if>
+                            <c:if test="${ligne.etat == 3}">
+                                <td>servi</td>
+                            </c:if>
+
+                            <td>${ligne.produit.type.nomType}</td>
+                        </tr>
+                    </c:if>
+                </c:if> 
+
+            </c:forEach>
+
+
+
+        </table>
+    </div>
+                
             </c:if>
 
                 <script src="js/jquery.js" type="text/javascript"></script>

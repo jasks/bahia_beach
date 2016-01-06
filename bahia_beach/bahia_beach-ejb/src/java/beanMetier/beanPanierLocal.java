@@ -13,6 +13,7 @@ import entities.Serveur;
 import entities.Tablee;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import javax.ejb.Local;
 
 
@@ -60,4 +61,6 @@ public interface beanPanierLocal {
     public void setPanier(HashMap<Integer, LigneCommande> panier);
 
     public void bidon();
+
+    public List<LigneCommande> afficherLigneEnCour(Tablee t, int etat);
 }

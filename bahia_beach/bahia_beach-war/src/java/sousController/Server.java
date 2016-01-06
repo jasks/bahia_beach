@@ -144,7 +144,6 @@ public class Server implements ControllerInterface, Serializable{
             List<Menu> lm = beanCarte.selectAllMenu();
                request.setAttribute("menus", lm);
                
-            Long id = Long.parseLong(request.getParameter("id"));
                return "/WEB-INF/serveur/client/carte.jsp";
         }
         
@@ -311,6 +310,10 @@ public class Server implements ControllerInterface, Serializable{
             session.setAttribute("panier", beanPanier.clearPanier());
             request.setAttribute("commande", c);
             request.setAttribute("msg", "votre commande a bien été prise en compte. Vous pouvez voir l'avancée de la commande");
+            /*--------------------affichage des ligne en cour de commande----------------------*/
+            List<LigneCommande> lc = beanPanier.afficherLigneEnCour(t, 1);
+            System.out.println("---------------- ligne en cour : " + lc);
+            session.setAttribute("ligneEnCour", lc);
             return "/WEB-INF/serveur/client/panier.jsp";
             //return "/WEB-INF/recapCommande.jsp";
         }
