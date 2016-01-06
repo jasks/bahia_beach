@@ -16,7 +16,7 @@
 <h1>Ma CARTE</h1>
 
 <div>
-    <table border="1" >
+    <table class="table table-hover" >
         <thead>
             <tr>
                 <th>ID</th>
@@ -24,6 +24,7 @@
                 <th>Prix Ht/u</th>
                 <th>categorie</th>
                 <th>type</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -40,7 +41,7 @@
                     <td>${p.type.nomType}</td>
                     
                     <td>
-                        <c:url value="Controller?section=panier&action=add&id=${p.id}" var="url01" />
+                        <c:url value="Controller?section=server&action=add&id=${p.id}" var="url01" />
                         <a href="${url01}">Ajouter au panier</a>
                     </td>
                 </tr>

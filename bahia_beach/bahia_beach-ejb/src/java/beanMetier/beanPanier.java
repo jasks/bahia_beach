@@ -33,6 +33,11 @@ public class beanPanier implements beanPanierLocal {
     public void init() {
         panier = new HashMap();
     }
+    
+    @Override
+    public void bidon() {
+        System.out.println("-------------- -salut l'ami- ----------------");
+    }
 
     @Override
     public void add(Long id) {
@@ -51,7 +56,7 @@ public class beanPanier implements beanPanierLocal {
         LigneCommande lc02 = new LigneCommande(beanCarte.selectProduit(idEntree));
         m.getLigneCommandes().add(lc01);
         m.getLigneCommandes().add(lc02);
-        
+      
         return m;
     }
 
@@ -148,6 +153,12 @@ public class beanPanier implements beanPanierLocal {
     public HashMap<Integer, LigneCommande> getPanier() {
         return panier;
     }
+
+    @Override
+    public void setPanier(HashMap<Integer, LigneCommande> panier) {
+        this.panier = panier;
+    }
+    
     
     @Override
        public int getNombreProduit() {

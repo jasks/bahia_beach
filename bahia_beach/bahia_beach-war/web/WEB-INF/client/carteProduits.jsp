@@ -15,7 +15,7 @@
 <h1>Ma CARTE</h1>
 
 <div>
-    <table border="1" >
+    <table class="table table-hover" >
         <thead>
             <tr>
                 <th>ID</th>
@@ -23,6 +23,8 @@
                 <th>Prix Ht/u</th>
                 <th>categorie</th>
                 <th>type</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>

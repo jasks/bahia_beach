@@ -163,4 +163,10 @@
         <local>beanMetier.beanPanierLocal</local>
         <ejb-link>bahia_beach-ejb.jar#beanPanier</ejb-link>
     </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>beanCarte1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beanMetier.beanCarteLocal</local>
+        <ejb-link>bahia_beach-ejb.jar#beanCarte</ejb-link>
+    </ejb-local-ref>
 </web-app>

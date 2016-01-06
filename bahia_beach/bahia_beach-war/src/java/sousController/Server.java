@@ -6,6 +6,7 @@ import beanMetier.beanLogLocal;
 import beanMetier.beanPanierLocal;
 import beanMetier.beanPanierServeurLocal;
 import beanMetier.beanServeurLocal;
+import entities.Commande;
 import entities.LigneCommande;
 import entities.Menu;
 import entities.Produit;
@@ -115,6 +116,28 @@ public class Server implements ControllerInterface, Serializable{
                 
         /* ---------------------- PARTIE CLIENT ! ---------------------- */
         
+                //CARTE
+        if("partieClient".equalsIgnoreCase(action)) {
+            
+               
+            Long id = Long.parseLong(request.getParameter("id"));
+            //on met en session la table client concerné:
+            Tablee t = beanServeur.getTablee(id);
+            session.setAttribute("tableClient", t);
+            //reccuperer la valeur (donc la hashmap) panier dont la clé est la table t
+            HashMap <Integer, LigneCommande> panierServeur = beanPanierServeur.getPanierServeur().get(t);
+            if(panierServeur != null) {
+            beanPanier.setPanier(panierServeur);
+            }
+            System.out.println("beanPanier.getPanier : " + beanPanier.getPanier());
+            session.setAttribute("panier", panierServeur);
+            List<Type> lt = beanCarte.selectAllType();
+               request.setAttribute("types", lt);
+            List<Menu> lm = beanCarte.selectAllMenu();
+               request.setAttribute("menus", lm);
+               
+               return "/WEB-INF/serveur/client/carte.jsp";
+        }
         if("carte".equalsIgnoreCase(action)) {
             List<Type> lt = beanCarte.selectAllType();
                request.setAttribute("types", lt);
@@ -122,10 +145,6 @@ public class Server implements ControllerInterface, Serializable{
                request.setAttribute("menus", lm);
                
             Long id = Long.parseLong(request.getParameter("id"));
-            //reccuperer la valeur (donc la hashmap) panier dont la clé est la table t
-            HashMap <Integer, LigneCommande> panierServeur = beanPanierServeur.getPanierServeur().get(beanServeur.getTablee(id));
-            session.setAttribute("panier", panierServeur);
-               
                return "/WEB-INF/serveur/client/carte.jsp";
         }
         
@@ -154,14 +173,146 @@ public class Server implements ControllerInterface, Serializable{
         }
         
         
-        //panier du client --->
-        if("clientPanier".equalsIgnoreCase(action)) {
-//            Long id = Long.parseLong(request.getParameter("id"));
-//            //reccuperer la valeur (donc la hashmap) panier dont la clé est la table t
-//            HashMap <Integer, LigneCommande> panierServeur = beanPanierServeur.getPanierServeur().get(beanServeur.getTablee(id));
-//            session.setAttribute("panier", panierServeur);
-//            request.setAttribute("nombre", beanAppel.getNombreAppel(s));
-            return "/WEB-INF/serveur/clientPanier.jsp";
+                //panier du client
+        
+        
+        if ("afficherPanier".equalsIgnoreCase(action)) {
+            System.out.println();
+            return "/WEB-INF/serveur/client/panier.jsp";
+        }
+        
+        
+        if ("add".equalsIgnoreCase(action)) {
+            Long id = Long.parseLong(request.getParameter("id"));
+            beanPanier.bidon();
+            System.out.println("beanPanier.getPanier : " + beanPanier.getPanier());
+            beanPanier.add(id);
+            session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("nombre", beanPanier.getNombreProduit());
+            session.setAttribute("total", beanPanier.getTotalHT());
+            //update panier donc update panierServeur
+//            Tablee t = (Tablee) session.getAttribute("table");
+//            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+//            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+            request.setAttribute("msg", "Le produit a bien été ajouté à votre commande.");
+            return "/WEB-INF/serveur/client/panier.jsp";
+        }
+        
+        if ("remove".equalsIgnoreCase(action)) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            beanPanier.delete(id);
+            session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("nombre", beanPanier.getNombreProduit());
+            session.setAttribute("total", beanPanier.getTotalHT());
+            //update panier donc update panierServeur
+//            Tablee t = (Tablee) session.getAttribute("table");
+//            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+//            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+            request.setAttribute("msg", "Le produit a bien été retiré de votre commande.");
+            return "/WEB-INF/serveur/client/panier.jsp";
+        }
+        
+         if ("clear".equalsIgnoreCase(action)) {
+            beanPanier.clearPanier();
+            session.setAttribute("panier", beanPanier.getListe());
+            //update panier donc update panierServeur
+//            Tablee t = (Tablee) session.getAttribute("table");
+//            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+//            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+            request.setAttribute("msg", "La commande a été supprimé.");
+            return "/WEB-INF/serveur/client/panier.jsp";
+        }
+         
+        if("commenter".equalsIgnoreCase(action)) {
+//            Integer id = Integer.parseInt(request.getParameter("id"));
+//            String contenu = beanPanier.getPanier().get(id).getCommentaire().getContenu();
+//            request.setAttribute("contenu", this);
+            return "/WEB-INF/serveur/client/commenterProduit.jsp";
+        } 
+         
+        if("modifierCommenter".equalsIgnoreCase(action)) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+//            pour cibler le contenu du commentaire de la ligne de commande en cour
+//            et l'afficher ds le textarea
+            String contenu = beanPanier.getPanier().get(id).getCommentaire().getContenu();
+            request.setAttribute("contenu", contenu);
+            return "/WEB-INF/serveur/client/commenterProduit.jsp";
+        } 
+         
+        if("setCommentaire".equalsIgnoreCase(action)) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            String contenuCommentaire = request.getParameter("commentaire");
+            beanPanier.ajoutCommentaire(id, contenuCommentaire);
+            beanPanier.isCommentaire(id);
+            request.setAttribute("msg", "votre commentaire a bien été ajouté");
+            return "/WEB-INF/serveur/client/panier.jsp";
+        }
+         
+        if("setCuisson".equalsIgnoreCase(action)) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            Integer cuisson = Integer.parseInt(request.getParameter("cuisson"));
+            beanPanier.cuissonViande(id, cuisson);
+            request.setAttribute("msg", beanPanier.getPanier().get(id));
+            System.out.println(beanPanier.getPanier().get(id));
+            return "/WEB-INF/serveur/client/panier.jsp";
+        }
+         
+        if("setCuissonMenu".equalsIgnoreCase(action)) {
+            Integer idMenu = Integer.parseInt(request.getParameter("idMenu"));
+            Integer idLc = Integer.parseInt(request.getParameter("idLc"));
+            Integer cuisson = Integer.parseInt(request.getParameter("cuisson"));
+            beanPanier.cuissonViandeMenu(idMenu, idLc, cuisson);
+            request.setAttribute("msg", beanPanier.getPanier().get(idMenu));
+            System.out.println(beanPanier.getPanier().get(idMenu));
+            return "/WEB-INF/serveur/client/panier.jsp";
+        }
+        
+        if("modifierCommentaire".equalsIgnoreCase(action)) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            String contenuCommentaire = request.getParameter("commentaire");
+            beanPanier.modifierCommentaire(id, contenuCommentaire);
+            beanPanier.isCommentaire(id);
+            request.setAttribute("msg", "votre commentaire a bien été ajouté");
+            return "/WEB-INF/serveur/client/panier.jsp";
+        }
+        
+        if("supprimerCommentaire".equalsIgnoreCase(action)) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            beanPanier.supprimerCommentaire(id);
+            request.setAttribute("msg", "Votre commentaire a bien été supprimé");
+            return "/WEB-INF/serveur/client/panier.jsp";
+        }
+        
+        
+        
+        if("ajouterMenu".equalsIgnoreCase(action)) {
+//            Float prix = Float.parseFloat(request.getParameter("prixMenu"));
+//            String nom = request.getParameter("nomMenu");
+            Long idMenu = Long.parseLong(request.getParameter("idMenu"));
+            Menu m = beanCarte.selectMenu(idMenu);
+            Long idPlat = Long.parseLong(request.getParameter("plat"));
+            Long idEntree = Long.parseLong(request.getParameter("entree"));
+            beanPanier.addMenu(m, idPlat, idEntree);
+            session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("nombre", beanPanier.getNombreProduit());
+            session.setAttribute("total", beanPanier.getTotalHT());
+            //update panier donc update panierServeur
+//            Tablee t = (Tablee) session.getAttribute("table");
+//            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+//            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+            request.setAttribute("msg", "Votre menu a bien été ajouté !!!");
+            return "/WEB-INF/serveur/client/panier.jsp";
+            
+        }
+        
+        if("commander".equalsIgnoreCase(action)) {
+            Tablee t = (Tablee)session.getAttribute("tableClient");
+            Commande c = beanPanier.validerPanier(t.getServeur(), t);
+            session.setAttribute("panier", beanPanier.clearPanier());
+            request.setAttribute("commande", c);
+            request.setAttribute("msg", "votre commande a bien été prise en compte. Vous pouvez voir l'avancée de la commande");
+            return "/WEB-INF/serveur/client/panier.jsp";
+            //return "/WEB-INF/recapCommande.jsp";
         }
         
         

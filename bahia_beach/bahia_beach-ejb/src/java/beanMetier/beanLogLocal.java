@@ -1,19 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package beanMetier;
 
 import entities.Cuisinier;
 import entities.Serveur;
+import entities.Tablee;
 import javax.ejb.Local;
 import javax.persistence.NoResultException;
 
-/**
- *
- * @author cdi418
- */
 @Local
 public interface beanLogLocal {
 
@@ -25,5 +17,11 @@ public interface beanLogLocal {
 
     public void setActif(Cuisinier c, int etat);
 
-    
+    public Tablee connexionTablee(String code) throws Exception;
+
+    public void setActif(Tablee t, int etat);
+
+    public void viderTable(Tablee t);
+
+    public Serveur logout(String code);
 }

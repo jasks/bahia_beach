@@ -21,13 +21,14 @@
     <div class="row">
 <div id="mesProduits" class="col-lg-6">
     <h3 class="text-primary">Les tables</h3>
-    <table border="1" >
+    <table class="table table-hover" >
         <thead>
             <tr>
                 <th>ID</th>
                 <th>nom table</th>
                 <th>nbre place</th>
                 <th>statut</th>
+                <th></th>
                 
 
             </tr>
@@ -41,7 +42,7 @@
                     <td>${t.nbrPlace}</td>
                     <td>${t.statut}</td>
                     <td>
-                        <c:url value="Controller?section=server&action=carte&id=${t.id}" var="url01" />
+                        <c:url value="Controller?section=server&action=partieClient&id=${t.id}" var="url01" />
                         <a href="${url01}">voir interface du client à faire !</a>
                     </td>
                 </tr>

@@ -15,7 +15,7 @@
 <h1>Ma CARTE</h1>
 
 <div>
-    <table border="1" >
+    <table class="table table-hover" >
         <thead>
             <tr>
                 <th>ID</th>
@@ -31,6 +31,7 @@
                 <th>sucre</th>
                 <th>proteine</th>
                 <th>sel</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>

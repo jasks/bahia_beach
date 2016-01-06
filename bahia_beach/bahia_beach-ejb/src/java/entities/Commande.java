@@ -92,6 +92,13 @@ public class Commande implements Serializable {
 //    public String toString() {
 //        return "entities.Commande[ id=" + id + " ]";
 //    }
+
+    @Override
+    public String toString() {
+        return "Commande{" + "id=" + id + ", numero=" + numero + ", etat=" + etat + ", date=" + date + ", table=" + table + ", serveur=" + serveur + ", ligneCommandes=" + ligneCommandes + ", commentaire=" + commentaire + '}';
+    }
+    
+    
    
 
     public String getNumero() {

@@ -20,13 +20,14 @@
         <p>Votre panier est vide</p>
     </c:if>
     <c:if test="${not empty panier}">
-        <table border="1">
+        <table class="table table-hover" >
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Nom</th>
                     <th>prixHt</th>
                     <th>Action</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -148,7 +149,7 @@
                 </c:forEach>
             <tfoot>
                 <tr>
-                    <td colspan="5"> Total HT : </td>
+                    <td colspan="4"> Total HT : </td>
                     <td>
                         <fmt:formatNumber 
                                 value="${total}"
@@ -179,6 +180,7 @@
     </c:forEach>
     
     </c:if>
+                <button>click</button>
             
             
             <c:if test="${commande != null}">
@@ -189,21 +191,5 @@
             </c:if>
 
                 <script src="js/jquery.js" type="text/javascript"></script>
-                <script>
-                    $( document ).ready(function() {
-    function ok(){
-        
-    /*    var section = $('#section');
-        var action = $('#action');
-        var idMenu = $('#idMenu');
-        var idLc = $('#idLc');
-        var cuisson = $('#cuisson');
-     */   
-        $('h1').hide();
-  
-   
-
-};
-    }
-                </script>
+                
     <%@include file="../templates/footer.jsp" %>
