@@ -19,7 +19,8 @@ function getXhr() {
     return xhr;
 }
 function actualiser(){
-    setInterval("lignesCommande()", 5000);
+   // setInterval("lignesCommande()", 5000);
+    setInterval("lesCommandes()",5000);
 }
 
 function lignesCommande() {
@@ -34,11 +35,23 @@ function lignesCommande() {
             output.innerHTML = resp;
             
         }else if(xhr.readyState == 4 && xhr.status == 404){
-           alert("else");
+           alert("page non trouvé");
         }
     }
     xhr.open("GET", "Controller?section=serveur&action=lignecommande&numCommande=${cm.getNumero()}&numTable=${cm.getTable().getNum()}", true);
     xhr.send(null);
-   
-        
+          
+}
+function lesCommandes(){
+    var xhr = getXhr();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+           
+        }else if(xhr.readyState == 4 && xhr.status == 404){
+           alert("else");
+        }
+    }
+    xhr.open("GET", "Controller?section=serveur&action=voirCommande", true);
+    xhr.send(null);
+          
 }

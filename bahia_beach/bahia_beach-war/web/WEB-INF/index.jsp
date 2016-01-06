@@ -6,6 +6,7 @@
         <title>index</title>
         <link href="css/bootstrap/css/bootstrapPaper.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="jScript/script.js"></script>
     </head>
     <%@include file="templates/header.jsp" %>
 
