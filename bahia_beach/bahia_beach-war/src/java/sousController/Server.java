@@ -118,11 +118,18 @@ public class Server implements ControllerInterface, Serializable{
         
                 //CARTE
         if("partieClient".equalsIgnoreCase(action)) {
+            
                
             Long id = Long.parseLong(request.getParameter("id"));
+            //on met en session la table client concerné:
+            Tablee t = beanServeur.getTablee(id);
+            session.setAttribute("tableClient", t);
             //reccuperer la valeur (donc la hashmap) panier dont la clé est la table t
-            HashMap <Integer, LigneCommande> panierServeur = beanPanierServeur.getPanierServeur().get(beanServeur.getTablee(id));
+            HashMap <Integer, LigneCommande> panierServeur = beanPanierServeur.getPanierServeur().get(t);
+            if(panierServeur != null) {
             beanPanier.setPanier(panierServeur);
+            }
+            System.out.println("beanPanier.getPanier : " + beanPanier.getPanier());
             session.setAttribute("panier", panierServeur);
             List<Type> lt = beanCarte.selectAllType();
                request.setAttribute("types", lt);
@@ -170,20 +177,23 @@ public class Server implements ControllerInterface, Serializable{
         
         
         if ("afficherPanier".equalsIgnoreCase(action)) {
+            System.out.println();
             return "/WEB-INF/serveur/client/panier.jsp";
         }
         
         
         if ("add".equalsIgnoreCase(action)) {
             Long id = Long.parseLong(request.getParameter("id"));
+            beanPanier.bidon();
+            System.out.println("beanPanier.getPanier : " + beanPanier.getPanier());
             beanPanier.add(id);
             session.setAttribute("panier", beanPanier.getListe());
             session.setAttribute("nombre", beanPanier.getNombreProduit());
             session.setAttribute("total", beanPanier.getTotalHT());
             //update panier donc update panierServeur
-            Tablee t = (Tablee) session.getAttribute("table");
-            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
-            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+//            Tablee t = (Tablee) session.getAttribute("table");
+//            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+//            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
             request.setAttribute("msg", "Le produit a bien été ajouté à votre commande.");
             return "/WEB-INF/serveur/client/panier.jsp";
         }
@@ -195,9 +205,9 @@ public class Server implements ControllerInterface, Serializable{
             session.setAttribute("nombre", beanPanier.getNombreProduit());
             session.setAttribute("total", beanPanier.getTotalHT());
             //update panier donc update panierServeur
-            Tablee t = (Tablee) session.getAttribute("table");
-            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
-            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+//            Tablee t = (Tablee) session.getAttribute("table");
+//            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+//            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
             request.setAttribute("msg", "Le produit a bien été retiré de votre commande.");
             return "/WEB-INF/serveur/client/panier.jsp";
         }
@@ -206,9 +216,9 @@ public class Server implements ControllerInterface, Serializable{
             beanPanier.clearPanier();
             session.setAttribute("panier", beanPanier.getListe());
             //update panier donc update panierServeur
-            Tablee t = (Tablee) session.getAttribute("table");
-            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
-            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+//            Tablee t = (Tablee) session.getAttribute("table");
+//            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+//            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
             request.setAttribute("msg", "La commande a été supprimé.");
             return "/WEB-INF/serveur/client/panier.jsp";
         }
@@ -287,16 +297,17 @@ public class Server implements ControllerInterface, Serializable{
             session.setAttribute("nombre", beanPanier.getNombreProduit());
             session.setAttribute("total", beanPanier.getTotalHT());
             //update panier donc update panierServeur
-            Tablee t = (Tablee) session.getAttribute("table");
-            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
-            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+//            Tablee t = (Tablee) session.getAttribute("table");
+//            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+//            request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
             request.setAttribute("msg", "Votre menu a bien été ajouté !!!");
             return "/WEB-INF/serveur/client/panier.jsp";
             
         }
         
         if("commander".equalsIgnoreCase(action)) {
-            Commande c = beanPanier.validerPanier(beanServeur.getServeur(3L), beanServeur.getTablee(2L));
+            Tablee t = (Tablee)session.getAttribute("tableClient");
+            Commande c = beanPanier.validerPanier(t.getServeur(), t);
             session.setAttribute("panier", beanPanier.clearPanier());
             request.setAttribute("commande", c);
             request.setAttribute("msg", "votre commande a bien été prise en compte. Vous pouvez voir l'avancée de la commande");

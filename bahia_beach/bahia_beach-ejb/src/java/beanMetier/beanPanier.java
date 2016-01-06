@@ -33,6 +33,11 @@ public class beanPanier implements beanPanierLocal {
     public void init() {
         panier = new HashMap();
     }
+    
+    @Override
+    public void bidon() {
+        System.out.println("-------------- -salut l'ami- ----------------");
+    }
 
     @Override
     public void add(Long id) {

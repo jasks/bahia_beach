@@ -11,7 +11,11 @@
     <a href="Controller?section=server&action=repondreClient">repondre au Client |</a>
 
     <c:if test="${nombre != null}">
-        <a href="Controller?section=server&action=tableAppel">lien voir appel <c:if test="${nombre != 0}"><span class="nombre">${nombre}</span></c:if> |</a>
+        <a href="Controller?section=server&action=tableAppel">lien voir appel 
+            <c:if test="${nombre != 0}">
+                <span class="nombre">${nombre}</span>
+            </c:if> |
+        </a>
     </c:if>
 
     <c:if test="${auth != null}">

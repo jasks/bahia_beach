@@ -17,7 +17,7 @@
 <div class="row">
 <div id="mesProduits" class="col-lg-6">
     <h3 class="text-primary">Les tables</h3>
-    <table border="1" >
+    <table class="table table-hover" >
         <thead>
             <tr>
                 <th>ID</th>

@@ -58,4 +58,6 @@ public interface beanPanierLocal {
     public int getNombreProduit();
 
     public void setPanier(HashMap<Integer, LigneCommande> panier);
+
+    public void bidon();
 }

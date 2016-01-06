@@ -9,11 +9,13 @@
 
 <%@include file="templates/header.jsp" %>
 
-<form>
+<form class="formLog">
+
     <input type="hidden" name="section" value="log" />
     <input type="hidden" name="action" value="verifierCode" />
-    Veuillez saisir un code: <input type="text" name="code"/><br/><br/>
-    <input type="submit" value="Valider"/>
+    <label for="code">Veuillez saisir un code:</label>
+    <input style="background: white" class="form-control" id="code" type="text" name="code"/><br/><br/>
+     <input type="submit" class="btn btn-primary" value="Valider"/>
 </form>
 
 <%@include file="templates/footer.jsp" %>

@@ -165,7 +165,7 @@ public class Panier implements ControllerInterface, Serializable{
         }
         
         if("commander".equalsIgnoreCase(action)) {
-            Tablee t = (Tablee)session.getAttribute("auth");
+            Tablee t = (Tablee)session.getAttribute("table");
             Commande c = beanPanier.validerPanier(t.getServeur(), t);
             session.setAttribute("panier", beanPanier.clearPanier());
             request.setAttribute("commande", c);

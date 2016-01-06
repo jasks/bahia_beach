@@ -22,13 +22,14 @@
         <p>Votre panier est vide</p>
     </c:if>
     <c:if test="${not empty panier}">
-        <table border="1">
+        <table class="table table-hover" >
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Nom</th>
                     <th>prixHt</th>
                     <th>Action</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -40,7 +41,7 @@
                         <c:if test="${ligne.produit.categorie.nomCategorie == 'Viande'}">
                             <br>
                             <form method="get" action="Controller">
-       <input type="hidden" name="section" value="panier" />
+       <input type="hidden" name="section" value="server" />
             <input type="hidden" name="action" value="setCuisson" />
             <input type="hidden" name="id" value="${ligne.identifiant}" />
             <label>cuisson </label>
@@ -64,21 +65,21 @@
                         </td>
                        <c:if test="${ligne.commentaire.contenu != null}">
                             <td>
-                            <a href="Controller?section=panier&action=modifierCommenter&id=${ligne.identifiant}"> modifier le commentaire </a>
+                            <a href="Controller?section=server&action=modifierCommenter&id=${ligne.identifiant}"> modifier le commentaire </a>
                         </td>
                         <td>
-                            <a href="Controller?section=panier&action=supprimerCommentaire&id=${ligne.identifiant}"> supprimer le commentaire </a>
+                            <a href="Controller?section=server&action=supprimerCommentaire&id=${ligne.identifiant}"> supprimer le commentaire </a>
                         </td>
                         </c:if>
                         
                         <c:if test="${ligne.commentaire.contenu == null}">
                             <td>
-                            <a href="Controller?section=panier&action=commenter&id=${ligne.identifiant}"> laisser un commentaire </a>
+                            <a href="Controller?section=server&action=commenter&id=${ligne.identifiant}"> laisser un commentaire </a>
                         </td>
                         </c:if>
                        
                         <td>
-                            <a href="Controller?section=panier&action=remove&id=${ligne.identifiant}"> supprimer </a>
+                            <a href="Controller?section=server&action=remove&id=${ligne.identifiant}"> supprimer </a>
                         </td>
                         
                         <c:if test="${ligne.commentaire.contenu != null}">
@@ -150,7 +151,7 @@
                 </c:forEach>
             <tfoot>
                 <tr>
-                    <td colspan="5"> Total HT : </td>
+                    <td colspan="4"> Total HT : </td>
                     <td>
                         <fmt:formatNumber 
                                 value="${total}"

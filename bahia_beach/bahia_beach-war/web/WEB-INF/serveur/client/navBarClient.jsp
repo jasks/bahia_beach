@@ -1,6 +1,8 @@
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="nav text-center">
+    
+    <p class="well">table mis en session : ${tableClient}</p>
 
         <a href="Controller?section=server&action=carte">lien vers ma carte</a>
         <c:if test="${nombre != null}">
