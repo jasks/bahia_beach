@@ -3,57 +3,77 @@
 
 <!DOCTYPE html>
 <html>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>les Serveurs</title>
-    <title>voir commande</title>
-    <link href="css/bootstrap/css/bootstrapPaper.min.css" rel="stylesheet" type="text/css"/>
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascipt" src="../js/script.js"></script>
-</head>
-<%@include file="templates/header.jsp" %>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>voir commande</title>
+        <link href="css/bootstrapPaper.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
 
-<h1>le serveur</h1>
-<table border="1px">
-    <tr>
-        <td>nom Serveur </td>
-        <td>prenom Serveur</td>
-    </tr>
+        <link href="css/bootstrap/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascipt" src="js/script.js"></script>
+    </head>
+    <%@include file="templates/header.jsp" %>
+    <body>
 
-    <tr>
-        <td>${lesCommandes.get(0).getServeur().getNom()}</td>
-        <td>${lesCommandes.get(0).serveur.getPrenom()}</td>
-    </tr>
+        <h3 class="panel-heading">le serveur</h3>
+        <div class="panel-body">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>nom Serveur</th>
+                        <th>prenom Serveur</th>
 
-</table>
-<c:if test="${empty lesCommandes}">
-    vous avez pas de commande en cours
-</c:if>
-<c:if test="${not empty lesCommandes}">
-    <table border="1px">
-        <tr>
-            <td>Numero Table </td>
-            <td>numero Commande </td>
-            <td>etat Commande </td>
-            <td>date Commande </td>
-        </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${lesCommandes.get(0).getServeur().getNom()}</td>
+                        <td>${lesCommandes.get(0).serveur.getPrenom()}</td>
+                    </tr> 
+                </tbody> 
+            </table>
+        </div>
 
 
-        <c:forEach items="${lesCommandes}" var="cm">
+        <c:if test="${empty lesCommandes}">
+            vous avez pas de commande en cours
+        </c:if>
 
-            <tr>
-                <td>${cm.getTable().getNum()}</td>
-                <td>${cm.getNumero()}</td>
-                <td>${cm.getEtat()}</td>
-                <td>${cm.getDate()}</td>
-                <td><c:url value="Controller?section=serveur&action=lignecommande&numCommande=${cm.getNumero()}&numTable=${cm.getTable().getNum()}&propriete=valid" var="url01" />
-                    <a href="${url01}">Voir les Lignes de la commande</a></td>
-                <td><c:url value="Controller?section=serveur&action=lignecommande&numCommande=${cm.getNumero()}&numTable=${cm.getTable().getNum()}&propriete=modif" var="url01" />
-                    <a href="${url01}">modifier la commande</a></td>
-            </tr>   
-           
-        </c:forEach>
+        <div class="panel-body">
 
-    </table>     
-</c:if>
-</body>
+            <c:if test="${not empty lesCommandes}">
+                <h3 class="panel-heading">les commandes</h3>
+                <table class="table table-striped table-bordered">
+                    <thead>
+
+                        <tr>
+                            <td>Numero Table </td>
+                            <td>numero </td>
+                            <td>etat  </td>
+                            <td>date </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <c:forEach items="${lesCommandes}" var="cm">
+
+                            <tr>
+                                <td>${cm.getTable().getNum()}</td>
+                                <td>${cm.getNumero()}</td>
+                                <td>${cm.getEtat()}</td>
+                                <td>${cm.getDate()}</td>
+
+                                <td><c:url value="Controller?section=serveur&action=lignecommande&numCommande=${cm.getNumero()}&numTable=${cm.getTable().getNum()}&propriete=valid" var="url01" />
+                                    <a href="${url01}">produits commandés</a></td>
+                                <td><c:url value="Controller?section=serveur&action=lignecommande&numCommande=${cm.getNumero()}&numTable=${cm.getTable().getNum()}&propriete=modif" var="url01" />
+                                    <a href="${url01}">modifier la commande</a></td>
+                            </tr>   
+
+                        </c:forEach>
+                    </c:if>
+                </tbody>
+            </table>
+        </div>
+    </body>
 </html>
