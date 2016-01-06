@@ -12,7 +12,7 @@
 
         <link href="css/bootstrap/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <script type="text/javascipt" src="js/script.js"></script>
+        <script type="text/javascipt" src="jScript/script.js"></script>
     </head>
     <%@include file="templates/header.jsp" %>
     <body>
@@ -28,8 +28,8 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>${lesCommandes.get(0).getServeur().getNom()}</td>
-                        <td>${lesCommandes.get(0).serveur.getPrenom()}</td>
+                        <td>${serveur.getNom()}</td>
+                        <td>${serveur.getPrenom()}</td>
                     </tr> 
                 </tbody> 
             </table>
