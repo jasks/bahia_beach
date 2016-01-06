@@ -9,18 +9,20 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     
-    <%@include file="../templates/header.jsp" %>
-    
-<%@include file="navBarClient.jsp" %>
+<%@include file="../../templates/header.jsp" %>
+
+<%@include file="../navBarServeur.jsp" %>
+
+    <%@include file="navBarClient.jsp" %>
     
         <h1>laisser un commentaire</h1>
         <form action="Controller">
             Laisser votre commentaire: <br>
             <textarea name="commentaire" placeholder="...">${contenu}</textarea>
-            <input type="hidden" name="section" value="panier" />
+            <input type="hidden" name="section" value="server" />
             <input type="hidden" name="action" value="setCommentaire" />
             <input type="hidden" name="id" value="${param.id}" />
             <input type="submit" />
         </form>
         
-    <%@include file="../templates/footer.jsp" %>
+   <%@include file="../../templates/footer.jsp" %>

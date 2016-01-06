@@ -71,7 +71,7 @@ public class Log implements ControllerInterface, Serializable {
                 try {
                     t = beanLog.connexionTablee(code);
                     beanLog.setActif(t, 1);
-                    session.setAttribute("auth", t);
+                    session.setAttribute("table", t);
                     request.setAttribute("msg", "Bonjour " + t.getNum() + ": vous etes bien sur la table " + t.getClass());
                     List<Type> lt = beanCarte.selectAllType();
                     request.setAttribute("types", lt);

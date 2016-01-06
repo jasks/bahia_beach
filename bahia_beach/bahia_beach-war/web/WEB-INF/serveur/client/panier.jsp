@@ -22,13 +22,14 @@
         <p>Votre panier est vide</p>
     </c:if>
     <c:if test="${not empty panier}">
-        <table border="1">
+        <table class="table table-hover" >
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Nom</th>
                     <th>prixHt</th>
                     <th>Action</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -40,7 +41,7 @@
                         <c:if test="${ligne.produit.categorie.nomCategorie == 'Viande'}">
                             <br>
                             <form method="get" action="Controller">
-       <input type="hidden" name="section" value="panier" />
+       <input type="hidden" name="section" value="server" />
             <input type="hidden" name="action" value="setCuisson" />
             <input type="hidden" name="id" value="${ligne.identifiant}" />
             <label>cuisson </label>
@@ -64,21 +65,21 @@
                         </td>
                        <c:if test="${ligne.commentaire.contenu != null}">
                             <td>
-                            <a href="Controller?section=panier&action=modifierCommenter&id=${ligne.identifiant}"> modifier le commentaire </a>
+                            <a href="Controller?section=server&action=modifierCommenter&id=${ligne.identifiant}"> modifier le commentaire </a>
                         </td>
                         <td>
-                            <a href="Controller?section=panier&action=supprimerCommentaire&id=${ligne.identifiant}"> supprimer le commentaire </a>
+                            <a href="Controller?section=server&action=supprimerCommentaire&id=${ligne.identifiant}"> supprimer le commentaire </a>
                         </td>
                         </c:if>
                         
                         <c:if test="${ligne.commentaire.contenu == null}">
                             <td>
-                            <a href="Controller?section=panier&action=commenter&id=${ligne.identifiant}"> laisser un commentaire </a>
+                            <a href="Controller?section=server&action=commenter&id=${ligne.identifiant}"> laisser un commentaire </a>
                         </td>
                         </c:if>
                        
                         <td>
-                            <a href="Controller?section=panier&action=remove&id=${ligne.identifiant}"> supprimer </a>
+                            <a href="Controller?section=server&action=remove&id=${ligne.identifiant}"> supprimer </a>
                         </td>
                         
                         <c:if test="${ligne.commentaire.contenu != null}">
@@ -150,7 +151,7 @@
                 </c:forEach>
             <tfoot>
                 <tr>
-                    <td colspan="5"> Total HT : </td>
+                    <td colspan="4"> Total HT : </td>
                     <td>
                         <fmt:formatNumber 
                                 value="${total}"
@@ -188,6 +189,70 @@
                 temporairement pour phase de test :
                 <p class="well">Récapitulatif de la commande: ${commande}</p>
                 <hr>
+                
+                <div class="col-lg-8">
+        <table class="table table-hover" >
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>nom</th>
+                    <th>etat</th>
+                    <th>type</th>
+
+                </tr>
+            </thead>
+
+            <c:forEach var="ligne" items="${ligneEnCour}">
+
+
+                <c:if test="${ligne.menu != null}">
+                    <c:forEach var="lc" items="${ligne.menu.ligneCommandes}">
+                        <tr>
+                            <td>${lc.id}</td>
+                            <td>menu ${ligne.menu.nom} - ${lc.nom}</td>
+                            <c:if test="${lc.etat == 1}">
+                                <td>en cuisine</td>
+                            </c:if>
+                            <c:if test="${lc.etat == 2}">
+                                <td>en préparation</td>
+                            </c:if>
+                            <c:if test="${lc.etat == 3}">
+                                <td>servi</td>
+                            </c:if>
+                            <td>${lc.produit.type.nomType}</td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+
+
+                <c:if test="${ligne.produit != null}">
+                    <c:if test="${ligne.produit.type.nomType != 'Boisson'}">
+
+                        <tr>
+                            <td>${ligne.id}</td>
+                            <td>${ligne.nom}</td>
+                            <c:if test="${ligne.etat == 1}">
+                                <td>en cuisine</td>
+                            </c:if>
+                            <c:if test="${ligne.etat == 2}">
+                                <td>en préparation</td>
+                            </c:if>
+                            <c:if test="${ligne.etat == 3}">
+                                <td>servi</td>
+                            </c:if>
+
+                            <td>${ligne.produit.type.nomType}</td>
+                        </tr>
+                    </c:if>
+                </c:if> 
+
+            </c:forEach>
+
+
+
+        </table>
+    </div>
+                
             </c:if>
 
                 <script src="js/jquery.js" type="text/javascript"></script>

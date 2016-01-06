@@ -8,10 +8,12 @@ import beanMetier.beanPanierServeurLocal;
 import beanMetier.beanServeurLocal;
 import entities.Commande;
 import entities.Commentaire;
+import entities.LigneCommande;
 import entities.Menu;
 import entities.Serveur;
 import entities.Tablee;
 import java.io.Serializable;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -165,14 +167,20 @@ public class Panier implements ControllerInterface, Serializable{
         }
         
         if("commander".equalsIgnoreCase(action)) {
-            Tablee t = (Tablee)session.getAttribute("auth");
+            Tablee t = (Tablee)session.getAttribute("table");
             Commande c = beanPanier.validerPanier(t.getServeur(), t);
             session.setAttribute("panier", beanPanier.clearPanier());
             request.setAttribute("commande", c);
             request.setAttribute("msg", "votre commande a bien été prise en compte. Vous pouvez voir l'avancée de la commande");
+            
+            /*--------------------affichage des ligne en cour de commande----------------------*/
+            List<LigneCommande> lc = beanPanier.afficherLigneEnCour(t, 1);
+            System.out.println("---------------- ligne en cour : " + lc);
+            session.setAttribute("ligneEnCour", lc);
             return "/WEB-INF/client/panier.jsp";
             //return "/WEB-INF/recapCommande.jsp";
         }
+        
         
         return "/WEB-INF/index.jsp";
     }

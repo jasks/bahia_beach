@@ -45,6 +45,7 @@ public class beanVoirCommande implements beanVoirCommandeLocal {
         Query qr = em.createQuery(req);
         qr.setParameter("valeur", codeServeur);
         qr.setParameter("etat", 2);
+        
         return qr.getResultList();
     }
 
@@ -53,6 +54,9 @@ public class beanVoirCommande implements beanVoirCommandeLocal {
         String req = "select lc from LigneCommande lc where lc.commande.numero= :numero";
         Query qr = em.createQuery(req);
         qr.setParameter("numero", numCommande);
+        for(Object lc :qr.getResultList() ){
+            System.out.println("produit"+lc.toString());
+        }
         return qr.getResultList();
     }
 

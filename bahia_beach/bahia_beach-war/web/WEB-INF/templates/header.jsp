@@ -3,7 +3,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
-<body>
+<body onload="actualiser();return false">
     <h1 class="text-center page-header">BAHIA BEACH</h1>
 
         <div class="nav text-center">

@@ -29,3 +29,14 @@ body {
     padding: 5px 10px 5px 10px;
     border-radius: 50%;
 }
+
+.formLog {
+    margin-top: 50px !important; 
+}
+
+table {
+    background: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid #ebebeb;
+    border: medium none;
+}
