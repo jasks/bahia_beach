@@ -16,6 +16,7 @@
         
         <a href="Controller?section=client&action=appelerServeur">appeler Serveur</a>
         <a href="Controller?section=carte&action=appel">lien vers appel serveur |</a>
+        <a href="Controller?section=client&action=deconnexion">déconnexion</a>
         <h4>valeur de table.call : ${table.call}</h4>
         </div>  
         <p class="well">panier envoyé au serveur : ${panierServeurRequest}</p>

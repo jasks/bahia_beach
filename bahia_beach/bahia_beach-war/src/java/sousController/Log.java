@@ -44,7 +44,7 @@ public class Log implements ControllerInterface, Serializable {
                     s = beanLog.connexionServeur(code);
                     beanLog.setActif(s, 1);
                     session.setAttribute("auth", s);
-                    request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+//                    request.setAttribute("nombre", beanAppel.getNombreAppel(s));
                     request.setAttribute("msg", "Bonjour "+s.getNom() + " " + s.getPrenom() + ": vous etes bien un "+s.getClass());
                     return "/WEB-INF/serveur/interfaceServeur.jsp";
                 } catch (Exception ex) {

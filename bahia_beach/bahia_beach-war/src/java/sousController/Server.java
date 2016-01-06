@@ -57,7 +57,7 @@ public class Server implements ControllerInterface, Serializable{
         if("table".equalsIgnoreCase(action)) {
         List<Tablee> lt = beanServeur.afficherTable();
         request.setAttribute("tables", lt);
-        request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+//        request.setAttribute("nombre", beanAppel.getNombreAppel(s));
         return "/WEB-INF/serveur/afficherTable.jsp";
         }
         
@@ -74,14 +74,14 @@ public class Server implements ControllerInterface, Serializable{
         List<Tablee> lt = beanServeur.afficherTableAttribue(s);
         request.setAttribute("tables", lt);
         request.setAttribute("msg", "vous avez attribué une table");
-        request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+//        request.setAttribute("nombre", beanAppel.getNombreAppel(s));
         return "/WEB-INF/serveur/tableAttribuee.jsp";
         }
         
         if("tableAttribue".equalsIgnoreCase(action)) {
             List<Tablee> lt = beanServeur.afficherTableAttribue(s);
             request.setAttribute("tables", lt);
-            request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+//            request.setAttribute("nombre", beanAppel.getNombreAppel(s));
             return "/WEB-INF/serveur/tableAttribuee.jsp";
         }
 
@@ -89,7 +89,7 @@ public class Server implements ControllerInterface, Serializable{
         if("tableAppel".equalsIgnoreCase(action)) {
             List<Tablee> lt = beanAppel.afficherAppelTable(s);
             request.setAttribute("tables", lt);
-            request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+//            request.setAttribute("nombre", beanAppel.getNombreAppel(s));
             return "/WEB-INF/serveur/afficherAppelTable.jsp";
         }
         
@@ -99,7 +99,7 @@ public class Server implements ControllerInterface, Serializable{
             request.setAttribute("msg", "vous avez bien répondu à l'appel de la table : "+beanServeur.getTablee(id));
             List<Tablee> lt = beanAppel.afficherAppelTable(s);
             request.setAttribute("tables", lt);
-            request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+//            request.setAttribute("nombre", beanAppel.getNombreAppel(s));
             return "/WEB-INF/serveur/afficherAppelTable.jsp";
         }
         
