@@ -46,9 +46,9 @@ public class Client implements ControllerInterface, Serializable {
         if ("deconnexion".equalsIgnoreCase(action)) {
             try {
                 beanLog.logout(code);
-                beanLog.setActif((Tablee) session.getAttribute("auth"), 0);
-                beanLog.viderTable((Tablee) session.getAttribute("auth"));
-                session.setAttribute("auth", null);
+                beanLog.setActif((Tablee) session.getAttribute("table"), 0);
+                beanLog.viderTable((Tablee) session.getAttribute("table"));
+                session.setAttribute("table", null);
                 request.setAttribute("msg", "vous avez été deconnecté");
                 return "/WEB-INF/log.jsp";
             } catch (Exception ex) {
