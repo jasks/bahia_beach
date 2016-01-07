@@ -16,11 +16,11 @@
         <h1>laisser un commentaire</h1>
         <form action="Controller">
             Laisser votre commentaire: <br>
-            <textarea name="commentaire" placeholder="...">${contenu}</textarea>
+            <textarea class="form-control" name="commentaire" placeholder="...">${contenu}</textarea>
             <input type="hidden" name="section" value="panier" />
             <input type="hidden" name="action" value="setCommentaire" />
             <input type="hidden" name="id" value="${param.id}" />
-            <input type="submit" />
+            <input class="btn btn-primary" type="submit" />
         </form>
         
     <%@include file="../templates/footer.jsp" %>

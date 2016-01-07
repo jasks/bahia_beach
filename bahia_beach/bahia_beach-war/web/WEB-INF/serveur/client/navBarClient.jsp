@@ -4,13 +4,14 @@
     
     <p class="well">table mis en session : ${tableClient}</p>
 
-        <a href="Controller?section=server&action=carte">lien vers ma carte</a>
+        <a href="Controller?section=server&action=carte">carte</a>
         <c:if test="${nombre != null}">
-            <a href="Controller?section=server&action=afficherPanier">lien vers le panier <c:if test="${nombre != 0}"><span class="nombre">${nombre}</span></c:if>|</a>
+            <a href="Controller?section=server&action=afficherPanier">mon panier <c:if test="${nombre != 0}"><span class="nombre">${nombre}</span></c:if>|</a>
         </c:if>
         <c:if test="${nombre == null}">
-            <a href="Controller?section=server&action=afficherPanier">lien vers le panier |</a>
+            <a href="Controller?section=server&action=afficherPanier">mon panier |</a>
         </c:if>
+            <a href="Controller?section=server&action=mesCommandes">mes commandes |</a>
             
         </div>  
         
