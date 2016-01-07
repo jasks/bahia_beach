@@ -19,8 +19,8 @@
 </c:if>
 <c:if test="${not empty tables}">
     <div class="row">
-<div id="mesProduits" class="col-lg-6">
-    <h3 class="text-primary">Les tables</h3>
+<div id="mesProduits" class="col-lg-8">
+    <h3 class="text-primary">Les tables attribuées</h3>
     <table class="table table-hover" >
         <thead>
             <tr>
@@ -43,7 +43,7 @@
                     <td>${t.statut}</td>
                     <td>
                         <c:url value="Controller?section=server&action=partieClient&id=${t.id}" var="url01" />
-                        <a href="${url01}">voir interface du client à faire !</a>
+                        <a href="${url01}">accéder interface client de cette table !</a>
                     </td>
                 </tr>
             </c:forEach>

@@ -41,6 +41,9 @@ public class Panier implements ControllerInterface, Serializable{
     
         String action = request.getParameter("action");
         if ("afficherPanier".equalsIgnoreCase(action)) {
+            session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("nombre", beanPanier.getNombreProduit());
+            session.setAttribute("total", beanPanier.getTotalHT());
             return "/WEB-INF/client/panier.jsp";
         }
         
@@ -51,9 +54,14 @@ public class Panier implements ControllerInterface, Serializable{
             session.setAttribute("panier", beanPanier.getListe());
             session.setAttribute("nombre", beanPanier.getNombreProduit());
             session.setAttribute("total", beanPanier.getTotalHT());
+            
             //update panier donc update panierServeur
             Tablee t = (Tablee) session.getAttribute("table");
-            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+            
+            beanPanierServeur.updatePanier(t, beanPanier.getPanier());
+            System.out.println("-------------- ce que j'ai envoyé ds mon bean comme panier : \n"
+                    + beanPanierServeur.getPanierServeur().get(t) + "-----------------");
+            
             request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
             request.setAttribute("msg", "Le produit a bien été ajouté à votre commande.");
             return "/WEB-INF/client/panier.jsp";
@@ -65,9 +73,14 @@ public class Panier implements ControllerInterface, Serializable{
             session.setAttribute("panier", beanPanier.getListe());
             session.setAttribute("nombre", beanPanier.getNombreProduit());
             session.setAttribute("total", beanPanier.getTotalHT());
+            
             //update panier donc update panierServeur
             Tablee t = (Tablee) session.getAttribute("table");
-            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+            
+            beanPanierServeur.updatePanier(t, beanPanier.getPanier());
+            System.out.println("-------------- ce que j'ai envoyé ds mon bean comme panier : \n"
+                    + beanPanierServeur.getPanierServeur().get(t) + "-----------------");
+            
             request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
             request.setAttribute("msg", "Le produit a bien été retiré de votre commande.");
             return "/WEB-INF/client/panier.jsp";
@@ -76,9 +89,14 @@ public class Panier implements ControllerInterface, Serializable{
          if ("clear".equalsIgnoreCase(action)) {
             beanPanier.clearPanier();
             session.setAttribute("panier", beanPanier.getListe());
+            
             //update panier donc update panierServeur
             Tablee t = (Tablee) session.getAttribute("table");
-            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+            
+            beanPanierServeur.updatePanier(t, beanPanier.getPanier());
+            System.out.println("-------------- ce que j'ai envoyé ds mon bean comme panier : \n"
+                    + beanPanierServeur.getPanierServeur().get(t) + "-----------------");
+            
             request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
             request.setAttribute("msg", "La commande a été supprimé.");
             return "/WEB-INF/client/panier.jsp";
@@ -157,9 +175,14 @@ public class Panier implements ControllerInterface, Serializable{
             session.setAttribute("panier", beanPanier.getListe());
             session.setAttribute("nombre", beanPanier.getNombreProduit());
             session.setAttribute("total", beanPanier.getTotalHT());
+            
             //update panier donc update panierServeur
             Tablee t = (Tablee) session.getAttribute("table");
-            application.setAttribute("panierServeur", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
+            
+            beanPanierServeur.updatePanier(t, beanPanier.getPanier());
+            System.out.println("-------------- ce que j'ai envoyé ds mon bean comme panier : \n"
+                    + beanPanierServeur.getPanierServeur().get(t) + "-----------------");
+            
             request.setAttribute("panierServeurRequest", beanPanierServeur.updatePanier(t, beanPanier.getPanier()));
             request.setAttribute("msg", "Votre menu a bien été ajouté !!!");
             return "/WEB-INF/client/panier.jsp";
@@ -170,6 +193,8 @@ public class Panier implements ControllerInterface, Serializable{
             Tablee t = (Tablee)session.getAttribute("table");
             Commande c = beanPanier.validerPanier(t.getServeur(), t);
             session.setAttribute("panier", beanPanier.clearPanier());
+            session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("nombre", beanPanier.getNombreProduit());
             request.setAttribute("commande", c);
             request.setAttribute("msg", "votre commande a bien été prise en compte. Vous pouvez voir l'avancée de la commande");
             
@@ -177,8 +202,16 @@ public class Panier implements ControllerInterface, Serializable{
             List<LigneCommande> lc = beanPanier.afficherLigneEnCour(t, 1);
             System.out.println("---------------- ligne en cour : " + lc);
             session.setAttribute("ligneEnCour", lc);
-            return "/WEB-INF/client/panier.jsp";
+            return "/WEB-INF/client/commande.jsp";
             //return "/WEB-INF/recapCommande.jsp";
+        }
+        
+        if("mesCommandes".equalsIgnoreCase(action)) {
+            Tablee t = (Tablee)session.getAttribute("table");
+            List<LigneCommande> lc = beanPanier.afficherLigneEnCour(t, 1);
+            System.out.println("---------------- ligne en cour : " + lc);
+            session.setAttribute("ligneEnCour", lc);
+            return "/WEB-INF/client/commande.jsp";
         }
         
         

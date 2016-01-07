@@ -49,22 +49,23 @@ public class Server implements ControllerInterface, Serializable{
         String action = request.getParameter("action");
         String x = request.getParameter("x");
         
+        
         if("interface".equalsIgnoreCase(action)) {
-            request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+            request.setAttribute("nombreAppel", beanAppel.getNombreAppel(s));
         return "/WEB-INF/serveur/interfaceServeur.jsp";
         }
         
         if("table".equalsIgnoreCase(action)) {
         List<Tablee> lt = beanServeur.afficherTable();
         request.setAttribute("tables", lt);
-        request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+        request.setAttribute("nombreAppel", beanAppel.getNombreAppel(s));
         return "/WEB-INF/serveur/afficherTable.jsp";
         }
         
         if("tableLibre".equalsIgnoreCase(action)) {
         List<Tablee> lt = beanServeur.afficherTableLibre();
         request.setAttribute("tables", lt);
-        request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+        request.setAttribute("nombreAppel", beanAppel.getNombreAppel(s));
         return "/WEB-INF/serveur/afficherTable.jsp";
         }
         
@@ -74,14 +75,14 @@ public class Server implements ControllerInterface, Serializable{
         List<Tablee> lt = beanServeur.afficherTableAttribue(s);
         request.setAttribute("tables", lt);
         request.setAttribute("msg", "vous avez attribué une table");
-        request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+        request.setAttribute("nombreAppel", beanAppel.getNombreAppel(s));
         return "/WEB-INF/serveur/tableAttribuee.jsp";
         }
         
         if("tableAttribue".equalsIgnoreCase(action)) {
             List<Tablee> lt = beanServeur.afficherTableAttribue(s);
             request.setAttribute("tables", lt);
-            request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+            request.setAttribute("nombreAppel", beanAppel.getNombreAppel(s));
             return "/WEB-INF/serveur/tableAttribuee.jsp";
         }
 
@@ -89,7 +90,7 @@ public class Server implements ControllerInterface, Serializable{
         if("tableAppel".equalsIgnoreCase(action)) {
             List<Tablee> lt = beanAppel.afficherAppelTable(s);
             request.setAttribute("tables", lt);
-            request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+            request.setAttribute("nombreAppel", beanAppel.getNombreAppel(s));
             return "/WEB-INF/serveur/afficherAppelTable.jsp";
         }
         
@@ -99,7 +100,7 @@ public class Server implements ControllerInterface, Serializable{
             request.setAttribute("msg", "vous avez bien répondu à l'appel de la table : "+beanServeur.getTablee(id));
             List<Tablee> lt = beanAppel.afficherAppelTable(s);
             request.setAttribute("tables", lt);
-            request.setAttribute("nombre", beanAppel.getNombreAppel(s));
+            request.setAttribute("nombreAppel", beanAppel.getNombreAppel(s));
             return "/WEB-INF/serveur/afficherAppelTable.jsp";
         }
         
@@ -124,17 +125,31 @@ public class Server implements ControllerInterface, Serializable{
             //on met en session la table client concerné:
             Tablee t = beanServeur.getTablee(id);
             session.setAttribute("tableClient", t);
-            //reccuperer la valeur (donc la hashmap) panier dont la clé est la table t
-            HashMap <Integer, LigneCommande> panierServeur = beanPanierServeur.getPanierServeur().get(t);
-            if(panierServeur != null) {
-            beanPanier.setPanier(panierServeur);
-            }
-            System.out.println("beanPanier.getPanier : " + beanPanier.getPanier());
-            session.setAttribute("panier", panierServeur);
+            
             List<Type> lt = beanCarte.selectAllType();
                request.setAttribute("types", lt);
             List<Menu> lm = beanCarte.selectAllMenu();
                request.setAttribute("menus", lm);
+               
+            //reccuperer la valeur (donc la hashmap) panier dont la clé est la table t
+//            HashMap <Integer, LigneCommande> panierServeur = beanPanierServeur.getPanierServeur().get(t);
+//            if(panierServeur != null) {
+//            beanPanier.setPanier(panierServeur);
+//            }
+//            System.out.println("beanPanier.getPanier : " + beanPanier.getPanier());
+//            session.setAttribute("panier", panierServeur);
+               
+//               ok c'est bon cuila avec l'autre en client
+//               System.out.println("------------------- panier du client : \n" + application.getAttribute("panierServ") + " -------------------");
+//               beanPanier.setPanier((HashMap<Integer, LigneCommande>) application.getAttribute("panierServ"));
+//               System.out.println("------------------- panier du beanPanier initialisé : \n" + beanPanier.getPanier() + " -------------------");
+               
+               HashMap<Integer, LigneCommande> hm = beanPanierServeur.getPanierServeur().get(t);
+               
+               System.out.println("ce que je recupere du client via le bean : \n" + hm);
+               if(hm != null) beanPanier.setPanier(hm);
+               System.out.println("------------------ ce que j'ai ds mon beanPanier maintenant : \n"+ beanPanier.getPanier() + "------------------");
+               
                
                return "/WEB-INF/serveur/client/carte.jsp";
         }
@@ -176,7 +191,9 @@ public class Server implements ControllerInterface, Serializable{
         
         
         if ("afficherPanier".equalsIgnoreCase(action)) {
-            System.out.println();
+            session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("nombre", beanPanier.getNombreProduit());
+            session.setAttribute("total", beanPanier.getTotalHT());
             return "/WEB-INF/serveur/client/panier.jsp";
         }
         
@@ -308,14 +325,25 @@ public class Server implements ControllerInterface, Serializable{
             Tablee t = (Tablee)session.getAttribute("tableClient");
             Commande c = beanPanier.validerPanier(t.getServeur(), t);
             session.setAttribute("panier", beanPanier.clearPanier());
+            session.setAttribute("panier", beanPanier.getListe());
+            session.setAttribute("nombre", beanPanier.getNombreProduit());
             request.setAttribute("commande", c);
             request.setAttribute("msg", "votre commande a bien été prise en compte. Vous pouvez voir l'avancée de la commande");
             /*--------------------affichage des ligne en cour de commande----------------------*/
             List<LigneCommande> lc = beanPanier.afficherLigneEnCour(t, 1);
             System.out.println("---------------- ligne en cour : " + lc);
             session.setAttribute("ligneEnCour", lc);
-            return "/WEB-INF/serveur/client/panier.jsp";
+            return "/WEB-INF/serveur/client/commande.jsp";
             //return "/WEB-INF/recapCommande.jsp";
+        }
+        
+                
+        if("mesCommandes".equalsIgnoreCase(action)) {
+            Tablee t = (Tablee)session.getAttribute("table");
+            List<LigneCommande> lc = beanPanier.afficherLigneEnCour(t, 1);
+            System.out.println("---------------- ligne en cour : " + lc);
+            session.setAttribute("ligneEnCour", lc);
+            return "/WEB-INF/serveur/client/commande.jsp";
         }
         
         

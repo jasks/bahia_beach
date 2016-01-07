@@ -6,16 +6,13 @@
     <c:if test="${table==null}">
         <h4 class="alert alert-danger text-center">il faut acceder à une table avant de parcourir l'interface client</h4>
     </c:if>
-        <a href="Controller?section=carte&action=carte">lien vers ma carte</a>
+        <a href="Controller?section=carte&action=carte">la carte</a>
         <c:if test="${nombre != null}">
-            <a href="Controller?section=panier&action=afficherPanier">lien vers le panier <c:if test="${nombre != 0}"><span class="nombre">${nombre}</span></c:if>|</a>
+            <a href="Controller?section=panier&action=afficherPanier">mon panier <c:if test="${nombre != 0}"><span class="nombre">${nombre}</span></c:if>|</a>
         </c:if>
         <c:if test="${nombre == null}">
-            <a href="Controller?section=panier&action=afficherPanier">lien vers le panier |</a>
+            <a href="Controller?section=panier&action=afficherPanier">mon panier |</a>
         </c:if>
-        
-        <a href="Controller?section=client&action=appelerServeur">appeler Serveur</a>
-        <a href="Controller?section=carte&action=appel">lien vers appel serveur |</a>
-        <h4>valeur de table.call : ${table.call}</h4>
+        <a href="Controller?section=carte&action=appel">appel serveur |</a>
+        <a href="Controller?section=panier&action=mesCommandes">mes commandes |</a>
         </div>  
-        <p class="well">panier envoyé au serveur : ${panierServeurRequest}</p>
